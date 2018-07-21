@@ -1,0 +1,50 @@
+﻿@model DingdongBook.Models.ORDER_INCLUDE
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ORDER_INCLUDE</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.QUANTITY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QUANTITY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRICE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRICE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BOOK.ISBN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BOOK.ISBN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ORDERS.REMARK)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ORDERS.REMARK)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

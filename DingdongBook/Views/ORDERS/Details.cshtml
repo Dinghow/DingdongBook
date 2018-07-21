@@ -1,0 +1,82 @@
+﻿@model DingdongBook.Models.ORDERS
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ORDERS</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.QUANTITY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QUANTITY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRICE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRICE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.REMARK)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.REMARK)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIME_START)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIME_START)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIME_GET)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIME_GET)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.STATUS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.STATUS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ADDRESS.NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ADDRESS.NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.USERS.NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USERS.NAME)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

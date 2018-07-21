@@ -1,0 +1,50 @@
+﻿@model DingdongBook.Models.COMMENT_FEEDBACK
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>COMMENT_FEEDBACK</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ATTITUDE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ATTITUDE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COMMENTS.TITLE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COMMENTS.TITLE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.USERS.NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USERS.NAME)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

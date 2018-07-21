@@ -49,10 +49,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.12.2.1100\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess.EntityFramework, Version=6.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.EntityFramework.12.2.1100\lib\net45\Oracle.ManagedDataAccess.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -151,9 +165,75 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ACCOUNTSController.cs" />
+    <Compile Include="Controllers\ADDRESSesController.cs" />
+    <Compile Include="Controllers\AUTHORsController.cs" />
+    <Compile Include="Controllers\BOOKsController.cs" />
+    <Compile Include="Controllers\CARTsController.cs" />
+    <Compile Include="Controllers\CART_INCLUDEController.cs" />
+    <Compile Include="Controllers\CATEGORiesController.cs" />
+    <Compile Include="Controllers\COMMENTSController.cs" />
+    <Compile Include="Controllers\COMMENT_FEEDBACKController.cs" />
+    <Compile Include="Controllers\HelloWorldController.cs" />
+    <Compile Include="Controllers\ORDERSController.cs" />
+    <Compile Include="Controllers\ORDER_INCLUDEController.cs" />
+    <Compile Include="Controllers\USERSController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ACCOUNTS.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ADDRESS.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AUTHOR.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BOOK.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CART.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CART_INCLUDE.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CATEGORY.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\COMMENTS.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\COMMENT_FEEDBACK.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ORDERS.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ORDER_INCLUDE.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\USERS.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WRITE.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -166,10 +246,27 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -196,10 +293,69 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\ACCOUNTS\Create.cshtml" />
+    <Content Include="Views\ACCOUNTS\Delete.cshtml" />
+    <Content Include="Views\ACCOUNTS\Details.cshtml" />
+    <Content Include="Views\ACCOUNTS\Edit.cshtml" />
+    <Content Include="Views\ACCOUNTS\Index.cshtml" />
+    <Content Include="Views\ADDRESSes\Create.cshtml" />
+    <Content Include="Views\ADDRESSes\Delete.cshtml" />
+    <Content Include="Views\ADDRESSes\Details.cshtml" />
+    <Content Include="Views\ADDRESSes\Edit.cshtml" />
+    <Content Include="Views\ADDRESSes\Index.cshtml" />
+    <Content Include="Views\AUTHORs\Create.cshtml" />
+    <Content Include="Views\AUTHORs\Delete.cshtml" />
+    <Content Include="Views\AUTHORs\Details.cshtml" />
+    <Content Include="Views\AUTHORs\Edit.cshtml" />
+    <Content Include="Views\AUTHORs\Index.cshtml" />
+    <Content Include="Views\BOOKs\Create.cshtml" />
+    <Content Include="Views\BOOKs\Delete.cshtml" />
+    <Content Include="Views\BOOKs\Details.cshtml" />
+    <Content Include="Views\BOOKs\Edit.cshtml" />
+    <Content Include="Views\BOOKs\Index.cshtml" />
+    <Content Include="Views\CARTs\Create.cshtml" />
+    <Content Include="Views\CARTs\Delete.cshtml" />
+    <Content Include="Views\CARTs\Details.cshtml" />
+    <Content Include="Views\CARTs\Edit.cshtml" />
+    <Content Include="Views\CARTs\Index.cshtml" />
+    <Content Include="Views\CART_INCLUDE\Create.cshtml" />
+    <Content Include="Views\CART_INCLUDE\Delete.cshtml" />
+    <Content Include="Views\CART_INCLUDE\Details.cshtml" />
+    <Content Include="Views\CART_INCLUDE\Edit.cshtml" />
+    <Content Include="Views\CART_INCLUDE\Index.cshtml" />
+    <Content Include="Views\CATEGORies\Create.cshtml" />
+    <Content Include="Views\CATEGORies\Delete.cshtml" />
+    <Content Include="Views\CATEGORies\Details.cshtml" />
+    <Content Include="Views\CATEGORies\Edit.cshtml" />
+    <Content Include="Views\CATEGORies\Index.cshtml" />
+    <Content Include="Views\COMMENT_FEEDBACK\Create.cshtml" />
+    <Content Include="Views\COMMENT_FEEDBACK\Delete.cshtml" />
+    <Content Include="Views\COMMENT_FEEDBACK\Details.cshtml" />
+    <Content Include="Views\COMMENT_FEEDBACK\Edit.cshtml" />
+    <Content Include="Views\COMMENT_FEEDBACK\Index.cshtml" />
+    <Content Include="Views\COMMENTS\Create.cshtml" />
+    <Content Include="Views\COMMENTS\Delete.cshtml" />
+    <Content Include="Views\COMMENTS\Details.cshtml" />
+    <Content Include="Views\COMMENTS\Edit.cshtml" />
+    <Content Include="Views\COMMENTS\Index.cshtml" />
+    <Content Include="Views\ORDER_INCLUDE\Create.cshtml" />
+    <Content Include="Views\ORDER_INCLUDE\Delete.cshtml" />
+    <Content Include="Views\ORDER_INCLUDE\Details.cshtml" />
+    <Content Include="Views\ORDER_INCLUDE\Edit.cshtml" />
+    <Content Include="Views\ORDER_INCLUDE\Index.cshtml" />
+    <Content Include="Views\ORDERS\Create.cshtml" />
+    <Content Include="Views\ORDERS\Delete.cshtml" />
+    <Content Include="Views\ORDERS\Details.cshtml" />
+    <Content Include="Views\ORDERS\Edit.cshtml" />
+    <Content Include="Views\ORDERS\Index.cshtml" />
+    <Content Include="Views\USERS\Create.cshtml" />
+    <Content Include="Views\USERS\Delete.cshtml" />
+    <Content Include="Views\USERS\Details.cshtml" />
+    <Content Include="Views\USERS\Edit.cshtml" />
+    <Content Include="Views\USERS\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -213,6 +369,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

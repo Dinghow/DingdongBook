@@ -1,0 +1,51 @@
+﻿@model IEnumerable<DingdongBook.Models.CART>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.QUANTITY)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIME_START)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BOOK.ISBN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.USERS.NAME)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.QUANTITY)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TIME_START)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BOOK.ISBN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.USERS.NAME)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
