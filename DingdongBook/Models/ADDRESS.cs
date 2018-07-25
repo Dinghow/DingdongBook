@@ -18,7 +18,7 @@ namespace DingdongBook.Models
         public ADDRESS()
         {
             this.ORDERS = new HashSet<ORDERS>();
-            this.USERS = new HashSet<USERS>();
+            this.USERS1 = new HashSet<USERS>();
         }
     
         public decimal ID { get; set; }
@@ -28,10 +28,14 @@ namespace DingdongBook.Models
         public string PROVINCE { get; set; }
         public string CITY { get; set; }
         public string DISTRICT { get; set; }
+        public Nullable<int> POST_CODE { get; set; }
+        public Nullable<decimal> USER_ID { get; set; }
+        public string LOCATION { get; set; }
     
+        public virtual USERS USERS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ORDERS> ORDERS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<USERS> USERS { get; set; }
+        public virtual ICollection<USERS> USERS1 { get; set; }
     }
 }

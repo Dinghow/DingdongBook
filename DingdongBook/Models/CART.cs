@@ -15,11 +15,11 @@ namespace DingdongBook.Models
     public partial class CART
     {
         public decimal USER_ID { get; set; }
-        public decimal BOOK_ID { get; set; }
         public Nullable<decimal> QUANTITY { get; set; }
         public string TIME_START { get; set; }
+        public Nullable<decimal> POST_COST { get; set; }
+        public Nullable<decimal> TOTAL_PRICE { get; set; }
     
-        public virtual BOOK BOOK { get; set; }
         public virtual USERS USERS { get; set; }
     }
 }

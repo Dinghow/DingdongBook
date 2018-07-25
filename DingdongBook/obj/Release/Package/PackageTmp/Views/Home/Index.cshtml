@@ -1,0 +1,580 @@
+﻿@{
+    ViewBag.Title = "首页";
+}
+
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>叮咚首页</title>
+
+    <link rel="stylesheet" type="text/css" href="/Content/index.css">
+    <link rel="stylesheet" type="text/css" href="/Content/shared.css">
+    <script src="/Scripts/jquery-1.8.3.min.js"></script>
+    <script src="/Scripts/jquery.fly.min.js"></script>
+    <script src="/Scripts/public.js"></script>
+    <script src="/Scripts/base.js"></script>
+    <script src="/Scripts/slider.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $(".flexslider").animate({
+                'margin-top': '0'
+            }, 200)
+            $("aside").animate({
+                'top': '42',
+                'opacity': '1'
+            }, 200)
+
+            //购物车
+            $(".sping_car").hover(function () {
+                $(".myCar").css("display", "block");
+                $(".sping_car").addClass("mouseOnShow");
+                $(".sping_car c").removeClass("down").addClass("mouseOnUp");
+            }, function () {
+                $(".sping_car").removeClass("mouseOnShow");
+                $(".sping_car c").removeClass("mouseOnUp").addClass("down");
+                $(".myCar").css("display", "none");
+            });
+
+            $(".myCar").hover(function () {
+                $(".sping_car c").removeClass("down").addClass("mouseOnUp");
+                $(".sping_car").addClass("mouseOnShow");
+                $(".myCar").css("display", "block");
+            }, function () {
+                $(".sping_car").removeClass("mouseOnShow");
+                $(".sping_car c").removeClass("mouseOnUp").addClass("down");
+                $(".myCar").css("display", "none");
+            });
+
+            $(".sping_myben").hover(function () {
+                $(".myBen").css("display", "block");
+                $(".sping_myben").addClass("mouseOnShow");
+                $(".sping_myben c").removeClass("down").addClass("mouseOnUp");
+            }, function () {
+                $(".sping_myben").removeClass("mouseOnShow");
+                $(".sping_myben c").removeClass("mouseOnUp").addClass("down");
+                $(".myBen").css("display", "none");
+            });
+
+            $(".myBen").hover(function () {
+                $(".sping_myben c").removeClass("down").addClass("mouseOnUp");
+                $(".sping_myben").addClass("mouseOnShow");
+                $(".myBen").css("display", "block");
+            }, function () {
+                $(".sping_myben").removeClass("mouseOnShow");
+                $(".sping_myben c").removeClass("mouseOnUp").addClass("down");
+                $(".myBen").css("display", "none");
+            });
+
+            //商品展示
+            /* $(".productShow .currency ul li:first").css("border-left","1px solid #C2D58F"); */
+            $("#productUl .dog").hover(function () {
+                $("#productUl ul li").removeClass("xuanzhong");
+                $(this).addClass("xuanzhong");
+            }, function () {
+
+            });
+            $(".hide_add ul li a").click(function () {
+                var html = $(this).html();
+                $(".dis_add span").html(html);
+            });
+        })
+
+    </script>
+
+
+</head>
+
+<body>
+    <!--头部-->
+    <div class="top-hover">
+        <div class="register_login">
+            <em>您好,</em>
+            @if (ViewBag.user_auth == 0)
+            {
+                <a href="/Home/Login/">会员登录/快速注册</a>
+            }
+            else
+            {
+                <a href="/Home/Logout/">@ViewBag.user_name,退出</a>
+            }
+        </div>
+        <div class="vip_center">
+            @if (ViewBag.user_auth == 1)
+            {
+                <a href="/Individual/Index/">个人中心</a>
+            }
+        </div>
+    </div>
+    <!-- <div class="topAd"></div>-->
+    <!--header-->
+    <div class="maxbj1">
+        <header>
+            <h1 class="logo logo-size">
+                <img src="/Images/logo_index.png">
+            </h1>
+            <search>
+                <form>
+                    <input type="text" placeholder="请输入关键词" required style=" width:340px; height:34px; text-indent:2em; float:left; box-shadow:none">
+                    <button>搜索</button>
+                </form>
+            </search>
+            <div class="showInfo">
+                <div class="sping_car">
+                    <b></b>
+                    <em>购物车</em>
+                    <c class="spring_c down"></c>
+                </div>
+                <div class="sping_myben">
+                    <b></b>
+                    <em>我的叮咚</em>
+                    <c class="spring_c down benTop"></c>
+                </div>
+                <div class="myCar">
+                    购物车中还没有商品，赶紧选购吧！
+                </div>
+                <div class="myBen">
+                    <p style="text-align: left;">
+                        <strong>
+                            您好，请&nbsp;
+                            <a href="login.html">
+                                <font color="red">[登录]</font>
+                            </a>
+                        </strong>
+                    <p>
+                        <ul class="ul1">
+                            <li>
+                                <a href="#">待支付订单(0)</a>
+                            </li>
+                            <li>
+                                <a href="#">待评价商品(0)</a>
+                            </li>
+
+                        </ul>
+                        <ul class="ul2">
+                            <li>
+                                <a href="#">我的订单></a>
+                            </li>
+                            <li>
+                                <a href="#">我的收藏></a>
+                            </li>
+                        </ul>
+                </div>
+
+            </div>
+
+
+        </header>
+    </div>
+    <!--导航-->
+    <section class="dao_hang">
+        <nav>
+            <!--结束-->
+            <div class="dao_list">
+                <a href="#">首页</a>
+                <a href="#">文学</a>
+                <a href="#">社科</a>
+                <a href="#">经管</a>
+                <a href="#">少儿</a>
+                <a href="#">生活</a>
+                <a href="#">科技</a>
+                <a href="#">工业</a>
+                <a href="#">艺术</a>
+                <a href="#">&nbsp;IT&nbsp;</a>
+                <a href="#">综合</a>
+
+            </div>
+        </nav>
+    </section>
+    <!--banner-->
+    <div id="banner_tabs" class="flexslider">
+        <ul class="slides">
+            <li>
+                <a title="" target="_blank" href="#">
+                    <img width="1920" height="500" alt="" style="background:#e1211e url(/Images/ba1.jpg) no-repeat center;" src="/Images/alpha.png">
+                </a>
+            </li>
+            <li>
+                <a title="" href="#">
+                    <img width="1920" height="500" alt="" style="background:#900 url(/Images/ba2.jpg) no-repeat center;" src="/Images/alpha.png">
+                </a>
+            </li>
+            <li>
+                <a title="" target="_blank" href="#">
+                    <img width="1920" height="500" alt="" style="background:#e1211e url(/Images/ba3.jpg) no-repeat center;" src="/Images/alpha.png">
+                </a>
+            </li>
+            <li>
+                <a title="" href="#">
+                    <img width="1920" height="500" alt="" style="background:#900 url(/Images/ba4.jpg) no-repeat center;" src="/Images/alpha.png">
+                </a>
+            </li>
+        </ul>
+        <ul class="flex-direction-nav">
+            <li>
+                <a class="flex-prev" href="javascript:;">Previous</a>
+            </li>
+            <li>
+                <a class="flex-next" href="javascript:;">Next</a>
+            </li>
+        </ul>
+        <ol id="bannerCtrl" class="flex-control-nav flex-control-paging">
+            <li class="active">
+                <a>1</a>
+            </li>
+            <li>
+                <a>2</a>
+            </li>
+            <li>
+                <a>2</a>
+            </li>
+            <li>
+                <a>2</a>
+            </li>
+        </ol>
+    </div>
+
+    <!--楼层分布图-->
+    <div class="fixed_position">
+        <div class="fixed_position_1">
+            <ul>
+                <li>新书上架</li>
+                <li>热门图书</li>
+                <li>为您推荐</li>
+            </ul>
+        </div>
+    </div>
+
+    <!--新书上架-->
+    <span class="as blessing_package pick-back-e">
+        <a style=" color:#000">
+            <h3 style="float:left" class="pick-back5">
+                新书上架
+            </h3>
+        </a>
+    </span>
+    <div>
+        <div class="currency f-4-lt01">
+            <ul>
+                <li>
+                    <a href="#">
+                        <img src="~/Images/books/@ViewBag.nBook1_img" style=" margin:0 auto; display:block; width:220px; height:220px">
+                    </a>
+                    <light1>
+                        <img src="/Images/saoguang.png">
+                    </light1>
+                    <span>￥@ViewBag.nBook1_price</span>
+                    <a href="#">
+                        <p> </p>
+                    </a>
+                    <em>
+                        <a href="#">收藏</a>
+                        <a href="javascript:void(0)" class="add_scar">加入购物车</a>
+                    </em>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="/Images/books/@ViewBag.nBook2_img" style=" margin:0 auto; display:block; width:220px; height:220px">
+                    </a>
+                    <light1>
+                        <img src="/Images/saoguang.png">
+                    </light1>
+                    <span>￥@ViewBag.nBook2_price</span>
+                    <a href="#">
+                        <p> </p>
+                    </a>
+                    <em>
+                        <a href="#">收藏</a>
+                        <a href="javascript:void(0)" class="add_scar">加入购物车</a>
+                    </em>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="/Images/books/@ViewBag.nBook3_img" style=" margin:0 auto; display:block; width:220px; height:220px">
+                    </a>
+                    <light1>
+                        <img src="/Images/saoguang.png">
+                    </light1>
+                    <span>￥@ViewBag.nBook3_price</span>
+                    <a href="#">
+                        <p> </p>
+                    </a>
+                    <em>
+                        <a href="#">收藏</a>
+                        <a href="javascript:void(0)" class="add_scar">加入购物车</a>
+                    </em>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="/Images/books/@ViewBag.nBook4_img" style=" margin:0 auto; display:block; width:220px; height:220px">
+                    </a>
+                    <light1>
+                        <img src="/Images/saoguang.png">
+                    </light1>
+                    <span>￥@ViewBag.nBook4_price</span>
+                    <a href="#">
+                        <p> </p>
+                    </a>
+                    <em>
+                        <a href="#">收藏</a>
+                        <a href="javascript:void(0)" class="add_scar">加入购物车</a>
+                    </em>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="/Images/books/@ViewBag.nBook5_img" style=" margin:0 auto; display:block; width:220px; height:220px">
+                    </a>
+                    <light1>
+                        <img src="/Images/saoguang.png">
+                    </light1>
+                    <span>￥@ViewBag.nBook5_price</span>
+                    <a href="#">
+                        <p> </p>
+                    </a>
+                    <em>
+                        <a href="#">收藏</a>
+                        <a href="javascript:void(0)" class="add_scar">加入购物车</a>
+                    </em>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--热门图书-->
+    <span class="as blessing_package pick-back-f">
+        <a style=" color:#000">
+            <h3 style="float:left" class="pick-back6">
+                热门图书
+            </h3>
+        </a>
+    </span>
+    <div>
+        <div class="currency f-5-lt01">
+            <ul>
+                <li>
+                    <a href="#">
+                        <img src="/Images/books/@ViewBag.bBook1_img" style=" margin:0 auto; display:block; width:220px; height:220px">
+                    </a>
+                    <light1>
+                        <img src="/Images/saoguang.png">
+                    </light1>
+                    <span>￥@ViewBag.bBook1_price</span>
+                    <a href="#">
+                        <p> </p>
+                    </a>
+                    <em>
+                        <a href="#">收藏</a>
+                        <a href="javascript:void(0)" class="add_scar">加入购物车</a>
+                    </em>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="/Images/books/@ViewBag.bBook2_img" style=" margin:0 auto; display:block; width:220px; height:220px">
+                    </a>
+                    <light1>
+                        <img src="/Images/saoguang.png">
+                    </light1>
+                    <span>￥@ViewBag.bBook2_price</span>
+                    <a href="#">
+                        <p> </p>
+                    </a>
+                    <em>
+                        <a href="#">收藏</a>
+                        <a href="javascript:void(0)" class="add_scar">加入购物车</a>
+                    </em>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="/Images/books/@ViewBag.bBook3_img" style=" margin:0 auto; display:block; width:220px; height:220px">
+                    </a>
+                    <light1>
+                        <img src="/Images/saoguang.png">
+                    </light1>
+                    <span>￥@ViewBag.bBook3_price</span>
+                    <a href="#">
+                        <p> </p>
+                    </a>
+                    <em>
+                        <a href="#">收藏</a>
+                        <a href="javascript:void(0)" class="add_scar">加入购物车</a>
+                    </em>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="/Images/books/@ViewBag.bBook4_img" style=" margin:0 auto; display:block; width:220px; height:220px">
+                    </a>
+                    <light1>
+                        <img src="/Images/saoguang.png">
+                    </light1>
+                    <span>￥@ViewBag.bBook4_price</span>
+                    <a href="#">
+                        <p> </p>
+                    </a>
+                    <em>
+                        <a href="#">收藏</a>
+                        <a href="javascript:void(0)" class="add_scar">加入购物车</a>
+                    </em>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="/Images/books/@ViewBag.bBook5_img" style=" margin:0 auto; display:block; width:220px; height:220px">
+                    </a>
+                    <light1>
+                        <img src="/Images/saoguang.png">
+                    </light1>
+                    <span>￥@ViewBag.bBook5_price</span>
+                    <a href="#">
+                        <p> </p>
+                    </a>
+                    <em>
+                        <a href="#">收藏</a>
+                        <a href="javascript:void(0)" class="add_scar">加入购物车</a>
+                    </em>
+                </li>
+            </ul>
+        </div>
+        
+    </div>
+    <!--猜你喜欢-->
+    <div class="as kongzhianniu">
+        <div class="lunbobanner">
+            <ul class="lunboimg">
+                <li>
+                    <a href="#">
+                        <b>
+                            <img src="/Images/books/1.jpg" style=" margin:0 auto; display:block; width:auto; height:220px">
+                        </b>
+
+                        <p style="margin-top: 10px;">老人与海</p>
+                        <span>￥16</span>
+                    </a>
+                    <a href="#">
+                        <b>
+                            <img src="/Images/books/11.jpg" style=" margin:0 auto; display:block; width:auto; height:220px">
+                        </b>
+
+                        <p style="margin-top: 10px;">全球通史</p>
+                        <span>￥130</span>
+                    </a>
+                    <a href="#">
+                        <b>
+                            <img src="/Images/books/21.jpg" style=" margin:0 auto; display:block; width:auto; height:220px">
+                        </b>
+
+                        <p style="margin-top: 10px;">一本书读懂销售心理学</p>
+                        <span>￥20</span>
+                    </a>
+                    <a href="#">
+                        <b>
+                            <img src="/Images/books/31.jpg" style=" margin:0 auto; display:block; width:auto; height:220px">
+                        </b>
+
+                        <p style="margin-top: 10px;">三字经</p>
+                        <span>￥11</span>
+                    </a>
+                    <a href="#">
+                        <b>
+                            <img src="/Images/books/41.jpg" style=" margin:0 auto; display:block; width:auto; height:220px">
+                        </b>
+
+                        <p style="margin-top: 10px;">繁华落尽是孤独</p>
+                        <span>￥29</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <b>
+                            <img src="/Images/books/51.jpg" style=" margin:0 auto; display:block; width:auto; height:220px">
+                        </b>
+
+                        <p style="margin-top: 10px;">时间简史</p>
+                        <span>￥35</span>
+                    </a>
+                    <a href="#">
+                        <b>
+                            <img src="/Images/books/61.jpg" style=" margin:0 auto; display:block; width:auto; height:220px">
+                        </b>
+
+                        <p style="margin-top: 10px;">桥梁BIM建模基础教程</p>
+                        <span>￥32</span>
+                    </a>
+                    <a href="#">
+                        <b>
+                            <img src="/Images/books/71.jpg" style=" margin:0 auto; display:block; width:auto; height:220px">
+                        </b>
+
+                        <p style="margin-top: 10px;">用设计解决问题</p>
+                        <span>￥48</span>
+                    </a>
+                    <a href="#">
+                        <b>
+                            <img src="/Images/books/81.jpg" style=" margin:0 auto; display:block; width:auto; height:220px">
+                        </b>
+
+                        <p style="margin-top: 10px;">C Primer Plus</p>
+                        <span>￥45</span>
+                    </a>
+                    <a href="#">
+                        <b>
+                            <img src="/Images/books/91.jpg" style=" margin:0 auto; display:block; width:auto; height:220px">
+                        </b>
+
+                        <p style="margin-top: 10px;">2019张宇高等数学18讲</p>
+                        <span>￥36</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <h4 class="guanfangremai"><b>为您推荐</b></h4>
+    </div>
+    <!--侧边栏-->
+    <div class="toolbar">
+        <a href="###" class="toolbar-item toolbar-item-weixin" style=" position:relative"></a>
+        <a href="javascript:scroll(0,0)" id="top" class="toolbar-item toolbar-item-top"></a>
+    </div>
+    <!--购物车fly插件-->
+    <footer class="footer col">
+        <ul class="row">
+            <li class="col-4">
+                <span>关于我们</span>
+                <p>地址：中国 上海曹安公路4800号同济大学软件学院</p>
+                <p>邮编：201804</p>
+                <p>联系电话：86-21-69589585,69589332(FAX)</p>
+                <a href="#">关于我们</a>
+            </li>
+            <li class="col-2">
+                <span>项目公开</span>
+                <a href="https://github.com" target="_blank">GitHub</a>
+            </li>
+            <li class="col-3">
+                <span>广告位招租</span>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+            </li>
+            <li class="col-3">
+                <span>救救软院生</span>
+                <img src="/Images/code.png" alt="">
+            </li>
+        </ul>
+        <div class="footer-links text-center">
+            <p class="">
+                友情链接：
+                <a href="https://www.tongji.edu.cn" target="_blank">同济大学</a>
+                <a href="http://sse.tongji.edu.cn" target="_blank">同济大学软件学院</a>
+                <a href="http://sse.tongji.edu.cn/teacher/FACULTY/hpc/index.html" target="_blank">袁阿姨实验室</a>
+            </p>
+            <p>Tongji University, Copyright&copy; 2018, Database Course Project</p>
+        </div>
+    </footer>
+</body>
+
+</html>

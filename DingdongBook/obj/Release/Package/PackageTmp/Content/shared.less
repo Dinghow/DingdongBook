@@ -1,0 +1,93 @@
+@import (less)'bundle.less';
+
+.logo-line {
+    width: 100%;
+    height: 84.8px;
+    padding: 20px 10%;
+    border-bottom: 0.3rem solid @lightred2;
+    position: relative;
+    .logo {
+        height: 60px;
+        position: absolute;
+        left: 10%;
+        bottom: 10px;
+    }
+    #procedure {
+        #bundle.crumb-nav();
+    }
+}
+
+.top-hover {
+    width: 100%;
+    height: 42px;
+    background: #f9f9f9;
+    display: block;
+    border-bottom: 1px solid #eee;
+    height: 42px;
+    line-height: 42px;
+    padding: 0 10%;
+    .register_login {
+        float: left;
+        em {
+            font-size: 12px;
+            color: #666;
+            font-style: normal !important;
+        }
+    }
+    .vip_center {
+        float: right;
+        a:hover {
+            color: #FF0036;
+        }
+    }
+    a {
+        font-size: 12px;
+        color: #666;
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+}
+
+.footer {
+    border-top: 3px solid #ee4d4b;
+    background-color: #f7f7f5;
+    margin-top: 100px;
+    a,p {
+        color: #999;
+        height: 24px;
+        text-overflow: ellipsis;
+        font-size: 12px;
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 10%;
+        li {
+            padding: 20px;
+            padding-left: 30px;
+            border-bottom: 1px solid #ddd;
+            border-top: none;
+            &:not(:last-of-type){
+                border-right: 1px solid #ddd;
+            }
+            span {
+                color: #666;
+                display: block;
+                font: 16px/30px "microsoft yahei";
+            }
+            &>* {
+                display: block;
+            }
+            img{
+                #bundle.square(130px);
+            }
+        }
+    }
+    .footer-links {
+        padding-top: 20px;
+        p{
+            margin-bottom: 0;
+        }
+    }
+}
+

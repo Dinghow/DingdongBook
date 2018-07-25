@@ -1,0 +1,98 @@
+body{
+	min-width: 1000px;
+}
+
+.container{
+	min-height: 400px;
+}
+
+.top-group{
+	margin-top: 2vw;
+}
+
+.breadcrumb li:hover{
+	cursor: pointer;
+	color: #dc3545;
+}
+
+.top-control{
+ 	display: inline-block;
+ 	margin-top: 2vw;
+ }
+
+.top-control li,.top-control ol{
+
+}
+
+.select-ol{
+	display: none;
+}
+
+
+.card:hover{
+	box-shadow: 0 0 5px #46A3FF;
+}
+
+.selected{
+	box-shadow: 0 0 8px #dc3545;
+}
+
+#display-scane-favorite #omit *{
+	padding: 0;
+}
+
+.card-omit{
+	width: 150px;
+	height: auto;
+	margin: 2vw;
+	float: left;
+}
+
+.card-omit img{
+	width: 100%;
+	height: auto;
+}
+
+.card-detail{
+	margin: 2vw;
+
+}
+
+#detail{
+	display: none;
+}
+
+.card-detail img{
+	width: 15%;
+	height: auto;
+	float: left;
+}
+
+.card-detail .card-introduce{
+	width: 85%;
+	float: left;
+}
+
+.card-detail .card-introduce .book-name{
+	font-weight: bold;
+	font-size: 2rem;
+}
+
+.card-detail .card-introduce .book-introduce, .card-detail .card-introduce .book-detail{
+	font-size: 0.9rem;
+}
+
+.card-body{
+	margin: 0;
+}
+
+.card-omit p{
+	text-align: center;
+}
+
+.card-omit button{
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+

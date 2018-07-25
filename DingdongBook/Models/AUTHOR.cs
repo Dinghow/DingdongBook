@@ -21,7 +21,7 @@ namespace DingdongBook.Models
         }
     
         public decimal ID { get; set; }
-        public string NAME { get; set; }
+        public string AUTHOR_NAME { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WRITE> WRITE { get; set; }

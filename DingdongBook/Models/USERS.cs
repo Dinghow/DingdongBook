@@ -17,23 +17,26 @@ namespace DingdongBook.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public USERS()
         {
-            this.CART = new HashSet<CART>();
+            this.ADDRESS = new HashSet<ADDRESS>();
             this.CART_INCLUDE = new HashSet<CART_INCLUDE>();
             this.COMMENT_FEEDBACK = new HashSet<COMMENT_FEEDBACK>();
             this.COMMENTS = new HashSet<COMMENTS>();
             this.ORDERS = new HashSet<ORDERS>();
             this.BOOK = new HashSet<BOOK>();
-            this.ADDRESS = new HashSet<ADDRESS>();
+            this.ADDRESS1 = new HashSet<ADDRESS>();
         }
     
-        public decimal USER_ID { get; set; }
+        public decimal ID { get; set; }
         public string NAME { get; set; }
         public string GENDER { get; set; }
         public string EMAIL { get; set; }
+        public string PASSWORD { get; set; }
+        public string ACCOUNT { get; set; }
+        public string AUTHORITY { get; set; }
     
-        public virtual ACCOUNTS ACCOUNTS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CART> CART { get; set; }
+        public virtual ICollection<ADDRESS> ADDRESS { get; set; }
+        public virtual CART CART { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CART_INCLUDE> CART_INCLUDE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -45,6 +48,6 @@ namespace DingdongBook.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BOOK> BOOK { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ADDRESS> ADDRESS { get; set; }
+        public virtual ICollection<ADDRESS> ADDRESS1 { get; set; }
     }
 }

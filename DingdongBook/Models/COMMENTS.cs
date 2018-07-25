@@ -26,9 +26,10 @@ namespace DingdongBook.Models
         public string TITLE { get; set; }
         public string CONTENT { get; set; }
         public string TIME { get; set; }
-        public string SCORE { get; set; }
+        public Nullable<decimal> SCORE { get; set; }
         public string TOTAL_LIKE { get; set; }
         public string TOTAL_DISLIKE { get; set; }
+        public Nullable<decimal> TOTAL { get; set; }
     
         public virtual BOOK BOOK { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

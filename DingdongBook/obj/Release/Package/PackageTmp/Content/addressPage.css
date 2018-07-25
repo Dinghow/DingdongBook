@@ -1,0 +1,53 @@
+.container{
+	min-height: 400px;
+}
+
+.addresses {
+	padding: 0px;
+}
+
+.address {
+	background: url(../img/adress.png) no-repeat;
+	background-size: contain;
+	overflow: hidden;
+	width: 240px;
+	height: 110px;
+	border: none;
+	display: inline-block;
+	float: left;
+	padding: .75rem;
+	font-size: .8rem;
+	color: #666;
+
+}
+
+.address:not(:last-of-type) {
+	margin-right: 1rem;
+}
+
+.address.selected {
+	background: url(../img/adress-selected.png) no-repeat;
+}
+
+.address h6 {
+	font-size: .9rem;
+	font-weight: bold;
+	padding: 5px 0;
+	border-bottom: 1px solid #eee;
+}
+
+.address p {
+	margin-bottom: 5px;
+}
+
+.btn-add,.breadcrumb{
+	margin: 1.5vw 0;
+}
+
+.select-ol{
+	display: none;
+}
+
+.breadcrumb .top-control-button:hover{
+	cursor: pointer;
+}

@@ -389,7 +389,7 @@
     <End Role="ADDRESS" Type="Self.ADDRESS" Multiplicity="*" />
     <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
   </Association>
-  <EntityContainer Name="Entities1" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="ACCOUNTS" EntityType="Self.ACCOUNTS" />
     <EntitySet Name="ADDRESS" EntityType="Self.ADDRESS" />
     <EntitySet Name="AUTHOR" EntityType="Self.AUTHOR" />

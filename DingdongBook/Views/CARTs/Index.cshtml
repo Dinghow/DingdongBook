@@ -1,51 +1,145 @@
-﻿@model IEnumerable<DingdongBook.Models.CART>
-
-@{
-    ViewBag.Title = "Index";
+﻿@{
+    Layout = null;
 }
+<!DOCTYPE html>
+<html>
 
-<h2>Index</h2>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="/Content/fonts.css">
+    <link rel="stylesheet" href="/Content/bootstrap.css">
+    <link rel="stylesheet" href="/Content/cart.css">
+    <link rel="stylesheet" type="text/css" href="/Content/shared.css">
+    <script type="text/javascript" src="/Scripts/jquery.min.js"></script>
+</head>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.QUANTITY)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TIME_START)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BOOK.ISBN)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.USERS.NAME)
-        </th>
-        <th></th>
-    </tr>
+<body>
+    <div class="top-hover">
+        <div class="register_login">
+            <em>您好,</em>
+            @if (ViewBag.user_auth == 0)
+            {
+                <a href="/Home/Login/">会员登录/快速注册</a>
+            }
+            else
+            {
+                <a href="/Home/Logout/">@ViewBag.user_name,退出</a>
+            }
+        </div>
+        <div class="vip_center">
+            @if (ViewBag.user_auth == 1)
+            {
+                <a href="/Individual/Index/">个人中心</a>
+            }
+        </div>
+    </div>
+    <header class="logo-line clearfix">
+        <a href="~/"><img src="/Images/logo.png" alt="" class="logo"></a>
+        <ol id="procedure" class="crumb-nav float-right">
+            <li class="crumb-nav-item  current-item">我的购物车</li>
+            <li class="crumb-nav-item">填写订单</li>
+            <li class="crumb-nav-item">完成订单</li>
+        </ol>
+    </header>
+    <main>
+        <div class="cart">
+            <table class="table" id="cart-table">
+                <thead>
+                    <tr>
+                        <th scope="col" class="test">
+                            <input type="checkbox" name="select-all" id="select-all1">
+                            <label for="select-all1">全选</label>
+                        </th>
+                        <th scope="col" class="empty-th"></th>
+                        <th scope="col">商品信息</th>
+                        <th scope="col">单价(元)</th>
+                        <th scope="col">数量</th>
+                        <th scope="col">金额(元)</th>
+                        <th scope="col">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < ViewBag.num; i++)
+                    {
+                        <tr class="abook" data-bookid=@ViewBag.CartList[i].BOOK_ID>
+                            <th scope="row" colspan="2" class="item-img">
+                                <input type="checkbox">
+                                <img src="/Images/books/@ViewBag.CartList[i].IMAGE" alt="">
+                            </th>
+                            <td class="item-info"><a href="">@ViewBag.CartList[i].NAME</a></td>
+                            <td class="unit-price">￥<span>@ViewBag.CartList[i].PRICE</span></td>
+                            <td class="amount">
+                                <div class="number-controller">
+                                    <button class="decrease"><i class="material-icons">remove</i></button>
+                                    <input type="number" value="@ViewBag.CartList[i].QUANTITY" class="form-control" name="amount">
+                                    <button class="increase"><i class="material-icons">add</i></button>
+                                </div>
+                            </td>
+                            <td class="total-price">￥<span>@ViewBag.CartList[i].TOTAL_PRICE</span></td>
+                            <td class="operation">
+                                <button type="button" class="btn btn-link move-to-favorite">移入收藏</button>
+                                <button type="button" class="btn btn-link remove">删除</button>
+                            </td>
+                        </tr>
+                    }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.QUANTITY)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TIME_START)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BOOK.ISBN)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.USERS.NAME)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+                </tbody>
+            </table>
+            <div id="settlement" class="text-muted">
+                <div class="check-all">
+                    <input type="checkbox" name="select-all" id="select-all2">
+                    <label for="select-all2">全选</label>
+                    <button type="button" class="btn btn-link mass-delete">批量删除</button>
+                    <span>已选择<strong>0</strong>件商品</span>
+                </div>
+                <div class="clearing">
+                    <p class="final-price">总计(不含运费): <strong>￥<span>@ViewBag.price</span></strong></p>
+                    <button type="button" class="btn btn-danger font-weight-bold btn-lg">保存</button>
+                    <button type="button" class="btn btn-danger font-weight-bold btn-lg" id="go-to-settle" disabled>结&nbsp;&nbsp;&nbsp;&nbsp;算</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer col">
+        <ul class="row">
+            <li class="col-4">
+                <span>关于我们</span>
+                <p>地址：中国 上海曹安公路4800号同济大学软件学院</p>
+                <p>邮编：201804</p>
+                <p>联系电话：86-21-69589585,69589332(FAX)</p>
+                <a href="#">关于我们</a>
+            </li>
+            <li class="col-2">
+                <span>项目公开</span>
+                <a href="https://github.com" target="_blank">GitHub</a>
+            </li>
+            <li class="col-3">
+                <span>广告位招租</span>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+            </li>
+            <li class="col-3">
+                <span>救救软院生</span>
+                <img src="/Images/code.png" alt="">
+            </li>
+        </ul>
+        <div class="footer-links text-center">
+            <p class="">
+                友情链接：
+                <a href="https://www.tongji.edu.cn" target="_blank">同济大学</a>
+                <a href="http://sse.tongji.edu.cn" target="_blank">同济大学软件学院</a>
+                <a href="http://sse.tongji.edu.cn/teacher/FACULTY/hpc/index.html" target="_blank">袁阿姨实验室</a>
+            </p>
+            <p>Tongji University, Copyright&copy; 2018, Database Course Project</p>
+        </div>
+    </footer>
+    <script type="text/javascript" src="/Scripts/shared.js"></script>
+    <script type="text/javascript" src="/Scripts/cart.js"></script>
+</body>
 
-</table>
+</html>

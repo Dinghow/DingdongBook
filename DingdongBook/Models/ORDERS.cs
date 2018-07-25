@@ -29,6 +29,7 @@ namespace DingdongBook.Models
         public string TIME_START { get; set; }
         public string TIME_GET { get; set; }
         public string STATUS { get; set; }
+        public Nullable<decimal> POST_COST { get; set; }
     
         public virtual ADDRESS ADDRESS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

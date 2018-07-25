@@ -8,7 +8,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{738DC860-DE53-4AC4-8885-EFEC25FC4076}</ProjectGuid>
+    <ProjectGuid>{861FF624-3BFD-4FB1-A494-559DA4C99E14}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -25,10 +25,6 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -61,6 +57,8 @@
     </Reference>
     <Reference Include="Oracle.ManagedDataAccess.EntityFramework, Version=6.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
       <HintPath>..\packages\Oracle.ManagedDataAccess.EntityFramework.12.2.1100\lib\net45\Oracle.ManagedDataAccess.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -165,120 +163,295 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\ACCOUNTSController.cs" />
-    <Compile Include="Controllers\ADDRESSesController.cs" />
-    <Compile Include="Controllers\AUTHORsController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BOOKsController.cs" />
     <Compile Include="Controllers\CARTsController.cs" />
-    <Compile Include="Controllers\CART_INCLUDEController.cs" />
-    <Compile Include="Controllers\CATEGORiesController.cs" />
-    <Compile Include="Controllers\COMMENTSController.cs" />
-    <Compile Include="Controllers\COMMENT_FEEDBACKController.cs" />
-    <Compile Include="Controllers\HelloWorldController.cs" />
-    <Compile Include="Controllers\ORDERSController.cs" />
-    <Compile Include="Controllers\ORDER_INCLUDEController.cs" />
-    <Compile Include="Controllers\USERSController.cs" />
+    <Compile Include="Controllers\FavoriteController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IndividualController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ACCOUNTS.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ADDRESS.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AUTHOR.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\BOOK.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CART.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CARTLIST.cs">
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CART_INCLUDE.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CATEGORY.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\COMMENTS.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\COMMENT_FEEDBACK.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model1.Context.cs">
+    <Compile Include="Models\DINGDANGUANXI.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
+      <DependentUpon>Model.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model1.cs">
+    <Compile Include="Models\Model.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model1.Designer.cs">
+    <Compile Include="Models\Model.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
+      <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\ORDERS.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ORDER_INCLUDE.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PURCHASE.cs">
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\USERS.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\WRITE.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ZUOZHE.cs">
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\BookProcessor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\addressPage.css" />
+    <Content Include="Content\admin.css" />
+    <Content Include="Content\book_detail.css" />
+    <Content Include="Content\bootstrap-multiselect.css" />
+    <Content Include="Content\bootstrap.beautified.css" />
     <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bundle.css" />
+    <Content Include="Content\cart.css" />
+    <Content Include="Content\favorite.css" />
+    <Content Include="Content\fonts.css" />
+    <Content Include="Content\index.css" />
+    <Content Include="Content\order.css" />
+    <Content Include="Content\order_complete.css" />
+    <Content Include="Content\order_process.css" />
+    <Content Include="Content\searchPage.css" />
+    <Content Include="Content\shared.css" />
+    <Content Include="Content\styles.css" />
+    <Content Include="Content\userInfo.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
-    <Content Include="Models\Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Images\ad1.jpg" />
+    <Content Include="Images\ad2.jpg" />
+    <Content Include="Images\ad3.jpg" />
+    <Content Include="Images\ad4.jpg" />
+    <Content Include="Images\ad5.jpg" />
+    <Content Include="Images\ad6.jpg" />
+    <Content Include="Images\ad7.jpg" />
+    <Content Include="Images\ad8.jpg" />
+    <Content Include="Images\ad9.jpg" />
+    <Content Include="Images\add1.jpg" />
+    <Content Include="Images\adress-selected.png" />
+    <Content Include="Images\adress.png" />
+    <Content Include="Images\ad_ctr1.png" />
+    <Content Include="Images\all_list.png" />
+    <Content Include="Images\alpha.png" />
+    <Content Include="Images\avatar1.png" />
+    <Content Include="Images\ba1.jpg" />
+    <Content Include="Images\ba2.jpg" />
+    <Content Include="Images\ba3.jpg" />
+    <Content Include="Images\ba4.jpg" />
+    <Content Include="Images\banner1.png" />
+    <Content Include="Images\bg.jpg" />
+    <Content Include="Images\book1.jpg" />
+    <Content Include="Images\books\1.jpg" />
+    <Content Include="Images\books\10.jpg" />
+    <Content Include="Images\books\100.jpg" />
+    <Content Include="Images\books\11.jpg" />
+    <Content Include="Images\books\12.jpg" />
+    <Content Include="Images\books\13.jpg" />
+    <Content Include="Images\books\14.jpg" />
+    <Content Include="Images\books\15.jpg" />
+    <Content Include="Images\books\16.jpg" />
+    <Content Include="Images\books\17.jpg" />
+    <Content Include="Images\books\18.jpg" />
+    <Content Include="Images\books\19.jpg" />
+    <Content Include="Images\books\2.jpg" />
+    <Content Include="Images\books\20.jpg" />
+    <Content Include="Images\books\21.jpg" />
+    <Content Include="Images\books\22.jpg" />
+    <Content Include="Images\books\23.jpg" />
+    <Content Include="Images\books\24.jpg" />
+    <Content Include="Images\books\25.jpg" />
+    <Content Include="Images\books\26.jpg" />
+    <Content Include="Images\books\27.jpg" />
+    <Content Include="Images\books\28.jpg" />
+    <Content Include="Images\books\29.jpg" />
+    <Content Include="Images\books\3.jpg" />
+    <Content Include="Images\books\30.jpg" />
+    <Content Include="Images\books\31.jpg" />
+    <Content Include="Images\books\32.jpg" />
+    <Content Include="Images\books\33.jpg" />
+    <Content Include="Images\books\34.jpg" />
+    <Content Include="Images\books\35.jpg" />
+    <Content Include="Images\books\36.jpg" />
+    <Content Include="Images\books\37.jpg" />
+    <Content Include="Images\books\38.jpg" />
+    <Content Include="Images\books\39.jpg" />
+    <Content Include="Images\books\4.jpg" />
+    <Content Include="Images\books\40.jpg" />
+    <Content Include="Images\books\41.jpg" />
+    <Content Include="Images\books\42.jpg" />
+    <Content Include="Images\books\43.jpg" />
+    <Content Include="Images\books\44.jpg" />
+    <Content Include="Images\books\45.jpg" />
+    <Content Include="Images\books\46.jpg" />
+    <Content Include="Images\books\47.jpg" />
+    <Content Include="Images\books\48.jpg" />
+    <Content Include="Images\books\49.jpg" />
+    <Content Include="Images\books\5.jpg" />
+    <Content Include="Images\books\50.jpg" />
+    <Content Include="Images\books\51.jpg" />
+    <Content Include="Images\books\52.jpg" />
+    <Content Include="Images\books\53.jpg" />
+    <Content Include="Images\books\54.jpg" />
+    <Content Include="Images\books\55.jpg" />
+    <Content Include="Images\books\56.jpg" />
+    <Content Include="Images\books\57.jpg" />
+    <Content Include="Images\books\58.jpg" />
+    <Content Include="Images\books\59.jpg" />
+    <Content Include="Images\books\6.jpg" />
+    <Content Include="Images\books\60.jpg" />
+    <Content Include="Images\books\61.jpg" />
+    <Content Include="Images\books\62.jpg" />
+    <Content Include="Images\books\63.jpg" />
+    <Content Include="Images\books\64.jpg" />
+    <Content Include="Images\books\65.jpg" />
+    <Content Include="Images\books\66.jpg" />
+    <Content Include="Images\books\67.jpg" />
+    <Content Include="Images\books\68.jpg" />
+    <Content Include="Images\books\69.jpg" />
+    <Content Include="Images\books\7.jpg" />
+    <Content Include="Images\books\70.jpg" />
+    <Content Include="Images\books\71.jpg" />
+    <Content Include="Images\books\72.jpg" />
+    <Content Include="Images\books\73.jpg" />
+    <Content Include="Images\books\74.jpg" />
+    <Content Include="Images\books\75.jpg" />
+    <Content Include="Images\books\76.jpg" />
+    <Content Include="Images\books\77.jpg" />
+    <Content Include="Images\books\78.jpg" />
+    <Content Include="Images\books\79.jpg" />
+    <Content Include="Images\books\8.jpg" />
+    <Content Include="Images\books\80.jpg" />
+    <Content Include="Images\books\81.jpg" />
+    <Content Include="Images\books\82.jpg" />
+    <Content Include="Images\books\83.jpg" />
+    <Content Include="Images\books\84.jpg" />
+    <Content Include="Images\books\85.jpg" />
+    <Content Include="Images\books\86.jpg" />
+    <Content Include="Images\books\87.jpg" />
+    <Content Include="Images\books\88.jpg" />
+    <Content Include="Images\books\89.jpg" />
+    <Content Include="Images\books\9.jpg" />
+    <Content Include="Images\books\90.jpg" />
+    <Content Include="Images\books\91.jpg" />
+    <Content Include="Images\books\92.jpg" />
+    <Content Include="Images\books\93.jpg" />
+    <Content Include="Images\books\94.jpg" />
+    <Content Include="Images\books\95.jpg" />
+    <Content Include="Images\books\96.jpg" />
+    <Content Include="Images\books\97.jpg" />
+    <Content Include="Images\books\98.jpg" />
+    <Content Include="Images\books\99.jpg" />
+    <Content Include="Images\code.png" />
+    <Content Include="Images\delete.png" />
+    <Content Include="Images\dian.png" />
+    <Content Include="Images\dot.png" />
+    <Content Include="Images\down.png" />
+    <Content Include="Images\jt_t.png" />
+    <Content Include="Images\logo.jpg" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\logo1.png" />
+    <Content Include="Images\logo_index.png" />
+    <Content Include="Images\photo.jpg" />
+    <Content Include="Images\pic\headshot.jpg" />
+    <Content Include="Images\pic\laozi.jpg" />
+    <Content Include="Images\pic\libai.jpg" />
+    <Content Include="Images\pic\logo.jpg" />
+    <Content Include="Images\pic\logo.png" />
+    <Content Include="Images\saoguang.png" />
+    <Content Include="Images\saoguang1.png" />
+    <Content Include="Images\shopping_cart.png" />
+    <Content Include="Images\shopping_cart1.png" />
+    <Content Include="Images\toolbar.png" />
+    <Content Include="Images\up.png" />
+    <Content Include="Images\user.png" />
+    <Content Include="Images\安东.jpg" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="Models\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
+    <Content Include="Content\admin.less" />
+    <Content Include="Content\book_detail.less" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bundle.less" />
+    <Content Include="Content\cart.less" />
+    <Content Include="Content\order_complete.less" />
+    <Content Include="Content\order_process.less" />
+    <Content Include="Content\shared.less" />
+    <Content Include="Models\Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
     </Content>
-    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.3.1.js" />
-    <Content Include="Scripts\jquery-3.3.1.min.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Models\Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\additional-methods.min.js" />
+    <Content Include="Scripts\addressPage.js" />
+    <Content Include="Scripts\admin.js" />
+    <Content Include="Scripts\base.js" />
+    <Content Include="Scripts\book_detail.js" />
+    <Content Include="Scripts\bootstrap-multiselect.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\cart.js" />
+    <Content Include="Scripts\completeSVG.js" />
+    <Content Include="Scripts\distpicker.js" />
+    <Content Include="Scripts\favorite.js" />
+    <Content Include="Scripts\jquery-1.8.3.min.js" />
+    <Content Include="Scripts\jquery.fly.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\less.min.js" />
+    <Content Include="Scripts\messages_zh.min.js" />
+    <Content Include="Scripts\order.js" />
+    <Content Include="Scripts\order_process.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\public.js" />
+    <Content Include="Scripts\shared.js" />
+    <Content Include="Scripts\slider.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -290,69 +463,10 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\ACCOUNTS\Create.cshtml" />
-    <Content Include="Views\ACCOUNTS\Delete.cshtml" />
-    <Content Include="Views\ACCOUNTS\Details.cshtml" />
-    <Content Include="Views\ACCOUNTS\Edit.cshtml" />
-    <Content Include="Views\ACCOUNTS\Index.cshtml" />
-    <Content Include="Views\ADDRESSes\Create.cshtml" />
-    <Content Include="Views\ADDRESSes\Delete.cshtml" />
-    <Content Include="Views\ADDRESSes\Details.cshtml" />
-    <Content Include="Views\ADDRESSes\Edit.cshtml" />
-    <Content Include="Views\ADDRESSes\Index.cshtml" />
-    <Content Include="Views\AUTHORs\Create.cshtml" />
-    <Content Include="Views\AUTHORs\Delete.cshtml" />
-    <Content Include="Views\AUTHORs\Details.cshtml" />
-    <Content Include="Views\AUTHORs\Edit.cshtml" />
-    <Content Include="Views\AUTHORs\Index.cshtml" />
-    <Content Include="Views\BOOKs\Create.cshtml" />
-    <Content Include="Views\BOOKs\Delete.cshtml" />
-    <Content Include="Views\BOOKs\Details.cshtml" />
-    <Content Include="Views\BOOKs\Edit.cshtml" />
-    <Content Include="Views\BOOKs\Index.cshtml" />
-    <Content Include="Views\CARTs\Create.cshtml" />
-    <Content Include="Views\CARTs\Delete.cshtml" />
-    <Content Include="Views\CARTs\Details.cshtml" />
-    <Content Include="Views\CARTs\Edit.cshtml" />
-    <Content Include="Views\CARTs\Index.cshtml" />
-    <Content Include="Views\CART_INCLUDE\Create.cshtml" />
-    <Content Include="Views\CART_INCLUDE\Delete.cshtml" />
-    <Content Include="Views\CART_INCLUDE\Details.cshtml" />
-    <Content Include="Views\CART_INCLUDE\Edit.cshtml" />
-    <Content Include="Views\CART_INCLUDE\Index.cshtml" />
-    <Content Include="Views\CATEGORies\Create.cshtml" />
-    <Content Include="Views\CATEGORies\Delete.cshtml" />
-    <Content Include="Views\CATEGORies\Details.cshtml" />
-    <Content Include="Views\CATEGORies\Edit.cshtml" />
-    <Content Include="Views\CATEGORies\Index.cshtml" />
-    <Content Include="Views\COMMENT_FEEDBACK\Create.cshtml" />
-    <Content Include="Views\COMMENT_FEEDBACK\Delete.cshtml" />
-    <Content Include="Views\COMMENT_FEEDBACK\Details.cshtml" />
-    <Content Include="Views\COMMENT_FEEDBACK\Edit.cshtml" />
-    <Content Include="Views\COMMENT_FEEDBACK\Index.cshtml" />
-    <Content Include="Views\COMMENTS\Create.cshtml" />
-    <Content Include="Views\COMMENTS\Delete.cshtml" />
-    <Content Include="Views\COMMENTS\Details.cshtml" />
-    <Content Include="Views\COMMENTS\Edit.cshtml" />
-    <Content Include="Views\COMMENTS\Index.cshtml" />
-    <Content Include="Views\ORDER_INCLUDE\Create.cshtml" />
-    <Content Include="Views\ORDER_INCLUDE\Delete.cshtml" />
-    <Content Include="Views\ORDER_INCLUDE\Details.cshtml" />
-    <Content Include="Views\ORDER_INCLUDE\Edit.cshtml" />
-    <Content Include="Views\ORDER_INCLUDE\Index.cshtml" />
-    <Content Include="Views\ORDERS\Create.cshtml" />
-    <Content Include="Views\ORDERS\Delete.cshtml" />
-    <Content Include="Views\ORDERS\Details.cshtml" />
-    <Content Include="Views\ORDERS\Edit.cshtml" />
-    <Content Include="Views\ORDERS\Index.cshtml" />
-    <Content Include="Views\USERS\Create.cshtml" />
-    <Content Include="Views\USERS\Delete.cshtml" />
-    <Content Include="Views\USERS\Details.cshtml" />
-    <Content Include="Views\USERS\Edit.cshtml" />
-    <Content Include="Views\USERS\Index.cshtml" />
+    <Content Include="Views\Individual\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -362,13 +476,38 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
+    <EntityDeploy Include="Models\Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Content>
+    <Content Include="fonts\MaterialIcons-Regular.eot" />
+    <Content Include="fonts\MaterialIcons-Regular.ttf" />
+    <Content Include="fonts\MaterialIcons-Regular.woff" />
+    <Content Include="fonts\MaterialIcons-Regular.woff2" />
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\BOOKs\addCart.cshtml" />
+    <Content Include="Views\BOOKs\Create.cshtml" />
+    <Content Include="Views\BOOKs\Delete.cshtml" />
+    <Content Include="Views\BOOKs\Details.cshtml" />
+    <Content Include="Views\BOOKs\Edit.cshtml" />
+    <Content Include="Views\BOOKs\Index.cshtml" />
+    <Content Include="Views\Favorite\Index.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\Orders\Process_Book.cshtml" />
+    <Content Include="Views\Orders\Process_Cart.cshtml" />
+    <Content Include="Views\CARTs\Create.cshtml" />
+    <Content Include="Views\CARTs\Delete.cshtml" />
+    <Content Include="Views\CARTs\Edit.cshtml" />
+    <Content Include="Views\CARTs\Index.cshtml" />
+    <Content Include="Views\Orders\Order_Complete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -389,9 +528,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>60919</DevelopmentServerPort>
+          <DevelopmentServerPort>53643</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:60919/</IISUrl>
+          <IISUrl>http://localhost:53643/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

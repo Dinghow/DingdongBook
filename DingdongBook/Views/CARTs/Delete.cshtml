@@ -1,56 +1,64 @@
-﻿@model DingdongBook.Models.CART
+﻿@model DingdongBook.DB.CART
 
 @{
-    ViewBag.Title = "Delete";
+    Layout = null;
 }
 
-<h2>Delete</h2>
+<!DOCTYPE html>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>CART</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.QUANTITY)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.QUANTITY)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TIME_START)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TIME_START)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BOOK.ISBN)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BOOK.ISBN)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.USERS.NAME)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.USERS.NAME)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
-</div>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>CART</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.QUANTITY)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.QUANTITY)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TIME_START)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TIME_START)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.BOOK.ISBN)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.BOOK.ISBN)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.USERS.NAME)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.USERS.NAME)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

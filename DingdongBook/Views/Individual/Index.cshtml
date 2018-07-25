@@ -1,0 +1,170 @@
+﻿@model DingdongBook.Controllers.IndividualController.IndividualSender
+
+@{
+    ViewBag.Title = "个人中心";
+}
+
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" href="/Content/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/Content/userInfo.css">
+    <link rel="stylesheet" type="text/css" href="/Content/shared.css">
+    <script type="text/javascript" src="/Scripts/main.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.min.js"></script>
+    <script src="/Scripts/bootstrap.min.js" type="text/javascript"></script>
+    <title>@ViewBag.Title - 叮咚图书</title>
+</head>
+
+<body>
+    <div class="top-hover">
+        <div class="register_login">
+            <em>您好,</em>
+            @if (ViewBag.user_auth == 0)
+            {
+                <a href="/Home/Login/">会员登录/快速注册</a>
+            }
+            else
+            {
+                <a href="/Home/Logout/">@ViewBag.user_name,退出</a>
+            }
+        </div>
+        <div class="vip_center">
+            @if (ViewBag.user_auth == 1)
+            {
+                <a href="/Individual/Index/">个人中心</a>
+            }
+        </div>
+    </div>
+    <header class="logo-line clearfix">
+        <a href="~/"><img src="/Images/logo.png" alt="" class="logo"></a>
+        <h3 class="header-title">个人信息</h3>
+    </header>
+    <div class="container">
+        <div id="display-scane-userInfo">
+
+            <div class="form-group">
+                @using (Html.BeginForm("EditInfo", "Individual", FormMethod.Post))
+                {
+
+                    <label for="name">个人信息</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">姓名</span>
+                        </div>
+                        <input class="form-control" id="name" name="name" aria-label="Username" placeholder=@ViewBag.name value=@ViewBag.name>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">性别</span>
+                        </div>
+                        <select class="form-control" id="gender" name="gender">
+                            @if (ViewBag.gender == "male")
+                            {
+                                <option selected>男</option>
+                                <option>女</option>
+                            }
+                            else if (ViewBag.gender == "female")
+                            {
+                                <option>男</option>
+                                <option selected>女</option>
+                            }
+                            else
+                            {
+                                <option>男</option>
+                                <option>女</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">邮箱</span>
+                        </div>
+                        <input class="form-control" id="email" name="email" aria-label="Username" placeholder=@ViewBag.email value=@ViewBag.email>
+                    </div>
+                    <button type="submit" class="form-control btn btn-secondary">修改</button>
+                }
+            </div>
+            <div class="form-group">
+                    <label for="password">管理信息</label>
+                        <div id="accordion">
+                            <div class="card">
+                                <div class="card-header">
+                                    <button class="btn btn-link collapsed border-0" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        修改密码
+                                    </button>
+                                </div>
+                            @using (Html.BeginForm("EditPassword", "Individual", FormMethod.Post))
+                            {
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">输入旧密码</span>
+                                            </div>
+                                            <input type="password" id="ex_password" name="ex_password" class="form-control">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">输入新密码</span>
+                                            </div>
+                                            <input type="password" id="ex_password" name="new_password" class="form-control">
+                                        </div>
+                                        <button type="submit" class="form-control btn-secondary collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            确认修改
+                                        </button>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+            </div>
+        </div> <!--display-scane-userInfo-->
+    </div> <!--container-->
+    <footer class="footer col">
+        <ul class="row">
+            <li class="col-4">
+                <span>关于我们</span>
+                <p>地址：中国 上海曹安公路4800号同济大学软件学院</p>
+                <p>邮编：201804</p>
+                <p>联系电话：86-21-69589585,69589332(FAX)</p>
+                <a href="#">关于我们</a>
+            </li>
+            <li class="col-2">
+                <span>项目公开</span>
+                <a href="https://github.com" target="_blank">GitHub</a>
+            </li>
+            <li class="col-3">
+                <span>广告位招租</span>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+            </li>
+            <li class="col-3">
+                <span>救救软院生</span>
+                <img src="/Images/code.png" alt="">
+            </li>
+        </ul>
+        <div class="footer-links text-center">
+            <p class="">
+                友情链接：
+                <a href="https://www.tongji.edu.cn" target="_blank">同济大学</a>
+                <a href="http://sse.tongji.edu.cn" target="_blank">同济大学软件学院</a>
+                <a href="http://sse.tongji.edu.cn/teacher/FACULTY/hpc/index.html" target="_blank">袁阿姨实验室</a>
+            </p>
+            <p>Tongji University, Copyright&copy; 2018, Database Course Project</p>
+        </div>
+    </footer>
+</body>
+</html>
+

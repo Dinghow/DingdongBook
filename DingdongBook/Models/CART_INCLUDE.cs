@@ -17,7 +17,7 @@ namespace DingdongBook.Models
         public decimal USER_ID { get; set; }
         public decimal BOOK_ID { get; set; }
         public Nullable<decimal> QUANTITY { get; set; }
-        public Nullable<decimal> PRICE { get; set; }
+        public Nullable<decimal> TOTAL_PRICE { get; set; }
     
         public virtual BOOK BOOK { get; set; }
         public virtual USERS USERS { get; set; }

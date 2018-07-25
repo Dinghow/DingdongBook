@@ -49,6 +49,8 @@ G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\roslyn\vbc.rsp
 G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\roslyn\VBCSCompiler.exe
 G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\roslyn\VBCSCompiler.exe.config
 G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\Antlr3.Runtime.dll
+G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\EntityFramework.dll
+G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\EntityFramework.SqlServer.dll
 G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\Microsoft.AI.Agent.Intercept.dll
 G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\Microsoft.AI.DependencyCollector.dll
 G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\Microsoft.AI.PerfCounterCollector.dll
@@ -60,6 +62,8 @@ G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\Microsoft.AspNet.
 G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\Microsoft.Web.Infrastructure.dll
 G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\Newtonsoft.Json.dll
+G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\Oracle.ManagedDataAccess.dll
+G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\Oracle.ManagedDataAccess.EntityFramework.dll
 G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\System.Diagnostics.DiagnosticSource.dll
 G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\System.Web.Helpers.dll
 G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\System.Web.Mvc.dll
@@ -69,6 +73,8 @@ G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\System.Web.WebPag
 G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\System.Web.WebPages.dll
 G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\System.Web.WebPages.Razor.dll
 G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\WebGrease.dll
+G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\EntityFramework.xml
+G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\EntityFramework.SqlServer.xml
 G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\System.Web.Helpers.xml
 G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\System.Web.Mvc.xml
 G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\System.Web.Optimization.xml
@@ -95,11 +101,5 @@ G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\obj\Debug\DingdongBoo
 G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\obj\Debug\DingdongBook.csproj.CopyComplete
 G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\obj\Debug\DingdongBook.dll
 G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\obj\Debug\DingdongBook.pdb
-G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\EntityFramework.dll
-G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\EntityFramework.SqlServer.dll
-G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\EntityFramework.xml
-G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\EntityFramework.SqlServer.xml
-G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\Oracle.ManagedDataAccess.dll
-G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\Oracle.ManagedDataAccess.EntityFramework.dll
 G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\zh-Hans\EntityFramework.resources.dll
-G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\bin\zh-Hans\EntityFramework.SqlServer.resources.dll
+G:\coding\Data Base\FinalProject\DingdongBook\DingdongBook\obj\Debug\DingdongBook.csprojAssemblyReference.cache

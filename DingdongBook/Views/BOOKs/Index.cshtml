@@ -1,57 +1,306 @@
-﻿@model IEnumerable<DingdongBook.Models.BOOK>
-
+﻿@model DingdongBook.Controllers.BOOKsController.cartSender
 @{
-    ViewBag.Title = "Index";
+    Layout = null;
 }
+<!DOCTYPE html>
+<html>
 
-<h2>Index</h2>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.info[0].NAME - 详情</title>
+    <link rel="stylesheet" href="/Content/fonts.css">
+    <link rel="stylesheet" href="/Content/bootstrap.css">
+    <link rel="stylesheet" href="/Content/book_detail.css">
+    <link rel="stylesheet" type="text/css" href="/Content/shared.css">
+    <script type="text/javascript" src="/Scripts/jquery.min.js"></script>
+</head>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ISBN)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NAME)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PRICE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IMAGE)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CATEGORY)
-        </th>
-        <th></th>
-    </tr>
+<body>
+    <div class="top-hover">
+        <div class="register_login">
+            <a href="~/">回到首页&nbsp;&nbsp;</a>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ISBN)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NAME)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PRICE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IMAGE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CATEGORY)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+            @if (ViewBag.user_auth == 0)
+            {
+                <a href="/Home/Login/">会员登录/快速注册</a>
+            }
+            else
+            {
 
-</table>
+                <em>您好,</em>
+                <a href="/Home/Logout/">@ViewBag.user_name,退出</a>
+            }
+        </div>
+        <div class="vip_center">
+            @if (ViewBag.user_auth == 1)
+            {
+                <a href="/Individual/Index/">个人中心</a>
+            }
+        </div>
+    </div>
+    </header>
+    <!-- /header -->
+    <div class="main">
+        <section class="card" id="item-detail">
+            <img class="card-img img-fliud" id="item-info-img" src="/Images/books/@ViewBag.info[0].IMAGE" alt="Card image cap">
+            <div class="card-body">
+
+                <div id="title-info">
+                    <h5 class="card-title">@ViewBag.info[0].NAME</h5>
+                    <p class="card-text">@ViewBag.info[0].ABSTRACT</p>
+                </div>
+                <div id="item-info-publish">
+                    <span id="author">作者：<a href="">@ViewBag.writer</a></span>
+                    <span id="publisher">出版社：<a href="">@ViewBag.info[0].PUBLISHER</a></span>
+                    <span id="publish-date">出版时间：@ViewBag.info[0].PUBLISHTIME</span>
+                </div>
+                <div id="item-info-grade">
+                    <span class="total-grade">
+                        @if (ViewBag.num > 0)
+                        {
+                            for (var i = 1; i <= 5; i++)
+                            {
+                                if (i <= ViewBag.total)
+                                {
+                                    <i class="material-icons">star</i>
+                                }
+                                else
+                                {
+                                    if (i < ViewBag.total + 1)
+                                    {
+                                        if (ViewBag.total - i + 1 <= 0.3)
+                                        {
+                                            <i class="material-icons">star_border</i>
+                                        }
+                                        else if (ViewBag.total - i + 1 >= 0.7)
+                                        {
+                                            <i class="material-icons">star</i>
+                                        }
+                                        else
+                                        {
+                                            <i class="material-icons">star_half</i>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <i class="material-icons">star_border</i>
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            <i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i><i class="material-icons">star_border</i>
+                        }
+                    </span>
+                    @if (ViewBag.num > 0)
+                    {
+                        <span>@ViewBag.total颗星</span>}
+                    else
+                    {
+                        <span>当前无评论</span>
+                    }
+                </div>
+                <div id="item-info-price">
+                    <label for="price" class="text-secondary">价格</label>
+                    <span name="price" class="text-danger">
+                        ￥<strong>@ViewBag.info[0].PRICE</strong>
+                    </span>
+                </div>
+                @using (Html.BeginForm("addCart", "BOOKs", FormMethod.Post))
+                {
+                    <div class="form-group" id="item-info-amount">
+                        <label for="amount" class="text-secondary">数量</label>
+                        <div class="number-controller">
+                            <button class="decrease"><i class="material-icons">remove</i></button>
+                            @Html.TextBoxFor(m => m.amount, new { @class = "form-control", @value = "1" })
+                            <button class="increase"><i class="material-icons">add</i></button>
+                        </div>
+                    </div>
+                    <div class="form-group" id="item-info-btns">
+                        <button type="submit" class="form-control text-white bg-danger border-danger" id="add-to-cart"><i class="material-icons">shopping_cart</i>加入购物车</button>
+                        <a class="btn text-danger bg-light border-danger" id="buy" href="~/favorite/addFav?id=@ViewBag.info[0].ID">加入收藏</a>
+                    </div>
+                }
+                
+            </div>
+        </section>
+        <!-- 商品的详细信息 /-->
+        <section class="card" id="comment-sec">
+            <div class="card-header font-weight-bold">书籍评价</div>
+            <div class="card-body" id="grade">
+                <div class="t-grade">
+                    <span class="total-grade">
+                        @if (ViewBag.num > 0)
+                        {
+                            for (var i = 1; i <= 5; i++)
+                            {
+                                if (i <= ViewBag.total)
+                                {
+                                    <i class="material-icons">star</i>
+                                }
+                                else
+                                {
+                                    if (i < ViewBag.total + 1)
+                                    {
+                                        if (ViewBag.total - i + 1 <= 0.3)
+                                        {
+                                            <i class="material-icons">star_border</i>
+                                        }
+                                        else if (ViewBag.total - i + 1 >= 0.7)
+                                        {
+                                            <i class="material-icons">star</i>
+                                        }
+                                        else
+                                        {
+                                            <i class="material-icons">star_half</i>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <i class="material-icons">star_border</i>
+                                    }
+                                }
+                            }
+                        }
+                    </span>
+                    <span>参与评分人数为 <b class="rate-users">@ViewBag.num</b> 人</span>
+                </div>
+                <div class="d-grade">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <label for="5-star">五星</label>
+                            <div class="progress" name="5-star">
+                                <div class="progress-bar" role="progressbar" style="width:@ViewBag.rate5%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">@ViewBag.rate5%</div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <label for="4-star">四星</label>
+                            <div class="progress" name="4-star">
+                                <div class="progress-bar" role="progressbar" style="width: @ViewBag.rate4%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">@ViewBag.rate4%</div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <label for="3-star">三星</label>
+                            <div class="progress" name="3-star">
+                                <div class="progress-bar" role="progressbar" style="width: @ViewBag.rate3%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">@ViewBag.rate3%</div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <label for="2-star">二星</label>
+                            <div class="progress" name="2-star">
+                                <div class="progress-bar" role="progressbar" style="width: @ViewBag.rate2%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">@ViewBag.rate2%</div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <label for="1-star">一星</label>
+                            <div class="progress" name="1-star">
+                                <div class="progress-bar" role="progressbar" style="width: @ViewBag.rate1%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">@ViewBag.rate1%</div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="avg-grade">@ViewBag.total</div>
+                </div>
+            </div>
+            <ul class="list-group list-group-flush" id="comments">
+                @for (int i = 0; i < 3; i++)
+                {
+                    if (i >= @ViewBag.num)
+                    {
+                        break;
+                    }
+                    <li class="list-group-item comment">
+                        <img src="/Images/avatar1.png" class="img-thumbnail avatar">
+                        <div class="cmt-detail">
+                            <div class="top">
+                                <span class="user-name">@ViewBag.name[i]</span>
+                                <span class="total-grade">
+                                    @for (var j = 1; j <= 5; j++)
+                                    {
+                                        if (j <= ViewBag.comment_score[i])
+                                        {
+                                            <i class="material-icons">star</i>
+                                        }
+                                        else
+                                        {
+                                            if (i < ViewBag.comment_score[i] + 1)
+                                            {
+                                                if (ViewBag.comment_score[i] - j + 1 <= 0.3)
+                                                {
+                                                    <i class="material-icons">star_border</i>
+                                                }
+                                                else if (ViewBag.comment_score[i] - j + 1 >= 0.7)
+                                                {
+                                                    <i class="material-icons">star</i>
+                                                }
+                                                else
+                                                {
+                                                    <i class="material-icons">star_half</i>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <i class="material-icons">star_border</i>
+                                            }
+                                        }
+                                    }
+                                </span>
+                                <span class="cmt-time">@ViewBag.comment[i].TIME</span>
+                                <button type="button" class="thumb-up"><i class="material-icons">thumb_up_alt</i><span class="badge badge-light">@ViewBag.comment[i].TOTAL</span></button>
+                            </div>
+                            <p class="cmt-content">
+                                <small>
+                                    @ViewBag.comment[i].CONTENT
+                                </small>
+                            </p>
+                        </div>
+                    </li>
+                }
+
+
+            </ul>
+        </section>
+        <!-- 评论 /-->
+    </div>
+    <footer class="footer col">
+        <ul class="row">
+            <li class="col-4">
+                <span>关于我们</span>
+                <p>地址：中国 上海曹安公路4800号同济大学软件学院</p>
+                <p>邮编：201804</p>
+                <p>联系电话：86-21-69589585,69589332(FAX)</p>
+                <a href="#">关于我们</a>
+            </li>
+            <li class="col-2">
+                <span>项目公开</span>
+                <a href="https://github.com" target="_blank">GitHub</a>
+            </li>
+            <li class="col-3">
+                <span>广告位招租</span>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+            </li>
+            <li class="col-3">
+                <span>救救软院生</span>
+                <img src="/Images/code.png" alt="">
+            </li>
+        </ul>
+        <div class="footer-links text-center">
+            <p class="">
+                友情链接：
+                <a href="https://www.tongji.edu.cn" target="_blank">同济大学</a>
+                <a href="http://sse.tongji.edu.cn" target="_blank">同济大学软件学院</a>
+                <a href="http://sse.tongji.edu.cn/teacher/FACULTY/hpc/index.html" target="_blank">袁阿姨实验室</a>
+            </p>
+            <p>Tongji University, Copyright&copy; 2018, Database Course Project</p>
+        </div>
+    </footer>
+    <script src="/Scripts/book_detail.js"></script>
+    <script src="/Scripts/shared.js"></script>
+</body>
+
+</html>

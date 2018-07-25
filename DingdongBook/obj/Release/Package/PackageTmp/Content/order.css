@@ -1,0 +1,146 @@
+body{
+	min-width: 1100px
+}
+
+.container{
+	min-height: 400px;
+}
+
+.book-pic img{
+	width: 80%;
+	height: auto;
+}
+
+.top-group{
+	margin-top: 2vw;
+}
+
+.order-received{
+	display: none;
+}
+
+.btn-success{
+	background-color: #17a2b8;
+	border-color: #17a2b8;
+}
+
+.btn-success:hover{
+	background-color: #17a2b8;
+	border-color: #17a2b8;
+}
+
+.btn-success:focus{
+	box-shadow:  0 0 0 0.2rem rgba(23,162,184,0.5);
+}
+
+.order-unreceived .card-header{
+	background-color: #17a2b8;
+	color: white;
+	border-collapse: collapse;
+	border:1px solid #17a2b8;
+}
+
+.order-received .card-header{
+	background-color: #dc3545;
+	color: white;
+}
+
+.card-footer{
+	background-color: #ccc;
+	
+}
+
+td{
+	padding: 5px 10px !important;
+}
+
+.order-group{
+	margin-top: 2vw;
+	border:1px solid #666;
+}
+
+.order-ID{
+	
+}
+
+.order-status-received{
+	
+}
+
+.order-status-unreceived{
+	
+}
+
+.book-name{
+	font-weight: bold;
+	font-size: 1.1rem;
+}
+
+.book-introduce{
+	font-size: 0.9rem;
+	/*border-bottom: 1px solid grey;*/
+}
+
+.book-detail{
+	font-size: 0.9rem;
+}
+
+.book-price{
+	margin: 0;
+	color: red;
+}
+
+.btn-default:hover{
+	background-color: #eee;
+}
+
+.card .btn{
+	background-color: #fff;
+	border-radius: 20px;
+	width: 6rem;
+	height: 2rem;
+	border:1px solid grey;
+	margin-right: 1rem;
+	font-size: 0.8rem;
+}
+
+.btn-ensure{
+	border:1px solid red;
+	color: red;
+}
+
+.cost{
+	margin-bottom: 0;
+	font-size: 0.8rem;
+}
+
+.cost .money{
+	font-size: 1rem;
+	color: red;
+}
+
+.label-commend{
+	font-size: 12px;
+	color: #666;
+}
+
+#input-commend{
+	width: 100%;
+	height: 150px;
+	border:1px solid grey;
+	border-radius: 0px;
+}
+
+.rate-star{
+	padding-top: 0;
+}
+
+.rate-star i{
+	color: #ffc107;
+	cursor: pointer;
+}
+
+.rate-star {
+
+	cursor: pointer;
+}

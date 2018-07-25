@@ -1,0 +1,152 @@
+body{
+	min-width: 1200px;
+}
+
+.top-logo{
+	height: 50px;
+	width: auto;
+	margin-right: 50px;
+}
+
+.search{
+	margin-top: 3vw;
+	text-align: center;
+
+}
+
+.search-line{
+	display: inline-block;
+	border:3px solid #FF2832;
+}
+
+.search-line .input-search{
+	width: 340px;
+	height: 30px;
+	margin-left: 5px;
+	border:0;
+	padding-left: 25px;
+	font-size: 15px;
+}
+
+.search-line .button-search,.type-search{
+	width:120px;
+	height: 35px;
+	background-color: #FF2832;
+	border:0;
+	color: white;
+	position: relative;
+}
+
+.type-container{
+	display: inline-block;
+	position: relative;
+}
+
+.type-search{
+	height: 42px;
+}
+
+.jiantou{
+	width: 0px;
+	height: 0px;
+   	border-top: 5px solid white;
+  	border-right: 5px solid transparent;
+   	border-bottom: 5px solid transparent;
+   	border-left: 5px solid transparent;
+   	position: absolute;
+   	top: 17px;
+   	margin-left: 5px;
+}
+
+.type{
+	position: absolute;
+	list-style: none;
+	margin:0;
+	padding: 0;
+	display: none;
+	z-index: 1;
+}
+
+.type li{
+	font-weight: lighter;
+	background-color: #FF2832;
+	color: white;
+	width: 120px;
+	line-height: 35px;
+	border-top: 0.5px solid white;
+}
+
+.type li:hover{
+	background-color: #dc3545;
+}
+
+.find{
+	padding-left: 20px;
+}
+
+.search-num{
+	border-top:4px solid #FF2832;
+	margin:5vw 0 2vw;
+	width: 100%;
+	height: auto;
+	background-color: #ccc;
+}
+
+.search-num div{
+	display: inline-block;
+}
+
+.search-num-span{
+	width: 15%;
+	height: 50px;
+	line-height: 50px;
+	background-color: #FF2832;
+	text-align: center;
+	
+}
+
+.search-line .button-search:hover,.type-search:hover{
+	background-color: #dc3545;
+}
+
+
+.search-result{
+	list-style: none;
+}
+
+.search-result .card{
+	width: 20%;
+	margin:1vw;
+	float: left;
+}
+
+.search-result .card-header{
+	text-align: center;
+}
+
+.search-result .card-header img{
+	width: 80%;
+	height: auto;
+}
+
+.search-result .card-body{
+	padding-top:2px ;
+	padding-bottom: 2px;
+	margin-bottom: 0;
+	text-align: center;
+}
+
+.search-result .price{
+	color: red;
+	float: right;
+}
+
+.search-result .card-footer{
+	background-color: #dc3545;
+	padding-top:2px ;
+	padding-bottom: 2px;
+}
+
+.type-search{
+	display: inline-block;
+}

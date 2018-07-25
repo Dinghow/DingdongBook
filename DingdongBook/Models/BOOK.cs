@@ -17,7 +17,6 @@ namespace DingdongBook.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public BOOK()
         {
-            this.CART = new HashSet<CART>();
             this.CART_INCLUDE = new HashSet<CART_INCLUDE>();
             this.COMMENTS = new HashSet<COMMENTS>();
             this.ORDER_INCLUDE = new HashSet<ORDER_INCLUDE>();
@@ -32,9 +31,10 @@ namespace DingdongBook.Models
         public Nullable<decimal> PRICE { get; set; }
         public string IMAGE { get; set; }
         public string CATEGORY { get; set; }
+        public string PUBLISHER { get; set; }
+        public string PUBLISHTIME { get; set; }
+        public string ABSTRACT { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CART> CART { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CART_INCLUDE> CART_INCLUDE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

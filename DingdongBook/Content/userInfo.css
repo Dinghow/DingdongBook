@@ -1,0 +1,55 @@
+body{
+	min-width: 750px;
+}
+
+.container{
+	min-height: 400px;
+}
+
+#display-scane-userInfo{
+	width: 70%;
+	margin: 0 auto;
+}
+
+#password-control button{
+	width: 100%;
+	text-align: left;
+}
+
+#password-control .btn-group-vertical{
+	width: 100%;
+}
+
+.form-group{
+	margin-top: 3vw;
+}
+
+.btn{
+	border-color: #000;
+}
+
+.card-header{
+	height: auto;
+}
+
+.card-header button{
+	color: black;
+	width: 100%;
+	height: auto;
+	text-align: left;
+	text-decoration:none !important;
+}
+
+.card-header button:hover{
+	color: black;
+	height: auto;
+	text-decoration:none;
+}
+
+.card-body{
+	text-align: center;
+}
+
+.end{
+	text-align: center;
+}
