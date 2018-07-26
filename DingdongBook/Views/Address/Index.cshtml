@@ -1,0 +1,192 @@
+﻿@model DingdongBook.Models.ADDRESS
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script type="text/javascript" src="/Scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript " src="/Scripts/addressPage.js"></script>
+    <link rel="stylesheet" type="text/css" href="/Content/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/Content/addressPage.css">
+    <link rel="stylesheet" type="text/css" href="/Content/shared.css">
+    <title></title>
+</head>
+<body>
+    <div class="top-hover">
+        <div class="register_login">
+            <em>您好,</em>
+            @if (ViewBag.user_auth == 0)
+            {
+                <a href="/Home/Login/">会员登录/快速注册</a>
+            }
+            else
+            {
+                <a href="/Home/Logout/">@ViewBag.user_name,退出</a>
+            }
+        </div>
+        <div class="vip_center">
+            @if (ViewBag.user_auth == 1)
+            {
+                <a href="/Favorite/Index?id=@ViewBag.user_id">我的收藏</a>
+                <a href="/Carts/Index?id=@ViewBag.user_id">我的购物车</a>
+                <a href="/Individual/Index/">个人中心</a>
+            }
+        </div>
+    </div>
+    <header class="logo-line clearfix">
+        <a href="~/"><img src="/Images/logo.png" alt="" class="logo"></a>
+        <h3>地址管理</h3>
+    </header>
+    <div class="container">
+        <div class="clearfix">
+            <button type="button" class="btn btn-danger border btn-add" id="add-adress" data-toggle="modal" data-target="#new-address">添加新地址</button>
+
+            <nav aria-label="breadcrumb" class="top-control float-right control-ol">
+                <ol class="breadcrumb ">
+                    <li class="breadcrumb-item top-control-button control">管理地址</li>
+                </ol>
+            </nav>
+            <nav aria-label="breadcrumb" class="top-control float-right select-ol">
+                <ol class="breadcrumb ">
+                    <li class="breadcrumb-item top-control-button select-all">全选</li>
+                    <li class="breadcrumb-item top-control-button delete" id="delete-addr">删除</li>
+                    <li class="breadcrumb-item top-control-button cancle">取消</li>
+                </ol>
+            </nav>
+        </div>
+
+        <ul class="addresses clearfix">
+            @foreach (var item in ViewBag.mm)
+            {
+                <li class="address" data-addrid=@item.ID>
+                    <h6><span class="name">@item.NAME</span><span class="phone float-right">@item.PHONE</span></h6>
+                    <p class="pcd"><span class="province tab">@item.PROVINCE</span><span class="city tab">@item.CITY</span><span class="district tab">@item.DISTRICT</span><span class="detailed-addr tab">@item.LOCATION</span></p>
+                    <p class="postcode">邮编：<span class="zip tab">@item.POST_CODE</span></p>
+                </li>
+            }
+        </ul>
+
+
+
+        <div class="modal fade" id="new-address" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title font-weight-bold">创建地址</h6>
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                    </div>
+                    @using (Html.BeginForm("AddAddress", "Address", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="modal-body">
+                            <form id="address-info">
+                                <div class="form-row" data-toggle="distpicker">
+                                    <input id="ID" name="ID" type="hidden" value="@ViewBag.max" />
+                                    @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+                                    <input id="USER_ID" name="USER_ID" type="hidden" value="@ViewBag.user_id" />
+                                    @Html.ValidationMessageFor(model => model.USER_ID, "", new { @class = "text-danger" })
+                                    <input id="COUNTRY" name="COUNTRY" type="hidden" value="中国" />
+                                    @Html.ValidationMessageFor(model => model.COUNTRY, "", new { @class = "text-danger" })
+                                    <div class="form-group col-md-4">
+                                        <label for="inputProvince">省</label>
+                                        <select class="form-control" id="PROVINCE" name="PROVINCE" data-province="---- 选择省 ----" required></select>
+                                        @Html.ValidationMessageFor(model => model.PROVINCE, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputCity">市</label>
+                                        <select class="form-control" id="CITY" name="CITY" data-city="---- 选择市 ----" required></select>
+                                        @Html.ValidationMessageFor(model => model.CITY, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputDistrict">区</label>
+                                        <select class="form-control" id="DISTRICT" name="DISTRICT" data-district="---- 选择区 ----" required></select>
+                                        @Html.ValidationMessageFor(model => model.DISTRICT, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-9">
+                                        <label for="inputAddress">详细地址</label>
+                                        <input type="text" class="form-control" id="LOCATION" name="LOCATION" required>
+                                        @Html.ValidationMessageFor(model => model.LOCATION, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="inputZip">邮编</label>
+                                        <input type="text" class="form-control" id="POST_CODE" name="POST_CODE" required>
+                                        @Html.ValidationMessageFor(model => model.POST_CODE, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="validationDefault01">姓名</label>
+                                        <input type="text" class="form-control" name="NAME" id="NAME" value="">
+                                        @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPhone">电话号码</label>
+                                    <input type="text" class="form-control" id="PHONE" name="PHONE" required>
+                                    @Html.ValidationMessageFor(model => model.PHONE, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                                        <label class="form-check-label" for="gridCheck"><small>设为默认地址</small></label>
+                                    </div>
+                                </div>
+                                <input type="submit" class="btn btn-primary" value="提交">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                            </form>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer col">
+        <ul class="row">
+            <li class="col-4">
+                <span>关于我们</span>
+                <p>地址：中国 上海曹安公路4800号同济大学软件学院</p>
+                <p>邮编：201804</p>
+                <p>联系电话：86-21-69589585,69589332(FAX)</p>
+                <a href="#">关于我们</a>
+            </li>
+            <li class="col-2">
+                <span>项目公开</span>
+                <a href="https://github.com/Dinghow/DingdongBook" target="_blank">GitHub</a>
+            </li>
+            <li class="col-3">
+                <span>广告位招租</span>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+            </li>
+            <li class="col-3">
+                <span>救救软院生</span>
+                <img src="/Images/code.png" alt="">
+            </li>
+        </ul>
+        <div class="footer-links text-center">
+            <p class="">
+                友情链接：
+                <a href="https://www.tongji.edu.cn" target="_blank">同济大学</a>
+                <a href="http://sse.tongji.edu.cn" target="_blank">同济大学软件学院</a>
+                <a href="http://sse.tongji.edu.cn/teacher/FACULTY/hpc/index.html" target="_blank">袁阿姨实验室</a>
+            </p>
+            <p>Tongji University, Copyright&copy; 2018, Database Course Project</p>
+        </div>
+    </footer>
+    <script type="text/javascript" src="/Scripts/distpicker.js"></script>
+</body>
+</html>

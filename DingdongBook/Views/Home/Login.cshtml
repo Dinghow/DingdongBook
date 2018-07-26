@@ -17,6 +17,11 @@
     <title>@ViewBag.Title - 叮咚图书</title>
 
     <link rel="stylesheet" type="text/css" href="/Content/styles.css">
+    <script  src="~/Scripts/jquery.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/additional-methods.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/messages_zh.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/login.js" type="text/javascript"></script>
 
 </head>
 <body>
@@ -31,16 +36,16 @@
             <input id="tab-1" type="radio" name="tab" class="sign-in" checked /><label for="tab-1" class="tab">登录</label>
             <input id="tab-2" type="radio" name="tab" class="sign-up" /><label for="tab-2" class="tab">注册</label>
             <div class="login-form">
-                @using (Html.BeginForm("Login","Home",FormMethod.Post))
+                @using (Html.BeginForm("Login","Home",FormMethod.Post, new { @id = "signin-form" }))
                 {
                 <div class="sign-in-htm">
                     <div class="group">
-                        <label for="user" class="label">用户名</label>
-                        @Html.TextBoxFor(m => m.account, new { @class = "input", @id = "user"})                  
+                        <label for="username_login" class="label">用户名</label>
+                        @Html.TextBoxFor(m => m.account, new { @class = "input", @id = "username_login", @name = "username_login", @required=true })                  
                     </div>
                     <div class="group">
-                        <label for="pass" class="label">密码</label>
-                        @Html.PasswordFor(m=>m.password, new { @class = "input",@id = "password"})
+                        <label for="password_login" class="label">密码</label>
+                        @Html.PasswordFor(m=>m.password, new { @class = "input password", @id = "password_login" ,@name = "password_login" ,@required=true })
                     </div>
                     <div class="group">
                         <input id="check" type="checkbox" class="check" checked />
@@ -55,25 +60,25 @@
                 </div>
                 }
                 
-                @using (Html.BeginForm("Register", "Home", FormMethod.Post))
+                @using (Html.BeginForm("Register", "Home", FormMethod.Post, new { @id = "signup-form" }))
                 {
                  <div class="sign-up-htm">
 
                     <div class="group">
-                        <label for="user" class="label">用户名</label>
-                        @Html.TextBoxFor(m => m.account, new { @class = "input", @id = "user", @placeholder = "请输入有效的用户名" })
+                        <label for="username_signup" class="label">用户名</label>
+                        @Html.TextBoxFor(m => m.account, new { @class = "input", @id = "username_signup", @placeholder = "请输入有效的用户名", @name = "username_signup", @required=true })
                     </div>
                     <div class="group">
-                        <label for="pass" class="label">密码</label>
-                        @Html.PasswordFor(m => m.password, new { @class = "input", @id = "pass", @placeholder = "请输入密码" })
+                        <label for="password" class="label">密码</label>
+                        @Html.PasswordFor(m => m.password, new { @class = "input  password", @id = "password", @placeholder = "请输入密码", @name = "password", @required=true })
                     </div>
                     <div class="group">
-                        <label for="pass" class="label">确认密码</label>
-                        @Html.PasswordFor(m => m.re_password, new { @class = "input", @id = "pass", @placeholder = "请再次输入密码" })
+                        <label for="re_password" class="label password">确认密码</label>
+                        @Html.PasswordFor(m => m.re_password, new { @class = "input password", @placeholder = "请再次输入密码", @id = "re_password", @name = "re_password", @required=true })
                     </div>
                     <div class="group">
-                        <label for="pass" class="label">邮箱</label>
-                        @Html.TextBoxFor(m => m.email, new { @class = "input", @id = "pass", @placeholder = "请输入邮箱" })
+                        <label for="email_signup" class="label">邮箱</label>
+                        @Html.TextBoxFor(m => m.email, new { @class = "input", @placeholder = "请输入邮箱", @id = "email", @name = "email", @required=true })
                     </div>
                     <div class="group">
                         <input type="submit" class="button" value="注册" />

@@ -24,7 +24,7 @@ namespace DingdongBook.Controllers
             ViewBag.name = present_user.NAME;
             ViewBag.email = present_user.EMAIL;
             ViewBag.gender = present_user.GENDER;
-
+            ViewBag.user_id = Session["user_id"].ToString();
             return View();
         }
 

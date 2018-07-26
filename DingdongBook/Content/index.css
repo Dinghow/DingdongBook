@@ -70,7 +70,7 @@ header {
 
 search {
     display: block;
-    width: 460px;
+    width: auto;
     height: 34px;
     background: #FF2832;
     float: left;

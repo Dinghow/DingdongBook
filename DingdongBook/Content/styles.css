@@ -277,3 +277,13 @@ input.button{
 .login-form .group:nth-of-type(3){
 	text-align: left;
 }
+
+.group {
+    text-align: left;
+}
+
+.error {
+    font-size: .7rem;
+    font-weight: thin;
+    color: #ee4354;
+}

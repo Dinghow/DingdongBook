@@ -35,6 +35,8 @@
         <div class="vip_center">
             @if (ViewBag.user_auth == 1)
             {
+                <a href="/Favorite/Index?id=@ViewBag.user_id">我的收藏</a>
+                <a href="/Carts/Index?id=@ViewBag.user_id">我的购物车</a>
                 <a href="/Individual/Index/">个人中心</a>
             }
         </div>
@@ -123,7 +125,7 @@
                         <a class="btn text-danger bg-light border-danger" id="buy" href="~/favorite/addFav?id=@ViewBag.info[0].ID">加入收藏</a>
                     </div>
                 }
-                
+
             </div>
         </section>
         <!-- 商品的详细信息 /-->
@@ -204,12 +206,9 @@
                 </div>
             </div>
             <ul class="list-group list-group-flush" id="comments">
-                @for (int i = 0; i < 3; i++)
+                @for (int i = 0; i < ViewBag.num; i++)
                 {
-                    if (i >= @ViewBag.num)
-                    {
-                        break;
-                    }
+
                     <li class="list-group-item comment">
                         <img src="/Images/avatar1.png" class="img-thumbnail avatar">
                         <div class="cmt-detail">
@@ -263,6 +262,18 @@
         </section>
         <!-- 评论 /-->
     </div>
+    <div class="toolbar">
+        @if (ViewBag.user_auth == 0)
+        {
+            <a href="#" class="toolbar-item toolbar-item-weixin" style=" position:relative"></a>
+        }
+        else
+        {
+            <a href="~/carts/index?id=@ViewBag.user_id" class="toolbar-item toolbar-item-weixin" style=" position:relative"></a>
+        }
+        <a href="javascript:scroll(0,0)" id="top" class="toolbar-item toolbar-item-top"></a>
+        <a href="javascript:scroll(0,0)" id="top" class="toolbar-item toolbar-item-top"></a>
+    </div>
     <footer class="footer col">
         <ul class="row">
             <li class="col-4">
@@ -274,7 +285,7 @@
             </li>
             <li class="col-2">
                 <span>项目公开</span>
-                <a href="https://github.com" target="_blank">GitHub</a>
+                <a href="https://github.com/Dinghow/DingdongBook" target="_blank">GitHub</a>
             </li>
             <li class="col-3">
                 <span>广告位招租</span>

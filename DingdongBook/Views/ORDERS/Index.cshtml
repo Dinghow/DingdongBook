@@ -37,6 +37,8 @@
         <div class="vip_center">
             @if (ViewBag.user_auth == 1)
             {
+                <a href="/Favorite/Index?id=@ViewBag.user_id">我的收藏</a>
+                <a href="/Carts/Index?id=@ViewBag.user_id">我的购物车</a>
                 <a href="/Individual/Index/">个人中心</a>
             }
         </div>
@@ -73,7 +75,7 @@
                                                 <div class="row">
                                                     <div class="col-sm-2 book-pic"><img src="/Images/books/@ViewBag.BookNo[i].IMAGE" class=""></div>
                                                     <div class="col-sm-10">
-                                                        <h5 class="book-name">@ViewBag.BookNo[i].NAME</h5>
+                                                        <h5 href="~/books/index?id=@ViewBag.BookNo[i].ID" class="book-name">@ViewBag.BookNo[i].NAME</h5>
                                                         <p class="book-introduce">
                                                             @ViewBag.BookNo[i].ABSTRACT
                                                         </p>
@@ -123,8 +125,6 @@
                         {
                             if (@ViewBag.BookYes[i].ORDER_ID == @ViewBag.infoYes[j].ID)
                             {
-                                var temp1= "new-commend" + i.ToString();
-                                var temp = "#new-commend" + i.ToString();
                                 <table class="table card-body">
                                     <tbody>
                                         <tr data-bookid=@ViewBag.BookYes[i].ID>
@@ -132,7 +132,7 @@
                                                 <div class="row">
                                                     <div class="col-sm-2 book-pic"><img src="/Images/books/@ViewBag.BookYes[i].IMAGE" class=""></div>
                                                     <div class="col-sm-10">
-                                                        <h5 class="book-name">@ViewBag.BookYes[i].NAME</h5>
+                                                        <a href="~/books/index?id=@ViewBag.BookYes[i].ID"><h5 class="book-name">@ViewBag.BookYes[i].NAME</h5></a>
                                                         <p class="book-introduce">
                                                             @ViewBag.BookYes[i].ABSTRACT
                                                         </p>
@@ -173,7 +173,7 @@
                                 <h6 class="modal-title font-weight-bold">评论</h6>
                                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
                             </div>
-                            <form class="modal-body comment-form">
+                            <form class="modal-body comment-form" >
                                 <label class="label-commend">不多于400字</label>
                                 <textarea id="input-commend" maxlength="400" required></textarea>
                                 <div class="modal-body rate-star">
@@ -190,7 +190,7 @@
                                 </div>
                                 <div class="">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                                    <input type="submit" class="btn btn-primary" value="提交">
+                                    <button  class="btn btn-primary submit-cmt btn-submit" disabled>提交</button>
                                 </div>
                             </form>
 
@@ -211,7 +211,7 @@
             </li>
             <li class="col-2">
                 <span>项目公开</span>
-                <a href="https://github.com" target="_blank">GitHub</a>
+                <a href="https://github.com/Dinghow/DingdongBook" target="_blank">GitHub</a>
             </li>
             <li class="col-3">
                 <span>广告位招租</span>

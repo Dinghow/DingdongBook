@@ -31,6 +31,8 @@
         <div class="vip_center">
             @if (ViewBag.user_auth == 1)
             {
+                <a href="/Favorite/Index?id=@ViewBag.user_id">我的收藏</a>
+                <a href="/Carts/Index?id=@ViewBag.user_id">我的购物车</a>
                 <a href="/Individual/Index/">个人中心</a>
             }
         </div>
@@ -91,12 +93,10 @@
                 <div class="check-all">
                     <input type="checkbox" name="select-all" id="select-all2">
                     <label for="select-all2">全选</label>
-                    <button type="button" class="btn btn-link mass-delete">批量删除</button>
                     <span>已选择<strong>0</strong>件商品</span>
                 </div>
                 <div class="clearing">
                     <p class="final-price">总计(不含运费): <strong>￥<span>@ViewBag.price</span></strong></p>
-                    <button type="button" class="btn btn-danger font-weight-bold btn-lg">保存</button>
                     <button type="button" class="btn btn-danger font-weight-bold btn-lg" id="go-to-settle" disabled>结&nbsp;&nbsp;&nbsp;&nbsp;算</button>
                 </div>
             </div>
@@ -113,7 +113,7 @@
             </li>
             <li class="col-2">
                 <span>项目公开</span>
-                <a href="https://github.com" target="_blank">GitHub</a>
+                <a href="https://github.com/Dinghow/DingdongBook" target="_blank">GitHub</a>
             </li>
             <li class="col-3">
                 <span>广告位招租</span>

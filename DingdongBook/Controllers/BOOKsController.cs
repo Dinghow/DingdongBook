@@ -27,10 +27,13 @@ namespace DingdongBook.Controllers
 
         public ActionResult Index(int ID)
         {
-            //Get login information
+            //Get login information and judge user's id
             ViewBag.user_auth = (Convert.ToBoolean(Session["user_auth"])) ? 1 : 0;
             if (ViewBag.user_auth == 1)
+            {
+                ViewBag.user_id = Session["user_id"].ToString();
                 ViewBag.user_name = Session["user_account"].ToString();
+            }
 
             id = ID;
             ViewBag.id = ID;
@@ -58,9 +61,9 @@ namespace DingdongBook.Controllers
             ViewBag.rate4 = Math.Round((double)num4 / ViewBag.num, 2) * 100;
             ViewBag.rate5 = Math.Round((double)num5 / ViewBag.num, 2) * 100;
             ViewBag.total = Math.Round((double)(1 * num1 + 2 * num2 + 3 * num3 + 4 * num4 + 5 * num5) / ViewBag.num,1);
-            ViewBag.comment = db.Database.SqlQuery<COMMENTS>("select * from COMMENTS where BOOK_ID=" + ID.ToString()+" order by TOTAL desc").ToList();
-            ViewBag.name = db.Database.SqlQuery<string>("select NAME from USERS natural join COMMENTS order by TOTAL desc").ToList();
-            ViewBag.comment_score = db.Database.SqlQuery<int>("select SCORE from USERS natural join COMMENTS order by TOTAL desc").ToList();
+            ViewBag.comment = db.Database.SqlQuery<COMMENTS>("select * from COMMENTS where BOOK_ID=" + ID.ToString()+" order by ID desc").ToList();//评论
+            ViewBag.name = db.Database.SqlQuery<string>("select NAME from USERS,COMMENTS where BOOK_ID=" + ID.ToString() + " and USERS.ID=COMMENTS.USER_ID order by COMMENTS.ID desc").ToList();//评论用户姓名
+            ViewBag.comment_score = db.Database.SqlQuery<int>("select SCORE from COMMENTS where BOOK_ID=" + ID.ToString() + " order by ID desc").ToList();//评论分数
          
             return View();
         }
@@ -123,6 +126,68 @@ namespace DingdongBook.Controllers
             }
             db.SaveChanges();
             return Redirect("Index?ID=" + ID.ToString());
+        }
+
+        //Add book to the cart directly from home page
+        public int directAddCart(int bookId)
+        {
+            int times = 1;
+            int price = db.Database.SqlQuery<int>("select PRICE from BOOK where ID=" + bookId.ToString()).FirstOrDefault();
+            int user_id;
+            if (Session["user_id"] != null)
+            {
+                user_id = Convert.ToInt32(Session["user_id"]);
+            }
+            else
+            {
+                return -1;
+            }
+            int num = db.Database.SqlQuery<int>("select QUANTITY from CART_INCLUDE where BOOK_ID=" + bookId.ToString() + " and USER_ID=" + user_id.ToString()).FirstOrDefault();//当前购买该书数量
+            if (num == 0)//目前
+            {
+                CART_INCLUDE temp1 = new CART_INCLUDE();
+                temp1.USER_ID = user_id;
+                temp1.BOOK_ID = bookId;
+                temp1.QUANTITY = times;
+                temp1.TOTAL_PRICE = price * times;
+                db.CART_INCLUDE.Add(temp1);
+            }
+            else
+            {
+                var temp = from u in db.CART_INCLUDE
+                           where u.BOOK_ID == bookId && u.USER_ID == user_id
+                           select u;
+                temp.FirstOrDefault().QUANTITY += times;
+                temp.FirstOrDefault().TOTAL_PRICE += price * times;
+            }
+            int cart_num = db.Database.SqlQuery<int>("select count(*) from CART where USER_ID=" + user_id.ToString()).FirstOrDefault();//当前用户购物车记录
+            if (cart_num == 0)//购物车为空
+            {
+                CART temp2 = new CART();
+                temp2.USER_ID = user_id;
+                temp2.QUANTITY = times;
+                temp2.TIME_START = DateTime.Now.ToString();
+                int cost = 15 - 3 * times;
+                if (cost < 0) { cost = 0; }//计算邮费
+                temp2.POST_COST = cost;
+                temp2.TOTAL_PRICE = times * price;
+                db.CART.Add(temp2);
+            }
+            else//购物车不为空
+            {
+                var result = from u in db.CART
+                             where u.USER_ID == user_id
+                             select u;
+
+                result.FirstOrDefault().QUANTITY += times;
+                result.FirstOrDefault().TIME_START = DateTime.Now.ToString();
+                int cost = 15 - 3 * Convert.ToInt32(result.FirstOrDefault().QUANTITY);
+                if (cost < 0) { cost = 0; }
+                result.FirstOrDefault().POST_COST = cost;
+            }
+            db.SaveChanges();
+
+            return 0;
         }
 
         // GET: BOOKs/Details/5

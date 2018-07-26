@@ -21,7 +21,8 @@ namespace DingdongBook.Controllers
                 ViewBag.user_name = Session["user_account"].ToString();
                 ViewBag.user_id = Convert.ToInt16(Session["user_id"]);
             }
-
+            else
+                ViewBag.user_id = -1;
             //Load the newest books and best books
             GetNewestBooks();
             GetBestBooks();
@@ -94,15 +95,13 @@ namespace DingdongBook.Controllers
                 {
                     //Encrypt the password with base64
                     byte[] bytes = Encoding.UTF8.GetBytes(msg.password);
-                    new_user.ID = db.USERS.Count();
+                    new_user.ID = db.USERS.Max(u=>u.ID)+1;
                     new_user.PASSWORD = Convert.ToBase64String(bytes);
                     new_user.EMAIL = msg.email;
                     new_user.AUTHORITY = "user";
                     db.USERS.Add(new_user);
                     db.SaveChanges();
                 }
-                else
-                    return View();
 
                 return Redirect("~/Home/Login");
             }

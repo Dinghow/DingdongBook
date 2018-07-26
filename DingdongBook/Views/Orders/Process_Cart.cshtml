@@ -1,7 +1,8 @@
-﻿@model DingdongBook.Controllers.OrdersController.sender
+﻿@model DingdongBook.Models.ADDRESS
 @{
     Layout = null;
 }
+
 <!DOCTYPE html>
 <html>
 
@@ -77,52 +78,71 @@
                                 <h6 class="modal-title font-weight-bold">创建地址</h6>
                                 <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
                             </div>
-                            <div class="modal-body">
-                                <form id="address-info" class="needs-validation">
-                                    <div class="form-row" data-toggle="distpicker">
-                                        <div class="form-group col-md-4">
-                                            <label for="inputProvince">省</label>
-                                            <select class="form-control" id="inputProvince" data-province="---- 选择省 ----" required></select>
+                            @using (Html.BeginForm("AddAddress", "Carts", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="modal-body">
+                                    <form id="address-info">
+                                        <div class="form-row" data-toggle="distpicker">
+                                            <input id="ID" name="ID" type="hidden" value="@ViewBag.max" />
+                                            @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+                                            <input id="USER_ID" name="USER_ID" type="hidden" value="@ViewBag.user_id" />
+                                            @Html.ValidationMessageFor(model => model.USER_ID, "", new { @class = "text-danger" })
+                                            <input id="COUNTRY" name="COUNTRY" type="hidden" value="中国" />
+                                            @Html.ValidationMessageFor(model => model.COUNTRY, "", new { @class = "text-danger" })
+                                            <div class="form-group col-md-4">
+                                                <label for="inputProvince">省</label>
+                                                <select class="form-control" id="PROVINCE" name="PROVINCE" data-province="---- 选择省 ----" required></select>
+                                                @Html.ValidationMessageFor(model => model.PROVINCE, "", new { @class = "text-danger" })
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="inputCity">市</label>
+                                                <select class="form-control" id="CITY" name="CITY" data-city="---- 选择市 ----" required></select>
+                                                @Html.ValidationMessageFor(model => model.CITY, "", new { @class = "text-danger" })
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="inputDistrict">区</label>
+                                                <select class="form-control" id="DISTRICT" name="DISTRICT" data-district="---- 选择区 ----" required></select>
+                                                @Html.ValidationMessageFor(model => model.DISTRICT, "", new { @class = "text-danger" })
+                                            </div>
                                         </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputCity">市</label>
-                                            <select class="form-control" id="inputCity" data-city="---- 选择市 ----" required></select>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-9">
+                                                <label for="inputAddress">详细地址</label>
+                                                <input type="text" class="form-control" id="LOCATION" name="LOCATION" required>
+                                                @Html.ValidationMessageFor(model => model.LOCATION, "", new { @class = "text-danger" })
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label for="inputZip">邮编</label>
+                                                <input type="text" class="form-control" id="POST_CODE" name="POST_CODE" required>
+                                                @Html.ValidationMessageFor(model => model.POST_CODE, "", new { @class = "text-danger" })
+                                            </div>
                                         </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputDistrict">区</label>
-                                            <select class="form-control" id="inputDistrict" data-district="---- 选择区 ----" required></select>
+                                        <div class="form-row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="validationDefault01">姓名</label>
+                                                <input type="text" class="form-control" name="NAME" id="NAME" value="">
+                                                @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-9">
-                                            <label for="inputAddress">详细地址</label>
-                                            <input type="text" class="form-control" id="inputAddress" required>
+                                        <div class="form-group">
+                                            <label for="inputPhone">电话号码</label>
+                                            <input type="text" class="form-control" id="PHONE" name="PHONE" required>
+                                            @Html.ValidationMessageFor(model => model.PHONE, "", new { @class = "text-danger" })
                                         </div>
-                                        <div class="form-group col-md-3">
-                                            <label for="inputZip">邮编</label>
-                                            <input type="number" class="form-control" id="inputZip" required>
+
+                                        <div class="form-group">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="gridCheck">
+                                                <label class="form-check-label" for="gridCheck"><small>设为默认地址</small></label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="inputLastName">姓</label>
-                                            <input type="text" class="form-control" id="inputLastName" required>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label for="inputFirstName">名</label>
-                                            <input type="text" class="form-control" id="inputFirstName" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputPhone">电话号码</label>
-                                        <input type="number" class="form-control" id="inputPhone" required>
-                                    </div>
-                                    <div class="form-group opt-btns">
+                                        <input type="submit" class="btn btn-primary" value="提交">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
-                                        <button class="btn btn-primary create-addr" type="submit">提交</button>
-                                    </div>
-                                </form>
-                            </div>
+                                    </form>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -171,20 +191,23 @@
                     <button type="button" class="btn btn-light border pay-method">货到付款</button>
                 </div>
             </div>
-            <div class="pay-info-confirm card float-right">
-                <div class="card-body text-right pay-info">
-                    <p class="actual-price">实付款：<strong class="text-muted">￥<span class="text-danger total">@ViewBag.total</span></strong></p>
-                    <p class="delivery-addr">寄送至：<span class="province tab">@ViewBag.address[0].PROVINCE</span><span class="city tab">@ViewBag.address[0].CITY</span><span class="district tab">@ViewBag.address[0].DISTRICT</span><span class="detailed-addr tab">@ViewBag.address[0].LOCATION</span></p>
-                    <p class="postcode">邮编：<span class="zip tab">@ViewBag.address[0].POST_CODE</span></p>
-                    @Html.HiddenFor(m => m.a)
+            @if (ViewBag.address_count > 0)
+            {
+                <div class="pay-info-confirm card float-right">
 
-                    <p class="addressee">收货人：<span class="name tab">@ViewBag.address[0].NAME</span><span class="phone tab">@ViewBag.address[0].PHONE</span></p>
+                    <div class="card-body text-right pay-info">
+                        <p class="actual-price">实付款：<strong class="text-muted">￥<span class="text-danger total">@ViewBag.total</span></strong></p>
+                        <p class="delivery-addr">寄送至：<span class="province tab">@ViewBag.address[0].PROVINCE</span><span class="city tab">@ViewBag.address[0].CITY</span><span class="district tab">@ViewBag.address[0].DISTRICT</span><span class="detailed-addr tab">@ViewBag.address[0].LOCATION</span></p>
+                        <p class="postcode">邮编：<span class="zip tab">@ViewBag.address[0].POST_CODE</span></p>
+
+                        <p class="addressee">收货人：<span class="name tab">@ViewBag.address[0].NAME</span><span class="phone tab">@ViewBag.address[0].PHONE</span></p>
+                    </div>
+                    <div class="btn-group">
+                        <a href="/carts/index?id=@ViewBag.user_id" class="btn btn-link" style="width:50%; border-radius: 0"><i class="material-icons">reply</i>返回购物车</a>
+                        <button type="button" class="btn btn-danger" id="submit-order">提交订单</button>
+                    </div>
                 </div>
-                <div class="btn-group">
-                    <a href="/carts/index?id=@ViewBag.user_id" class="btn btn-link"><i class="material-icons">reply</i>返回购物车</a>
-                    <button type="button" class="btn btn-danger" id="submit-order">提交订单</button>
-                </div>
-            </div>
+            }
         </div>
     </main>
     <footer class="footer col">
@@ -198,7 +221,7 @@
             </li>
             <li class="col-2">
                 <span>项目公开</span>
-                <a href="https://github.com" target="_blank">GitHub</a>
+                <a href="https://github.com/Dinghow/DingdongBook" target="_blank">GitHub</a>
             </li>
             <li class="col-3">
                 <span>广告位招租</span>

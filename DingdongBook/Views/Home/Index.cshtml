@@ -5,7 +5,7 @@
 @{
     Layout = null;
 }
-
+@model DingdongBook.Controllers.SearchController.SearchSender
 
 <!DOCTYPE html>
 <html>
@@ -121,10 +121,11 @@
                 <a href="~/"><img src="/Images/logo_index.png"></a>
             </h1>
             <search>
-                <form>
-                    <input type="text" placeholder="请输入关键词" required style=" width:340px; height:34px; text-indent:2em; float:left; box-shadow:none">
-                    <button>搜索</button>
+                <form name="search" method="post" action="/Search/Index">
+                    <input class="form-control" name="keyword" id="keyword" type="text placeholder="请输入关键词" required style=" width:340px; height:34px; text-indent:2em; float:left; box-shadow:none">
+                    <button type="submit">搜索</button>
                 </form>
+                
             </search>
             <div class="showInfo">
                 <div class="sping_car">
@@ -179,16 +180,16 @@
             <!--结束-->
             <div class="dao_list">
                 <a href="#">首页</a>
-                <a href="#">文学</a>
-                <a href="#">社科</a>
-                <a href="#">经管</a>
-                <a href="#">少儿</a>
-                <a href="#">生活</a>
-                <a href="#">科技</a>
-                <a href="#">工业</a>
-                <a href="#">艺术</a>
-                <a href="#">&nbsp;IT&nbsp;</a>
-                <a href="#">综合</a>
+                <a href="~/Search/index?category=文学">文学</a>
+                <a href="~/Search/index?category=社科">社科</a>
+                <a href="~/Search/index?category=经管">经管</a>
+                <a href="~/Search/index?category=儿童">少儿</a>
+                <a href="~/Search/index?category=生活">生活</a>
+                <a href="~/Search/index?category=科技">科技</a>
+                <a href="~/Search/index?category=工业">工业</a>
+                <a href="~/Search/index?category=艺术">艺术</a>
+                <a href="~/Search/index?category=IT">&nbsp;IT&nbsp;</a>
+                <a href="~/Search/index?category=综合">综合</a>
 
             </div>
         </nav>
@@ -263,86 +264,26 @@
     <div>
         <div class="currency f-4-lt01">
             <ul>
-                <li>
-                    <a href="~/books/index?id=@ViewBag.nBook1_id" target="_blank">
-                        <img src="~/Images/books/@ViewBag.nBook1_img" style=" margin:0 auto; display:block; width:220px; height:220px">
-                    </a>
-                    <light1>
-                        <img src="/Images/saoguang.png">
-                    </light1>
-                    <span>￥@ViewBag.nBook1_price</span>
-                    <a href="#">
-                        <p> </p>
-                    </a>
-                    <em>
-                        <a href="~/favorite/addFav?id=@ViewBag.nBook1_id">收藏</a>
-                        <a href="~/books/addcart?id=@ViewBag.nBook1_id" class="add_scar">加入购物车</a>
-                    </em>
-                </li>
-                <li>
-                    <a href="~/books/index?id=@ViewBag.nBook2_id" target="_blank">
-                        <img src="/Images/books/@ViewBag.nBook2_img" style=" margin:0 auto; display:block; width:220px; height:220px">
-                    </a>
-                    <light1>
-                        <img src="/Images/saoguang.png">
-                    </light1>
-                    <span>￥@ViewBag.nBook2_price</span>
-                    <a href="#">
-                        <p> </p>
-                    </a>
-                    <em>
-                        <a href="~/favorite/addFav?id=@ViewBag.nBook2_id">收藏</a>
-                        <a href="~/books/addcart?id=@ViewBag.nBook2_id" class="add_scar">加入购物车</a>
-                    </em>
-                </li>
-                <li>
-                    <a href="~/books/index?id=@ViewBag.nBook3_id" target="_blank">
-                        <img src="/Images/books/@ViewBag.nBook3_img" style=" margin:0 auto; display:block; width:220px; height:220px">
-                    </a>
-                    <light1>
-                        <img src="/Images/saoguang.png">
-                    </light1>
-                    <span>￥@ViewBag.nBook3_price</span>
-                    <a href="#">
-                        <p> </p>
-                    </a>
-                    <em>
-                        <a href="~/favorite/addFav?id=@ViewBag.nBook3_id">收藏</a>
-                        <a href="~/books/addcart?id=@ViewBag.nBook3_id" class="add_scar">加入购物车</a>
-                    </em>
-                </li>
-                <li>
-                    <a href="~/books/index?id=@ViewBag.nBook4_id" target="_blank">
-                        <img src="/Images/books/@ViewBag.nBook4_img" style=" margin:0 auto; display:block; width:220px; height:220px">
-                    </a>
-                    <light1>
-                        <img src="/Images/saoguang.png">
-                    </light1>
-                    <span>￥@ViewBag.nBook4_price</span>
-                    <a href="#">
-                        <p> </p>
-                    </a>
-                    <em>
-                        <a href="~/favorite/addFav?id=@ViewBag.nBook4_id">收藏</a>
-                        <a href="~/books/addcart?id=@ViewBag.nBook4_id" class="add_scar">加入购物车</a>
-                    </em>
-                </li>
-                <li>
-                    <a href="~/books/index?id=@ViewBag.nBook5_id" target="_blank">
-                        <img src="/Images/books/@ViewBag.nBook5_img" style=" margin:0 auto; display:block; width:220px; height:220px">
-                    </a>
-                    <light1>
-                        <img src="/Images/saoguang.png">
-                    </light1>
-                    <span>￥@ViewBag.nBook5_price</span>
-                    <a href="#">
-                        <p> </p>
-                    </a>
-                    <em>
-                        <a href="~/favorite/addFav?id=@ViewBag.nBook5_id" target="_blank">收藏</a>
-                        <a href="~/books/addcart?id=@ViewBag.nBook5_id" class="add_scar">加入购物车</a>
-                    </em>
-                </li>
+                @for (int i = 0; i < 5; i++)
+                {
+                    <li data-addrid="@ViewBag.nBooks[i].ID">
+                        <a href="~/books/index?id=@ViewBag.nBooks[i].ID" target="_blank">
+                            <img src="~/Images/books/@ViewBag.nBooks[i].IMAGE" style=" margin:0 auto; display:block; width:220px; height:220px">
+                        </a>
+                        <light1>
+                            <img src="/Images/saoguang.png">
+                        </light1>
+                        <span>￥@ViewBag.nBooks[i].PRICE</span>
+                        <a href="~/books/index?id=@ViewBag.nBooks[i].ID">
+                            <p>@ViewBag.nBooks[i].NAME</p>
+                        </a>
+                        <em>
+                            <a class="add-to-fav" >收藏</a>
+                            <a class="add_scar add-to-cart">加入购物车</a>
+                            <a class="add_scar add-to-cart">加入购物车</a>
+                        </em>
+                    </li>
+                }
             </ul>
         </div>
     </div>
@@ -357,86 +298,25 @@
     <div>
         <div class="currency f-5-lt01">
             <ul>
-                <li>
-                    <a href="~/books/index?id=@ViewBag.bBook1_id" target="_blank">
-                        <img src="/Images/books/@ViewBag.bBook1_img" style=" margin:0 auto; display:block; width:220px; height:220px">
-                    </a>
-                    <light1>
-                        <img src="/Images/saoguang.png">
-                    </light1>
-                    <span>￥@ViewBag.bBook1_price</span>
-                    <a href="#">
-                        <p> </p>
-                    </a>
-                    <em>
-                        <a href="~/favorite/addFav?id=@ViewBag.bBook1_id" target="_blank">收藏</a>
-                        <a href="~/books/addcart?id=@ViewBag.bBook1_id" class="add_scar">加入购物车</a>
-                    </em>
-                </li>
-                <li>
-                    <a href="~/books/index?id=@ViewBag.bBook2_id" target="_blank">
-                        <img src="/Images/books/@ViewBag.bBook2_img" style=" margin:0 auto; display:block; width:220px; height:220px">
-                    </a>
-                    <light1>
-                        <img src="/Images/saoguang.png">
-                    </light1>
-                    <span>￥@ViewBag.bBook2_price</span>
-                    <a href="#">
-                        <p> </p>
-                    </a>
-                    <em>
-                        <a href="~/favorite/addFav?id=@ViewBag.bBook2_id">收藏</a>
-                        <a href="~/books/addcart?id=@ViewBag.bBook2_id" class="add_scar">加入购物车</a>
-                    </em>
-                </li>
-                <li>
-                    <a href="~/books/index?id=@ViewBag.bBook3_id" target="_blank">
-                        <img src="/Images/books/@ViewBag.bBook3_img" style=" margin:0 auto; display:block; width:220px; height:220px">
-                    </a>
-                    <light1>
-                        <img src="/Images/saoguang.png">
-                    </light1>
-                    <span>￥@ViewBag.bBook3_price</span>
-                    <a href="#">
-                        <p> </p>
-                    </a>
-                    <em>
-                        <a href="~/favorite/addFav?id=@ViewBag.bBook3_id">收藏</a>
-                        <a href="~/books/addcart?id=@ViewBag.bBook3_id" class="add_scar">加入购物车</a>
-                    </em>
-                </li>
-                <li>
-                    <a href="~/books/index?id=@ViewBag.bBook4_id" target="_blank">
-                        <img src="/Images/books/@ViewBag.bBook4_img" style=" margin:0 auto; display:block; width:220px; height:220px">
-                    </a>
-                    <light1>
-                        <img src="/Images/saoguang.png">
-                    </light1>
-                    <span>￥@ViewBag.bBook4_price</span>
-                    <a href="#">
-                        <p> </p>
-                    </a>
-                    <em>
-                        <a href="~/favorite/addFav?id=@ViewBag.bBook4_id">收藏</a>
-                        <a href="~/books/addcart?id=@ViewBag.bBook4_id" class="add_scar">加入购物车</a>
-                    </em>
-                </li>
-                <li>
-                    <a href="~/books/index?id=@ViewBag.bBook5_id" target="_blank">
-                        <img src="/Images/books/@ViewBag.bBook5_img" style=" margin:0 auto; display:block; width:220px; height:220px">
-                    </a>
-                    <light1>
-                        <img src="/Images/saoguang.png">
-                    </light1>
-                    <span>￥@ViewBag.bBook5_price</span>
-                    <a href="#">
-                        <p> </p>
-                    </a>
-                    <em>
-                        <a href="~/favorite/addFav?id=@ViewBag.bBook5_id">收藏</a>
-                        <a href="~/books/addcart?id=@ViewBag.bBook5_id" class="add_scar">加入购物车</a>
-                    </em>
-                </li>
+                @for (int i = 0; i < 5; i++)
+                {
+                    <li data-addrid=@ViewBag.bBooks[i].ID>
+                        <a href="~/books/index?id=@ViewBag.bBooks[i].ID" target="_blank">
+                            <img src="/Images/books/@ViewBag.bBooks[i].IMAGE" style=" margin:0 auto; display:block; width:220px; height:220px">
+                        </a>
+                        <light1>
+                            <img src="/Images/saoguang.png">
+                        </light1>
+                        <span>￥@ViewBag.bBooks[i].PRICE</span>
+                        <a href="~/books/index?id=@ViewBag.bBooks[i].ID">
+                            <p>@ViewBag.bBooks[i].NAME</p>
+                        </a>
+                        <em>
+                            <a class="add-to-fav">收藏</a>
+                            <a class="add_scar add-to-cart">加入购物车</a>
+                        </em>
+                    </li>
+                }
             </ul>
         </div>
         
@@ -535,7 +415,14 @@
     </div>
     <!--侧边栏-->
     <div class="toolbar">
-        <a href="~/carts/index?id=@ViewBag.user_id" class="toolbar-item toolbar-item-weixin" style=" position:relative"></a>
+        @if (ViewBag.user_auth == 0)
+        {
+            <a href="#" class="toolbar-item toolbar-item-weixin" style=" position:relative"></a>
+        }
+        else
+        {
+            <a href="~/carts/index?id=@ViewBag.user_id" class="toolbar-item toolbar-item-weixin" style=" position:relative"></a>
+        }
         <a href="javascript:scroll(0,0)" id="top" class="toolbar-item toolbar-item-top"></a>
     </div>
     <!--购物车fly插件-->
@@ -550,7 +437,7 @@
             </li>
             <li class="col-2">
                 <span>项目公开</span>
-                <a href="https://github.com" target="_blank">GitHub</a>
+                <a href="https://github.com/Dinghow/DingdongBook" target="_blank">GitHub</a>
             </li>
             <li class="col-3">
                 <span>网站后台</span>

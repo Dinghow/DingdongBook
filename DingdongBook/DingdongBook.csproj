@@ -163,13 +163,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\BOOKsController.cs" />
-    <Compile Include="Controllers\CARTsController.cs" />
+    <Compile Include="Controllers\BooksController.cs" />
+    <Compile Include="Controllers\CartsController.cs" />
     <Compile Include="Controllers\FavoriteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IndividualController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -287,6 +289,7 @@
     <Content Include="Images\books\1.jpg" />
     <Content Include="Images\books\10.jpg" />
     <Content Include="Images\books\100.jpg" />
+    <Content Include="Images\books\101.jpg" />
     <Content Include="Images\books\11.jpg" />
     <Content Include="Images\books\12.jpg" />
     <Content Include="Images\books\13.jpg" />
@@ -445,6 +448,7 @@
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\less.min.js" />
+    <Content Include="Scripts\login.js" />
     <Content Include="Scripts\messages_zh.min.js" />
     <Content Include="Scripts\order.js" />
     <Content Include="Scripts\order_process.js" />
@@ -493,21 +497,23 @@
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
-    <Content Include="Views\BOOKs\addCart.cshtml" />
-    <Content Include="Views\BOOKs\Create.cshtml" />
-    <Content Include="Views\BOOKs\Delete.cshtml" />
-    <Content Include="Views\BOOKs\Details.cshtml" />
-    <Content Include="Views\BOOKs\Edit.cshtml" />
-    <Content Include="Views\BOOKs\Index.cshtml" />
+    <Content Include="Views\Books\addCart.cshtml" />
+    <Content Include="Views\Books\Create.cshtml" />
+    <Content Include="Views\Books\Delete.cshtml" />
+    <Content Include="Views\Books\Details.cshtml" />
+    <Content Include="Views\Books\Edit.cshtml" />
+    <Content Include="Views\Books\Index.cshtml" />
     <Content Include="Views\Favorite\Index.cshtml" />
     <Content Include="Views\Orders\Index.cshtml" />
     <Content Include="Views\Orders\Process_Book.cshtml" />
     <Content Include="Views\Orders\Process_Cart.cshtml" />
-    <Content Include="Views\CARTs\Create.cshtml" />
-    <Content Include="Views\CARTs\Delete.cshtml" />
-    <Content Include="Views\CARTs\Edit.cshtml" />
-    <Content Include="Views\CARTs\Index.cshtml" />
+    <Content Include="Views\Carts\Create.cshtml" />
+    <Content Include="Views\Carts\Delete.cshtml" />
+    <Content Include="Views\Carts\Edit.cshtml" />
+    <Content Include="Views\Carts\Index.cshtml" />
     <Content Include="Views\Orders\Order_Complete.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Address\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

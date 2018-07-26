@@ -3,10 +3,11 @@ $(() => {
         updateSelectedItems();
         toggleDisable();
     });
-	$('.cart input[name="select-all"]').on('click', selectAll);
-	$('.remove, .move-to-favorite').on('click', removeItem);
-	$('.number-controller .increase, .number-controller .decrease').on('click', updateFinalPrice);
-    $('.mass-delete').on('click', massDelete);
+    $('.cart input[name="select-all"]').on('click', selectAll);
+    $('.remove, .move-to-favorite').on('click', removeItem);
+    //$('.mass-delete').on('click', massDelete);
+    $('.number-controller .increase, .number-controller .decrease').on('click', updateFinalPrice);
+    
     $('#go-to-settle').on('click', () => {
         let bookIds = [];
         $('#cart-table>tbody>tr>th>input:checked').parents('tr.abook').each((index, el) => {
@@ -27,6 +28,38 @@ $(() => {
             }
         });
     })
+    $('.remove').on('click', function() {     
+        $.ajax({
+            type: 'POST',
+            url: '/Carts/RemoveBook',
+            data: {
+                bookId: Number($(this).parents('tr.abook').attr('data-bookid'))
+            },
+            success: function (userId) {
+                window.location.reload();
+            },
+            error: function (e) {
+                alert('提交失败');
+            }
+        });
+    })
+    $('.move-to-favorite').on('click', function () {
+        $.ajax({
+            type: 'POST',
+            url: '/Carts/AddFav',
+            data: {
+                bookId: Number($(this).parents('tr.abook').attr('data-bookid'))
+            },
+            success: function (userId) {
+                //window.location.reload();
+            },
+            error: function (e) {
+                alert('提交失败');
+            }
+        });
+    });
+
+
 });
 
 function updateSelectedItems(e){
@@ -39,7 +72,8 @@ function selectAll(e) {
 	$('.cart :checkbox').each((index, el) => {
 		el.checked = checked;
 	});
-	updateSelectedItems();
+    updateSelectedItems();
+    toggleDisable();
 }
 
 function removeItem(e) {
@@ -57,7 +91,22 @@ function updateFinalPrice(e) {
 	$('#cart-table tbody tr .total-price span').each((index, el) => {
 		finalPrice += Number($(el).text())
 	});
-	$('#settlement .final-price span').text(finalPrice.toFixed(2));
+    $('#settlement .final-price span').text(finalPrice.toFixed(2));
+
+    $.ajax({
+        type: 'POST',
+        url: '/Carts/EditAmount',
+        data: {
+            bookId: Number($(this).parents('tr.abook').attr('data-bookid')),
+            bookAmount: Number($(this).siblings('input[type=number]').val())
+        },
+        success: function (userId) {
+            //window.location.reload();
+        },
+        error: function (e) {
+            alert('提交失败');
+        }
+    });
 }
 
 function massDelete(e) {

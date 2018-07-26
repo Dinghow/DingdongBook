@@ -1,13 +1,7 @@
-﻿@model  DingdongBook.Controllers.AdminController.DataSender
-
-@{
-    ViewBag.Title = "View";
+﻿@{ 
+    Layout =null;
 }
-
-@{
-    Layout = null;
-}
-
+@model DingdongBook.Controllers.AdminController.AdminSender
 <!DOCTYPE html>
 <html>
 
@@ -29,55 +23,45 @@
 </head>
 
 <body>
-    <!--头部-->
-    <div class="top-hover">
-        <div class="register_login">
-            <em>您好,管理员</em>
-               <a href="/Admin/Logout/">@ViewBag.admin_name,退出</a>
-        </div>
-    </div>
-    <!-- <div class="topAd"></div>-->
-    <!--header-->
     <div class="admin-plaque">
         <nav id="navbar-example2" class="navbar navbar-light bg-light">
             <a class="navbar-brand" href="#">管理操作</a>
             <ul class="nav nav-pills">
                 <li class="nav-item">
-                    <a class="nav-link btn-user-control" href="#fat">用户管理</a>
+                    <a class="nav-link btn-user-control" href="#">用户管理</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn-add-book" href="#fat">添加图书</a>
+                    <a class="nav-link btn-add-book" href="#">添加图书</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn-change-book" href="#fat">修改图书信息</a>
+                    <a class="nav-link btn-change-book" href="#">修改图书信息</a>
                 </li>
             </ul>
         </nav>
         <main class="admin-main">
             <div class="user-control">
-                <p class="search-line row">
-                    <input type="text" name="" class="search-user col-10">
-                    <button class="btn btn-default btn-search col-2">搜索</button>
-                </p>
+                <form name="search-user-form" method="post" action="/Admin/SearchUser">
+                    <p class="search-line row">
+
+                        <input type="text" name="user_search" class="search-user col-10">
+                        <button type="submit" class="btn btn-default btn-search col-2">搜索</button>
+
+                    </p>
+                </form>
                 <ul class="search-result-user">
-                    <li class="user-searched card">
-                        <div class="card-header">用户 <span>000001</span></div>
-                        <div class="card-body">
-                            <p><span class="attr">姓名 </span><span>张三</span></p>
-                            <p><span class="attr">性别 </span><span>男</span></p>
-                            <p><span class="attr">邮箱 </span><span>10086@163.com</span></p>
-                        </div>
-                        <button class="btn btn-danger btn-delete card-footer" data-toggle="modal" data-target="#exampleModal">删除用户</button>
-                    </li>
-                    <li class="user-searched card">
-                        <div class="card-header">用户 <span>000002</span></div>
-                        <div class="card-body">
-                            <p><span class="attr">姓名 </span><span>张三</span></p>
-                            <p><span class="attr">性别 </span><span>男</span></p>
-                            <p><span class="attr">邮箱 </span><span>10086@163.com</span></p>
-                        </div>
-                        <button class="btn btn-danger btn-delete card-footer" data-toggle="modal" data-target="#exampleModal">删除用户</button>
-                    </li>
+                    @for (int i = 0; i < ViewBag.num; i++)
+                    {
+                        <li class="user-searched card" data-userid=@ViewBag.all_user[i].ID>
+                            <div class="card-header">用户 <span>@ViewBag.all_user[i].ID</span></div>
+                            <div class="card-body">
+                                <p><span class="attr">姓名 </span><span>@ViewBag.all_user[i].NAME</span></p>
+                                <p><span class="attr">账户名 </span><span>@ViewBag.all_user[i].ACCOUNT</span></p>
+                                <p><span class="attr">性别 </span><span>@ViewBag.all_user[i].GENDER</span></p>
+                                <p><span class="attr">邮箱 </span><span>@ViewBag.all_user[i].EMAIL</span></p>
+                            </div>
+                            <button class="btn btn-danger btn-delete card-footer delete-user" data-toggle="modal" data-target="#exampleModal">删除用户</button>
+                        </li>
+                    }
                 </ul>
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -87,7 +71,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary btn-cancle" data-dismiss="modal">关闭</button>
-                                <button type="button" class="btn btn-primary btn-sure" data-dismiss="modal">确认</button>
+                                <button type="button" class="btn btn-primary btn-sure" data-dismiss="modal" id="confirm-delete-user">确认</button>
                             </div>
                         </div>
                     </div>
@@ -127,13 +111,17 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label for="input-publisher" class="required">出版社</label>
                             <input type="text" class="form-control" id="input-publisher" name="publisher" required>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label for="input-publish-date" class="required">出版时间</label>
                             <input type="text" class="form-control" id="input-publish-date" name="publishDate" placeholder="日期格式: YYYY-MM-DD" required>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="input-unit-price" class="required">单价</label>
+                            <input type="number" class="form-control" id="input-unit-price" name=" unitPrice" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -155,29 +143,112 @@
                 </form>
             </div>
             <div class="change-book">
-                <p class="search-line row">
-                    <input type="text" name="" class="search-book col-10">
-                    <button class="btn btn-default btn-search col-2">搜索</button>
-                </p>
+                <form name="search-book-form" method="post" action="/Admin/SearchBook">
+                    <p class="search-line row">
+
+                        <input type="text" name="book_search" class="search-book col-10">
+                        <button type="submit" class="btn btn-default btn-search col-2">搜索</button>
+
+                    </p>
+                </form>
                 <ul class="search-result-book">
-                    <li class="book-selected card">
+                    @for (int i = 0; i < ViewBag.booknum; i++)
+                    {
+                        var form = "#exampleModa3"+i.ToString();
+                        var form1 = "exampleModa3" + i.ToString();
+                    <li class="book-selected card" data-bookid=@ViewBag.all_book[i].ID>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-2"><img src="/Images/pic/laozi.jpg"></div>
+                                <div class="col-2"><img src="/Images/Books/@ViewBag.all_book[i].IMAGE"></div>
                                 <div class="card-introduce col-10">
-                                    <h5 class="book-name">老子传1</h5>
+                                    <h5 class="book-name">@ViewBag.all_book[i].NAME</h5>
                                     <p class="book-introduce">
-                                        探寻《道德经》思想的源起之作。1、继司马迁之后，一部关于老子的思想传记。2、从隐学到权术，老子是个奇迹。3、读完《老子传》，再读《道德经》如探囊取物。
+                                        @ViewBag.all_book[i].ABSTRACT
                                     </p>
-                                    <p class="book-detail">作者:余世存&emsp;&emsp;&emsp;出版社:长江文艺出版社</p>
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button class=" btn btn-danger btn-change" data-toggle="modal" data-target="#exampleModa3">修改书籍信息</button>
-                            <button class=" btn btn-danger btn-delete" data-toggle="modal" data-target="#exampleModa2">删除书籍</button>
+                            <button class=" btn btn-danger btn-change change-book" data-toggle="modal" data-target=@form>修改书籍信息</button>
+                            <button class=" btn btn-danger btn-delete delete-book" data-toggle="modal" data-target="#exampleModa2">删除书籍</button>
+                        </div>
+                        <div class="modal fade" id=@form1 tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <form id="changebook">
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="input-book-name">书籍名称</label>
+                                                    <input type="text" class="form-control" id="input-book-name" name="bookName" value="@ViewBag.all_book[i].NAME" required>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="input-isbn">ISBN</label>
+                                                    <input type="text" class="form-control" id="input-isbn" name="isbn" value="@ViewBag.all_book[i].ISBN" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="input-author">作者</label>
+                                                    <input type="text" class="form-control" id="input-author" name="author" value="" required>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="selcet-category">类别</label>
+                                                    <select multiple class="form-control select-category" name="category" required>
+                                                        <option selected="selected">文学</option>
+                                                        <option selected="selected">社科</option>
+                                                        <option selected="selected">经管</option>
+                                                        <option>少儿</option>
+                                                        <option>生活</option>
+                                                        <option>科技</option>
+                                                        <option>工业</option>
+                                                        <option>艺术</option>
+                                                        <option>IT</option>
+                                                        <option>综合</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="input-publisher">出版社</label>
+                                                    <input type="text" class="form-control" id="input-publisher" value="@ViewBag.all_book[i].PUBLISHER" name="publisher" required>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="input-publish-date">出版时间</label>
+                                                    <input type="text" class="form-control" id="input-publish-date" value="@ViewBag.all_book[i].PUBLISHTIME" name="publishDate" required>
+                                                </div>
+                                                <div class="form-group col-md-4">
+                                                    <label for="input-unit-price">单价</label>
+                                                    <input type="number" class="form-control" id="input-unit-price" value="@ViewBag.all_book[i].PRICE" name="unitPrice" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="input-cover">上传封面</label>
+                                                <div class="form-group input-group">
+                                                    <span class="input-group-text">文件</span>
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" id="input-cover-change" name="file" required>
+                                                        <label class="custom-file-label" for="input-cover-change">选择文件</label>
+                                                    </div>
+                                                </div>
+                                                <div id="preview-change"></div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="input-synopsis">简介</label>
+                                                <textarea class="form-control" id="input-synopsis" rows="4" style="resize: none;" name="synopsis" required>@ViewBag.all_book[i].ABSTRACT</textarea>
+                                            </div>
+                                            <div class="">
+                                                <button type="button" class="btn btn-secondary btn-quit" data-dismiss="modal">取消</button>
+                                                <button type="button" class="btn btn-primary btn-save save-changed-book">保存</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                     </li>
+                    }
                 </ul>
                 <div class="modal fade" id="exampleModa2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
@@ -187,82 +258,12 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary btn-cancle" data-dismiss="modal">关闭</button>
-                                <button type="button" class="btn btn-primary btn-sure" data-dismiss="modal">确认</button>
+                                <button type="button" class="btn btn-primary btn-sure confirm-delete-book" data-dismiss="modal">确认</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal fade" id="exampleModa3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <form id="changebook">
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="input-book-name">书籍名称</label>
-                                            <input type="text" class="form-control" id="input-book-name" name="bookName" value="史记" required>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="input-isbn">ISBN</label>
-                                            <input type="text" class="form-control" id="input-isbn" name="bookName" value="000000" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="input-author">作者</label>
-                                            <input type="text" class="form-control" id="input-author" name="bookName" value="孔子" required>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="selcet-category">类别</label>
-                                            <select multiple class="form-control select-category" name="category" required>
-                                                <option selected="selected">文学</option>
-                                                <option selected="selected">社科</option>
-                                                <option selected="selected">经管</option>
-                                                <option>少儿</option>
-                                                <option>生活</option>
-                                                <option>科技</option>
-                                                <option>工业</option>
-                                                <option>艺术</option>
-                                                <option>IT</option>
-                                                <option>综合</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="input-publisher">出版社</label>
-                                            <input type="text" class="form-control" id="input-publisher" value="xxxxxxx" name="publisher" required>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="input-publish-date">出版时间</label>
-                                            <input type="text" class="form-control" id="input-publish-date" value="xxxxxxx" name="publishDate" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="input-cover">上传封面</label>
-                                        <div class="form-group input-group">
-                                            <span class="input-group-text">文件</span>
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="input-cover-change" name="file" required>
-                                                <label class="custom-file-label" for="input-cover-change">选择文件</label>
-                                            </div>
-                                        </div>
-                                        <div id="preview-change"></div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="input-synopsis">简介</label>
-                                        <textarea class="form-control" id="input-synopsis" rows="4" style="resize: none;" name="synopsis" required>xxxxxx</textarea>
-                                    </div>
-                                    <div class="">
-                                        <button type="button" class="btn btn-secondary btn-quit" data-dismiss="modal">取消</button>
-                                        <button type="submit" class="btn btn-primary btn-save">保存</button>
-                                    </div>
-                                </form>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </main>
     </div>
@@ -270,4 +271,3 @@
 </body>
 
 </html>
-

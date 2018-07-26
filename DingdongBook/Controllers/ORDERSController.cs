@@ -19,13 +19,17 @@ namespace DingdongBook.Controllers
         // GET: ORDERS
         public ActionResult Index(int ID)
         {
-            //Get login information
+            //Get login information and judge user's id
             ViewBag.user_auth = (Convert.ToBoolean(Session["user_auth"])) ? 1 : 0;
+            ViewBag.user_name = Session["user_account"].ToString();
             if (ViewBag.user_auth == 1)
             {
-                ViewBag.user_name = Session["user_account"].ToString();
-                ViewBag.user_id = Convert.ToInt16(Session["user_id"]);
+                ViewBag.user_id = Session["user_id"].ToString();
+                if (ID.ToString() != ViewBag.user_id)
+                    return Redirect("~/Home/Login");
             }
+            else
+                return Redirect("~/Home/Login");
 
             if (ID == null)
             {
@@ -42,20 +46,19 @@ namespace DingdongBook.Controllers
             return View();
         }
 
-        // GET: Orders
-        public class sender
-        {
-           public int a { get; set; }
-        }
-
         public ActionResult Process_CART(int ID)//从购物车购买
         {
-            //Get login information
+            //Get login information and judge user's id
             ViewBag.user_auth = (Convert.ToBoolean(Session["user_auth"])) ? 1 : 0;
+            ViewBag.user_name = Session["user_account"].ToString();
             if (ViewBag.user_auth == 1)
-                ViewBag.user_name = Session["user_account"].ToString();
-
-            ViewBag.user_id = ID;
+            {
+                ViewBag.user_id = Session["user_id"].ToString();
+                if (ID.ToString() != ViewBag.user_id)
+                    return Redirect("~/Home/Login");
+            }
+            else
+                return Redirect("~/Home/Login");
 
             int book_numbers = Convert.ToInt32(Session["select_book_number"]);//Get the size of selected book list
             user_id = ID;
@@ -70,6 +73,7 @@ namespace DingdongBook.Controllers
                 order_list.Add(db.Database.SqlQuery<CARTLIST>("select * from CARTLIST where USER_ID=" + ID.ToString() + " and BOOK_ID =" + Session["select_book" + i.ToString()]).FirstOrDefault());
             }
             ViewBag.OrderList = order_list;
+
             //ViewBag.num = db.Database.SqlQuery<int>("select count(*) from CARTLIST where USER_ID=" + ID.ToString()).FirstOrDefault();
             ViewBag.num = book_numbers;
             ViewBag.address = db.Database.SqlQuery<ADDRESS>("select * from ADDRESS where USER_ID=" + ID.ToString()).ToList();//获得用户地址
@@ -94,6 +98,14 @@ namespace DingdongBook.Controllers
         }
         public ActionResult Process_Book(int ID,int num)//直接书籍购买
         {
+            //Get login information and judge user's id
+            ViewBag.user_auth = (Convert.ToBoolean(Session["user_auth"])) ? 1 : 0;
+            ViewBag.user_name = Session["user_account"].ToString();
+            if (ViewBag.user_auth == 1)
+            {
+                ViewBag.user_id = Session["user_id"].ToString();
+            }
+
             ViewBag.address = db.Database.SqlQuery<ADDRESS>("select * from ADDRESS where USER_ID=" + ID.ToString()).ToList();//获得用户地址
             ViewBag.address_count = db.Database.SqlQuery<int>("select count(*) from ADDRESS where USER_ID=" + ID.ToString()).FirstOrDefault();
             ViewBag.OrderList = db.Database.SqlQuery<BOOK>("select * from BOOK where ID=" + ID.ToString()).FirstOrDefault();//购买的书籍信息
@@ -118,13 +130,10 @@ namespace DingdongBook.Controllers
         //Finish order
         public ActionResult Order_Complete()
         {
-            //Get login information
+            //Get login information and judge user's id
             ViewBag.user_auth = (Convert.ToBoolean(Session["user_auth"])) ? 1 : 0;
-            if (ViewBag.user_auth == 1)
-            {
-                ViewBag.user_name = Session["user_account"].ToString();
-                ViewBag.user_id = Convert.ToInt16(Session["user_id"]);
-            }
+            ViewBag.user_id = Session["user_id"].ToString();
+            ViewBag.user_name = Session["user_account"].ToString();
 
             return View();
         }
@@ -215,9 +224,23 @@ namespace DingdongBook.Controllers
         }
 
         //Comment book
-        public void CommentBook(int bookId,int grade,string content)
+        public void SetComment(int bookId,int grade,string content)
         {
+            COMMENTS temp = new COMMENTS();
+            int max = db.Database.SqlQuery<int>("select max(ID) from COMMENTS").FirstOrDefault();
+            max++;//新评论的ID
+            temp.ID = max;
+            temp.USER_ID = user_id;
+            temp.BOOK_ID = bookId;
+            temp.CONTENT = content;
+            temp.TIME = DateTime.Now.ToString("u");
+            temp.SCORE = grade;
+            temp.TOTAL_LIKE = 0.ToString();
+            temp.TOTAL_DISLIKE = 0.ToString();
+            temp.TOTAL_LIKE = "0";
+            db.COMMENTS.Add(temp);
 
+            db.SaveChanges();
         }
     }
 }
