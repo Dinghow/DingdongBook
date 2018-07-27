@@ -1,0 +1,144 @@
+body {
+    min-width: 1200px;
+}
+
+.top-logo {
+    height: 42px;
+    width: auto;
+}
+
+.search {
+    margin-top: 3vw;
+}
+
+.search-line {
+    border: 3px solid #FF2832;
+    padding: 0;
+}
+
+    .search-line .input-search {
+        width: auto;
+        height: 33px;
+        margin-top: 1px;
+        border: 0;
+        padding-left: 25px;
+        font-size: 15px;
+        float: left;
+    }
+
+    .search-line .button-search {
+        width: 120px;
+        height: 36px;
+        background-color: #FF2832;
+        border: 0;
+        color: white;
+        position: relative;
+        float: right;
+    }
+
+.type-container,.writer-book{
+    display: inline-block;
+    position: relative;
+}
+
+
+
+.type, .writer-book-type {
+    display: inline-block;
+    width: 120px;
+    height: 42px;
+    background-color: #FF2832;
+    color: white;
+    margin: 0;
+    padding-left: 40px;
+    z-index: 1;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+    .type option,.writer-book-type option {
+        background-color: white;
+        padding: 50px;
+        color: black;
+        width: 120px;
+        border-top: 1px solid black;
+    }
+
+.find {
+    padding-left: 20px;
+}
+
+.search-line .button-search:hover {
+    background-color: #dc3545;
+}
+
+.type:hover,.writer-book-type:hover{
+    background-color: #dc3545;
+}
+
+
+.search-num {
+    border-top: 4px solid #FF2832;
+    margin: 5vw 0 2vw;
+    width: 100%;
+    height: auto;
+    background-color: #ccc;
+}
+
+    .search-num div {
+        display: inline-block;
+    }
+
+.search-num-span {
+    width: 15%;
+    height: 50px;
+    line-height: 50px;
+    background-color: #FF2832;
+    text-align: center;
+}
+
+
+
+.search-result {
+    list-style: none;
+}
+
+    .search-result .card {
+        width: 210px;
+        margin: 1vw;
+        float: left;
+    }
+
+    .search-result .card-header {
+        text-align: center;
+    }
+
+        .search-result .card-header img {
+            width: auto;
+            height: 200px;
+        }
+
+    .search-result .card-body {
+        padding-top: 2px;
+        padding-bottom: 2px;
+        margin-bottom: 0;
+        text-align: center;
+    }
+
+    .search-result .name {
+        font-size: 0.8rem;
+    }
+
+    .search-result .price {
+        color: red;
+        text-align: right;
+        font-size: 0.8rem;
+        padding-right:5px;
+    }
+
+    .search-result .card-footer {
+        background-color: #dc3545;
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }

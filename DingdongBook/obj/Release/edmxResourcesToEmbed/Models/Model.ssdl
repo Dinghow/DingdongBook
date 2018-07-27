@@ -12,13 +12,15 @@
     <Property Name="CITY" Type="varchar2" MaxLength="20" />
     <Property Name="DISTRICT" Type="varchar2" MaxLength="20" />
     <Property Name="POST_CODE" Type="number" Precision="10" Scale="0" />
+    <Property Name="USER_ID" Type="number" Precision="38" Scale="0" />
+    <Property Name="LOCATION" Type="varchar2" MaxLength="100" />
   </EntityType>
   <EntityType Name="AUTHOR">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
-    <Property Name="NAME" Type="varchar2" MaxLength="20" />
+    <Property Name="AUTHOR_NAME" Type="varchar2" MaxLength="20" />
   </EntityType>
   <EntityType Name="BELONG">
     <Key>
@@ -49,6 +51,8 @@
     <Property Name="USER_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="QUANTITY" Type="number" Precision="38" Scale="0" />
     <Property Name="TIME_START" Type="varchar2" MaxLength="20" />
+    <Property Name="POST_COST" Type="number" Precision="38" Scale="0" />
+    <Property Name="TOTAL_PRICE" Type="number" Precision="38" Scale="0" />
   </EntityType>
   <EntityType Name="CART_INCLUDE">
     <Key>
@@ -87,9 +91,10 @@
     <Property Name="TITLE" Type="varchar2" MaxLength="100" />
     <Property Name="CONTENT" Type="varchar2" MaxLength="2000" />
     <Property Name="TIME" Type="varchar2" MaxLength="20" />
-    <Property Name="SCORE" Type="varchar2" MaxLength="20" />
+    <Property Name="SCORE" Type="number" Precision="38" Scale="0" />
     <Property Name="TOTAL_LIKE" Type="varchar2" MaxLength="20" />
     <Property Name="TOTAL_DISLIKE" Type="varchar2" MaxLength="20" />
+    <Property Name="TOTAL" Type="number" Precision="38" Scale="0" />
   </EntityType>
   <EntityType Name="FAVORITE">
     <Key>
@@ -115,7 +120,7 @@
     <Property Name="ORDER_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="BOOK_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="QUANTITY" Type="number" Precision="38" Scale="0" />
-    <Property Name="PRICE" Type="number" Precision="38" Scale="0" />
+    <Property Name="TOTAL_PRICE" Type="number" Precision="38" Scale="0" />
   </EntityType>
   <EntityType Name="ORDERS">
     <Key>
@@ -130,6 +135,7 @@
     <Property Name="TIME_START" Type="varchar2" MaxLength="20" />
     <Property Name="TIME_GET" Type="varchar2" MaxLength="20" />
     <Property Name="STATUS" Type="varchar2" MaxLength="20" />
+    <Property Name="POST_COST" Type="number" Precision="38" Scale="0" />
   </EntityType>
   <EntityType Name="USERS">
     <Key>
@@ -176,14 +182,50 @@
     <Property Name="BOOK_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
   </EntityType>
   <!--生成过程中发现错误:
+警告 6002: 表/视图“C##DINGDONG.PURCHASE”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="PURCHASE">
+    <Key>
+      <PropertyRef Name="ORDER_ID" />
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="AUTHOR_ID" />
+    </Key>
+    <Property Name="ORDER_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="NAME" Type="varchar2" MaxLength="30" />
+    <Property Name="PRICE" Type="number" Precision="38" Scale="0" />
+    <Property Name="IMAGE" Type="varchar2" MaxLength="40" />
+    <Property Name="QUANTITY" Type="number" Precision="38" Scale="0" />
+    <Property Name="TOTAL_PRICE" Type="number" Precision="38" Scale="0" />
+    <Property Name="ABSTRACT" Type="varchar2" MaxLength="400" />
+    <Property Name="PUBLISHER" Type="varchar2" MaxLength="100" />
+    <Property Name="AUTHOR_NAME" Type="varchar2" MaxLength="20" />
+    <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="AUTHOR_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+  </EntityType>
+  <!--生成过程中发现错误:
 警告 6002: 表/视图“C##DINGDONG.ZUOZHE”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
   <EntityType Name="ZUOZHE">
     <Key>
       <PropertyRef Name="BOOK_ID" />
+      <PropertyRef Name="AUTHOR_ID" />
     </Key>
-    <Property Name="NAME" Type="varchar2" MaxLength="20" />
+    <Property Name="AUTHOR_NAME" Type="varchar2" MaxLength="20" />
     <Property Name="BOOK_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="AUTHOR_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
   </EntityType>
+  <Association Name="ADDRESS_USERS_FK1">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ADDRESS" Type="Self.ADDRESS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ADDRESS">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="BELONG_BOOK_FK1">
     <End Role="BOOK" Type="Self.BOOK" Multiplicity="1" />
     <End Role="BELONG" Type="Self.BELONG" Multiplicity="*" />
@@ -446,6 +488,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="ADDCART1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="C##DINGDONG">
+    <Parameter Name="user" Type="number" Mode="In" />
+    <Parameter Name="BOOK" Type="number" Mode="In" />
+    <Parameter Name="price" Type="number" Mode="In" />
+  </Function>
   <EntityContainer Name="ModelStoreContainer">
     <EntitySet Name="ADDRESS" EntityType="Self.ADDRESS" Schema="C##DINGDONG" store:Type="Tables" />
     <EntitySet Name="AUTHOR" EntityType="Self.AUTHOR" Schema="C##DINGDONG" store:Type="Tables" />
@@ -479,12 +526,32 @@ FROM "C##DINGDONG"."CARTLIST" "CARTLIST"</DefiningQuery>
 "DINGDANGUANXI"."BOOK_ID" AS "BOOK_ID"
 FROM "C##DINGDONG"."DINGDANGUANXI" "DINGDANGUANXI"</DefiningQuery>
     </EntitySet>
+    <EntitySet Name="PURCHASE" EntityType="Self.PURCHASE" store:Type="Views" store:Schema="C##DINGDONG">
+      <DefiningQuery>SELECT 
+"PURCHASE"."ORDER_ID" AS "ORDER_ID", 
+"PURCHASE"."NAME" AS "NAME", 
+"PURCHASE"."PRICE" AS "PRICE", 
+"PURCHASE"."IMAGE" AS "IMAGE", 
+"PURCHASE"."QUANTITY" AS "QUANTITY", 
+"PURCHASE"."TOTAL_PRICE" AS "TOTAL_PRICE", 
+"PURCHASE"."ABSTRACT" AS "ABSTRACT", 
+"PURCHASE"."PUBLISHER" AS "PUBLISHER", 
+"PURCHASE"."AUTHOR_NAME" AS "AUTHOR_NAME", 
+"PURCHASE"."ID" AS "ID", 
+"PURCHASE"."AUTHOR_ID" AS "AUTHOR_ID"
+FROM "C##DINGDONG"."PURCHASE" "PURCHASE"</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="ZUOZHE" EntityType="Self.ZUOZHE" store:Type="Views" store:Schema="C##DINGDONG">
       <DefiningQuery>SELECT 
-"ZUOZHE"."NAME" AS "NAME", 
-"ZUOZHE"."BOOK_ID" AS "BOOK_ID"
+"ZUOZHE"."AUTHOR_NAME" AS "AUTHOR_NAME", 
+"ZUOZHE"."BOOK_ID" AS "BOOK_ID", 
+"ZUOZHE"."AUTHOR_ID" AS "AUTHOR_ID"
 FROM "C##DINGDONG"."ZUOZHE" "ZUOZHE"</DefiningQuery>
     </EntitySet>
+    <AssociationSet Name="ADDRESS_USERS_FK1" Association="Self.ADDRESS_USERS_FK1">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="ADDRESS" EntitySet="ADDRESS" />
+    </AssociationSet>
     <AssociationSet Name="BELONG_BOOK_FK1" Association="Self.BELONG_BOOK_FK1">
       <End Role="BOOK" EntitySet="BOOK" />
       <End Role="BELONG" EntitySet="BELONG" />

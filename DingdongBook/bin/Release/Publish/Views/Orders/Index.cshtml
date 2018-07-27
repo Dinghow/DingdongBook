@@ -1,0 +1,240 @@
+﻿@{ 
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="stylesheet" type="text/css" href="/Content/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/Content/order.css">
+    <link rel="stylesheet" href="/Content/fonts.css">
+    <link rel="stylesheet" type="text/css" href="/Content/shared.css">
+    <script type="text/javascript" src="/Scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/Scripts/order.js"></script>
+    <script src="/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="/Scripts/additional-methods.min.js" type="text/javascript"></script>
+    <script src="/Scripts/messages_zh.min.js" type="text/javascript"></script>
+    <title></title>
+</head>
+<body>
+    <div class="top-hover">
+        <div class="register_login">
+            <em>您好,</em>
+            @if (ViewBag.user_auth == 0)
+            {
+                <a href="/Home/Login/">会员登录/快速注册</a>
+            }
+            else
+            {
+                <a href="/Home/Logout/">@ViewBag.user_name,退出</a>
+            }
+        </div>
+        <div class="vip_center">
+            @if (ViewBag.user_auth == 1)
+            {
+                <a href="/Favorite/Index?id=@ViewBag.user_id">我的收藏</a>
+                <a href="/Carts/Index?id=@ViewBag.user_id">我的购物车</a>
+                <a href="/Individual/Index/">个人中心</a>
+            }
+        </div>
+    </div>
+    <header class="logo-line clearfix">
+        <a href="~/"><img src="/Images/logo.png" alt="" class="logo"></a>
+        <h3 class=" header-title">订单管理</h3>
+    </header>
+    <div class="container">
+        <div class="btn-group top-group" role="group">
+            <button type="button" class="btn btn-success" id="button-1">未签收</button>
+            <button type="button" class="btn btn-default" id="button-2">已签收</button>
+        </div>
+
+        <div id="display-scane-order">
+
+            @for (var j = 0; j < @ViewBag.NumNo; j++)
+            {
+                var a = 0;
+                <div class="order-unreceived">
+                    <div class="order-group card" data-orderid=@ViewBag.infoNo[j].ID>
+                        <p class="card-header">
+                            <span class="float-left order-ID">订单号 @ViewBag.infoNo[j].ID</span>
+                            <span class="float-right order-status-unreceived">未签收</span>
+                        </p>
+                        @for (var i = 0; i < @ViewBag.BookNoNum; i++)
+                        {
+                            if (@ViewBag.BookNo[i].ORDER_ID == @ViewBag.infoNo[j].ID)
+                            {
+                                <table class="table card-body">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-sm-2 book-pic"><img src="/Images/books/@ViewBag.BookNo[i].IMAGE" class=""></div>
+                                                    <div class="col-sm-10">
+                                                        <h5 href="~/books/index?id=@ViewBag.BookNo[i].ID" class="book-name">@ViewBag.BookNo[i].NAME</h5>
+                                                        <p class="book-introduce">
+                                                            @ViewBag.BookNo[i].ABSTRACT
+                                                        </p>
+                                                        <p class="book-detail">作者:@ViewBag.BookNo[i].AUTHOR_NAME &emsp;&emsp;&emsp;出版社:@ViewBag.BookNo[i].PUBLISHER</p>
+
+                                                        <p class="book-price float-left">￥@ViewBag.BookNo[i].PRICE</p>
+                                                        <p class="book-num float-right">x @ViewBag.BookNo[i].QUANTITY</p>
+
+                                                       
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                a = a + 1;
+                            }
+                            if (a == @ViewBag.infoNo[j].QUANTITY) { break; }
+                        }
+                        <div class="order-control card-footer">
+                            <p class="float-left cost">总计(不含运费):&emsp;<span class="money">￥@ViewBag.infoNo[j].PRICE</span></p>
+                            <p>
+                                <button class="btn btn-disabled float-right disabled confirm-order">确认收货</button>
+                                <!--
+                                  <button class="btn btn-disabled float-right disabled">删除订单</button>
+                                  <button class="btn btn-disabled float-right disabled">评论</button>
+                                -->
+
+                            </p>
+                        </div>
+                    </div> <!--card-->
+                </div>
+            }
+
+
+            @for (var j = 0; j < @ViewBag.NumYes; j++)
+            {
+                var a = 0;
+                <div class="order-received">
+                    <div class="order-group card" data-orderid=@ViewBag.infoYes[j].ID>
+                        <p class="card-header">
+                            <span class="float-left order-ID">订单号 @ViewBag.infoYes[j].ID</span>
+                            <span class="float-right order-status-received">已签收</span>
+                        </p>
+
+                        @for (var i = 0; i < @ViewBag.BookYesNum; i++)
+                        {
+                            if (@ViewBag.BookYes[i].ORDER_ID == @ViewBag.infoYes[j].ID)
+                            {
+                                <table class="table card-body">
+                                    <tbody>
+                                        <tr data-bookid=@ViewBag.BookYes[i].ID>
+                                            <td>
+                                                <div class="row">
+                                                    <div class="col-sm-2 book-pic"><img src="/Images/books/@ViewBag.BookYes[i].IMAGE" class=""></div>
+                                                    <div class="col-sm-10">
+                                                        <a href="~/books/index?id=@ViewBag.BookYes[i].ID"><h5 class="book-name">@ViewBag.BookYes[i].NAME</h5></a>
+                                                        <p class="book-introduce">
+                                                            @ViewBag.BookYes[i].ABSTRACT
+                                                        </p>
+                                                        <p class="book-detail">作者:@ViewBag.BookYes[i].AUTHOR_NAME &emsp;&emsp;&emsp;出版社:@ViewBag.BookYes[i].PUBLISHER</p>
+                                                        <p class="clearfix">
+                                                            <span class="book-price float-left">￥@ViewBag.BookYes[i].PRICE</span>
+                                                            <span class="book-num float-right">x @ViewBag.BookYes[i].QUANTITY</span>
+                                                        </p>
+                                                        <p><button class="btn btn-default btn-commend"  data-toggle="modal" data-target="#new-commend">评论</button></p>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                a = a + 1;
+                            }
+                            if (a == @ViewBag.infoYes[j].QUANTITY) { break; }
+                        }
+                        
+
+                        <div class="order-control card-footer">
+                            <p class="float-left cost">总计(不含运费):&emsp;<span class="money">￥@ViewBag.infoYes[j].PRICE</span></p>
+                            <p>
+                                <button class="btn btn-default float-right btn-delete delete-order">删除订单</button>
+                            </p>
+                        </div>
+                    </div> <!--card-->
+                </div>
+
+
+            }
+                <div class="modal fade" id="new-commend" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h6 class="modal-title font-weight-bold">评论</h6>
+                                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                            </div>
+                            <form class="modal-body comment-form" >
+                                <label class="label-commend">不多于400字</label>
+                                <textarea id="input-commend" maxlength="400" required></textarea>
+                                <div class="modal-body rate-star">
+
+                                    <span class="total-grade">
+                                        <i class="material-icons" id="1">star_border</i>
+                                        <i class="material-icons" id="2">star_border</i>
+                                        <i class="material-icons" id="3">star_border</i>
+                                        <i class="material-icons" id="4">star_border</i>
+                                        <i class="material-icons" id="5">star_border</i>
+                                    </span>
+                                    <span class="grade-num"></span>
+
+                                </div>
+                                <div class="">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                                    <button  class="btn btn-primary submit-cmt btn-submit" disabled>提交</button>
+                                </div>
+                            </form>
+
+
+                        </div>
+                    </div>
+                </div>
+        </div> <!--display-scane-order-->
+    </div> <!--container-->
+    <footer class="footer col">
+        <ul class="row">
+            <li class="col-4">
+                <span>关于我们</span>
+                <p>地址：中国 上海曹安公路4800号同济大学软件学院</p>
+                <p>邮编：201804</p>
+                <p>联系电话：86-21-69589585,69589332(FAX)</p>
+                <a href="#">关于我们</a>
+            </li>
+            <li class="col-2">
+                <span>项目公开</span>
+                <a href="https://github.com/Dinghow/DingdongBook" target="_blank">GitHub</a>
+            </li>
+            <li class="col-3">
+                <span>广告位招租</span>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+            </li>
+            <li class="col-3">
+                <span>救救软院生</span>
+                <img src="/Images/code.png" alt="">
+            </li>
+        </ul>
+        <div class="footer-links text-center">
+            <p class="">
+                友情链接：
+                <a href="https://www.tongji.edu.cn" target="_blank">同济大学</a>
+                <a href="http://sse.tongji.edu.cn" target="_blank">同济大学软件学院</a>
+                <a href="http://sse.tongji.edu.cn/teacher/FACULTY/hpc/index.html" target="_blank">袁阿姨实验室</a>
+            </p>
+            <p>Tongji University, Copyright&copy; 2018, Database Course Project</p>
+        </div>
+    </footer>
+</body>
+</html>

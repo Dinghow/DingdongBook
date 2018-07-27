@@ -49,8 +49,8 @@ body{
 }
 
 .card-omit img{
-	width: 100%;
-	height: auto;
+	width: auto;
+	height: 180px;
 }
 
 .card-detail{
@@ -86,8 +86,13 @@ body{
 	margin: 0;
 }
 
+.card .btn-danger{
+    width:100%;
+}
+
 .card-omit p{
 	text-align: center;
+    font-size:0.8rem;
 }
 
 .card-omit button{

@@ -1,5 +1,9 @@
 @import (less)'bundle.less';
 
+body{
+    min-width: 1300px;
+}
+
 .admin-plaque {
     padding: 50px 10%;
 }
@@ -39,4 +43,95 @@
         height: 200px;
         width: auto;
     }
+}
+
+
+.input-group-text{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: 0;
+}
+
+.search-line{
+    height: 40px;
+    line-height: 40px;
+    width: 70%;
+    margin: 5% 15%;
+}
+
+.search-user,.search-book{
+    border-radius: 5px;
+    border:1px solid grey;
+    border-right:0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.btn-search{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border:1px solid grey;
+}
+
+.search-result-user{
+    width: 100%;
+    list-style: none;
+    padding: 0;
+}
+
+.search-result-user {
+    width: 100%;
+
+}
+
+.user-searched{
+    width: 80%;
+    display: inline-block;
+    margin: 1% 10%;
+}
+
+.user-control .card-header{
+    color: white;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    background-color: #dc3545;
+}
+
+.user-control .card-body{
+    padding-bottom: 0;
+}
+
+.user-control .card-body .attr{
+    font-weight: bold;
+}
+
+.user-control .card-footer{
+    padding-top: 4px;
+    padding-bottom: 6px;
+    background-color: #dc3545;
+}
+
+.user-control .btn-delete{
+    width: 100%;
+}
+
+.add-book,.change-book{
+    display: none;
+}
+
+.change-book .card img{
+    width: 100%;
+    height: auto;
+}
+
+.change-book .card .book-name{
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.change-book .book-selected .btn{
+    width: 150px;
+    border-radius: 20px;
+    float: right;
+    margin: 0 10px;
 }

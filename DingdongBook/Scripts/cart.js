@@ -1,4 +1,5 @@
 $(() => {
+    $('#settlement .final-price span').text('0.00');
     $('#cart-table tbody tr>th>input').on('change', () => {
         updateSelectedItems();
         toggleDisable();
@@ -6,7 +7,7 @@ $(() => {
     $('.cart input[name="select-all"]').on('click', selectAll);
     $('.remove, .move-to-favorite').on('click', removeItem);
     //$('.mass-delete').on('click', massDelete);
-    $('.number-controller .increase, .number-controller .decrease').on('click', updateFinalPrice);
+    $('.number-controller .increase, .number-controller .decrease').on('click', updateTotalPrice);
     
     $('#go-to-settle').on('click', () => {
         let bookIds = [];
@@ -64,7 +65,8 @@ $(() => {
 
 function updateSelectedItems(e){
 	let cnt = $('#cart-table tbody tr>th>input:checked').length;
-	$('#settlement .check-all span>strong').text(cnt);
+    $('#settlement .check-all span>strong').text(cnt);
+    updateFinalPrice();
 }
 
 function selectAll(e) {
@@ -80,19 +82,21 @@ function removeItem(e) {
 	$(this).parents('tr').remove();
 }
 
-function updateFinalPrice(e) {
+function updateTotalPrice(e) {
 	/* 更改 Total Price */
 	$(this).parents('.amount').next().children('span').text(
 		($(this).parents('.amount').prev().children('span').text() *
-			$(this).siblings('input[type=number]').val()).toFixed(2));
+            $(this).siblings('input[type=number]').val()).toFixed(2));
 
-	/* 更改 Final Price */
+    updateFinalPrice();
+    /*
+	// 更改 Final Price 
 	let finalPrice = 0.00;
 	$('#cart-table tbody tr .total-price span').each((index, el) => {
 		finalPrice += Number($(el).text())
 	});
     $('#settlement .final-price span').text(finalPrice.toFixed(2));
-
+    */
     $.ajax({
         type: 'POST',
         url: '/Carts/EditAmount',
@@ -107,6 +111,15 @@ function updateFinalPrice(e) {
             alert('提交失败');
         }
     });
+}
+
+function updateFinalPrice() {
+    /* 更改 Final Price */
+    let finalPrice = 0.00;
+    $('#cart-table tbody tr>th>input:checked').parents('tr').find('.total-price span').each((index, el) => {
+        finalPrice += Number($(el).text())
+    });
+    $('#settlement .final-price span').text(finalPrice.toFixed(2));
 }
 
 function massDelete(e) {

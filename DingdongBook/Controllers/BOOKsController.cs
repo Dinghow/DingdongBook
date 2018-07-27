@@ -252,6 +252,58 @@ namespace DingdongBook.Controllers
             db.SaveChanges();
             return Redirect("Index?ID="+ID.ToString());
         }
+        public int like(int cmtId)//点 赞
+        {
+            int user_auth = (Convert.ToBoolean(Session["user_auth"])) ? 1 : 0;
+            if (user_auth == 0)
+                return -1;
+            int user_id = Convert.ToInt32(Session["user_id"].ToString());
+            int ID = cmtId;
+            int exist = db.Database.SqlQuery<int>("select count(*) from COMMENT_FEEDBACK where USER_ID=" + user_id.ToString() + " and COMMENT_ID=" + ID.ToString()).FirstOrDefault();
+            if (exist > 0)//已经对该评论有点赞或点灭
+            {
+                return 0;
+            }
+            COMMENT_FEEDBACK temp = new COMMENT_FEEDBACK();//新建点赞记录
+            temp.USER_ID = user_id;
+            temp.COMMENT_ID = ID;
+            temp.ATTITUDE = "LIKE";
+            temp.TIME = DateTime.Now.ToString();
+            db.COMMENT_FEEDBACK.Add(temp);
+            COMMENTS comment = db.COMMENTS.Find(ID);//获得该评论
+            int after = Convert.ToInt32(comment.TOTAL_LIKE) + 1;
+            comment.TOTAL_LIKE = after.ToString();
+            comment.TOTAL = comment.TOTAL + 1;
+            db.SaveChanges();
+
+            return 0;
+        }
+        public int dislike(int cmtId)//点灭
+        {
+            int user_auth = (Convert.ToBoolean(Session["user_auth"])) ? 1 : 0;
+            if (user_auth == 0)
+                return -1;
+            int user_id = Convert.ToInt32(Session["user_id"].ToString());
+            int ID = cmtId;
+            int exist = db.Database.SqlQuery<int>("select count(*) from COMMENT_FEEDBACK where USER_ID=" + user_id.ToString() + " and COMMENT_ID=" + ID.ToString()).FirstOrDefault();
+            if (exist > 0)//已经对该评论有点赞或点灭
+            {
+                return 0;
+            }
+            COMMENT_FEEDBACK temp = new COMMENT_FEEDBACK();//新建点灭记录
+            temp.USER_ID = user_id;
+            temp.COMMENT_ID = ID;
+            temp.ATTITUDE = "DISLIKE";
+            temp.TIME = DateTime.Now.ToString();
+            db.COMMENT_FEEDBACK.Add(temp);
+            COMMENTS comment = db.COMMENTS.Find(ID);//获得该评论
+            int after = Convert.ToInt32(comment.TOTAL_DISLIKE) + 1;
+            comment.TOTAL_DISLIKE = after.ToString();
+            comment.TOTAL = comment.TOTAL - 1;
+            db.SaveChanges();
+
+            return 0;
+        }
 
     }
 }

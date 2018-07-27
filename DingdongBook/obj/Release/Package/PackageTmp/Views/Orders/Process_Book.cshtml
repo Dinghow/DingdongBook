@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="/Content/fonts.css">
+    <link rel="stylesheet" href="/Content/bootstrap.css">
+    <link rel="stylesheet" href="/Content/order_process.css">
+    <link rel="stylesheet" type="text/css" href="/Content/shared.css">
+    <script src="/Scripts/jquery.min.js" type="text/javascript"></script>
+    <script src="/Scripts/bootstrap.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <div class="top-hover">
+        <div class="register_login">
+            <em>您好,</em>
+            @if (ViewBag.user_auth == 0)
+            {
+                <a href="/Home/Login/">会员登录/快速注册</a>
+            }
+            else
+            {
+                <a href="/Home/Logout/">@ViewBag.user_name,退出</a>
+            }
+        </div>
+        <div class="vip_center">
+            @if (ViewBag.user_auth == 1)
+            {
+                <a href="/Individual/Index/">个人中心</a>
+            }
+        </div>
+    </div>
+    <header class="logo-line clearfix">
+        <a href="~/"><img src="/Images/logo.png" alt="" class="logo"></a>
+        <ol id="procedure" class="crumb-nav float-right">
+            <li class="crumb-nav-item">我的购物车</li>
+            <li class="crumb-nav-item current-item">填写订单</li>
+            <li class="crumb-nav-item">完成订单</li>
+        </ol>
+    </header>
+    <main>
+        <div class="order-process clearfix">
+            <div class="select-adress">
+                <h5>选择地址</h5>
+                <ul class="addresses clearfix">
+                    @for (int i = 0; i < ViewBag.address_count; i++)
+                    {
+                        if (i == 0)
+                        {
+                            <li class="address selected">
+                                <h6><span class="name">@ViewBag.address[i].NAME</span><span class="phone float-right">@ViewBag.address[i].PHONE</span></h6>
+                                <p class="pcd"><span class="province tab">@ViewBag.address[i].PROVINCE</span><span class="city tab">@ViewBag.address[i].CITY</span><span class="district tab">@ViewBag.address[i].DISTRICT</span><span class="detailed-addr tab">@ViewBag.address[i].LOCATION</span></p>
+                                <p class="postcode">邮编：<span class="zip tab">@ViewBag.address[i].POST_CODE</span></p>
+                            </li>}
+                        else
+                        {
+                            <li class="address">
+                                <h6><span class="name">@ViewBag.address[i].NAME</span><span class="phone float-right">@ViewBag.address[i].PHONE</span></h6>
+                                <p class="pcd"><span class="province tab">@ViewBag.address[i].PROVINCE</span><span class="city tab">@ViewBag.address[i].CITY</span><span class="district tab">@ViewBag.address[i].DISTRICT</span><span class="detailed-addr tab">@ViewBag.address[i].LOCATION</span></p>
+                                <p class="postcode">邮编：<span class="zip tab">@ViewBag.address[i].POST_CODE</span></p>
+                            </li>
+                        }
+                    }
+                </ul>
+                <button type="button" class="btn btn-light btn-sm border" id="add-adress" data-toggle="modal" data-target="#new-address">使用新地址</button>
+                <div class="modal fade" id="new-address" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h6 class="modal-title font-weight-bold">创建地址</h6>
+                                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="address-info" class="needs-validation">
+                                    <div class="form-row" data-toggle="distpicker">
+                                        <div class="form-group col-md-4">
+                                            <label for="inputProvince">省</label>
+                                            <select class="form-control" id="inputProvince" data-province="---- 选择省 ----" required></select>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="inputCity">市</label>
+                                            <select class="form-control" id="inputCity" data-city="---- 选择市 ----" required></select>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="inputDistrict">区</label>
+                                            <select class="form-control" id="inputDistrict" data-district="---- 选择区 ----" required></select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-9">
+                                            <label for="inputAddress">详细地址</label>
+                                            <input type="text" class="form-control" id="inputAddress" required>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label for="inputZip">邮编</label>
+                                            <input type="number" class="form-control" id="inputZip" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="inputLastName">姓</label>
+                                            <input type="text" class="form-control" id="inputLastName" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="inputFirstName">名</label>
+                                            <input type="text" class="form-control" id="inputFirstName" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputPhone">电话号码</label>
+                                        <input type="number" class="form-control" id="inputPhone" required>
+                                    </div>
+                                    <div class="form-group opt-btns">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                                        <button class="btn btn-primary create-addr" type="submit">提交</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="confirm-order">
+                <h5>确认订单信息</h5>
+                <div class="card">
+                    <table class="table card-body order-info">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="empty-th"></th>
+                                <th scope="col">商品信息</th>
+                                <th scope="col">单价(元)</th>
+                                <th scope="col">数量</th>
+                                <th scope="col">金额(元)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row" class="item-img"><img src="/img/@ViewBag.OrderList.IMAGE" alt=""></th>
+                                <td class="item-info"><a href="">@ViewBag.OrderList.NAME</a></td>
+                                <td class="unit-price">￥@ViewBag.OrderList.PRICE</td>
+                                <td class="amount">@ViewBag.num</td>
+                                <td class="total-price">￥@ViewBag.total_price</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <div class="card-footer clearfix calculate">
+                        <p>
+                            <span class="tab">商品金额：<em>@ViewBag.total_price</em></span>
+                            <span class="tab">运费：<em>15</em></span>
+                        </p>
+                        <p><span class="total">合计(含运费): <strong class="text-danger">￥@ViewBag.total</strong></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="select-payment">
+                <h5>支付方式</h5>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-danger pay-method">网上支付</button>
+                    <button type="button" class="btn btn-light border pay-method">货到付款</button>
+                </div>
+            </div>
+            <div class="pay-info-confirm card float-right">
+                <div class="card-body text-right pay-info">
+                    <p class="actual-price">实付款：<strong class="text-muted">￥<span class="text-danger total">@ViewBag.sum</span></strong></p>
+                    <p class="delivery-addr">寄送至：<span class="province tab">@ViewBag.address[0].PROVINCE</span><span class="city tab">@ViewBag.address[0].CITY</span><span class="district tab">@ViewBag.address[0].DISTRICT</span><span class="detailed-addr tab">@ViewBag.address[0].LOCATION</span></p>
+                    <p class="postcode">邮编：<span class="zip tab">@ViewBag.address[0].POST_CODE</span></p>
+                    <p class="addressee">收货人：<span class="name tab">@ViewBag.address[0].NAME</span><span class="phone tab">@ViewBag.address[0].PHONE</span></p>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-link"><i class="material-icons">reply</i>返回购物车</button>
+                    <button type="button" class="btn btn-danger">提交订单</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer col">
+        <ul class="row">
+            <li class="col-4">
+                <span>关于我们</span>
+                <p>地址：中国 上海曹安公路4800号同济大学软件学院</p>
+                <p>邮编：201804</p>
+                <p>联系电话：86-21-69589585,69589332(FAX)</p>
+                <a href="#">关于我们</a>
+            </li>
+            <li class="col-2">
+                <span>项目公开</span>
+                <a href="https://github.com/Dinghow/DingdongBook" target="_blank">GitHub</a>
+            </li>
+            <li class="col-3">
+                <span>广告位招租</span>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+            </li>
+            <li class="col-3">
+                <span>救救软院生</span>
+                <img src="/img/code.png" alt="">
+            </li>
+        </ul>
+        <div class="footer-links text-center">
+            <p class="">
+                友情链接：
+                <a href="https://www.tongji.edu.cn" target="_blank">同济大学</a>
+                <a href="http://sse.tongji.edu.cn" target="_blank">同济大学软件学院</a>
+                <a href="http://sse.tongji.edu.cn/teacher/FACULTY/hpc/index.html" target="_blank">袁阿姨实验室</a>
+            </p>
+            <p>Tongji University, Copyright&copy; 2018, Database Course Project</p>
+        </div>
+    </footer>
+    <script type="text/javascript" src="/Scripts/order_process.js"></script>
+    <script type="text/javascript" src="/Scripts/distpicker.js"></script>
+</body>
+
+</html>

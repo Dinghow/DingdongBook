@@ -41,7 +41,6 @@
             }
         </div>
     </div>
-    </header>
     <!-- /header -->
     <div class="main">
         <section class="card" id="item-detail">
@@ -209,7 +208,7 @@
                 @for (int i = 0; i < ViewBag.num; i++)
                 {
 
-                    <li class="list-group-item comment">
+                    <li class="list-group-item comment" data-cmtid=@ViewBag.comment[i].ID>
                         <img src="/Images/avatar1.png" class="img-thumbnail avatar">
                         <div class="cmt-detail">
                             <div class="top">
@@ -246,7 +245,10 @@
                                     }
                                 </span>
                                 <span class="cmt-time">@ViewBag.comment[i].TIME</span>
-                                <button type="button" class="thumb-up"><i class="material-icons">thumb_up_alt</i><span class="badge badge-light">@ViewBag.comment[i].TOTAL</span></button>
+                                <div class="attitude">
+                                    <button type="button" class="thumb-up"><i class="material-icons">thumb_up</i><span class="badge badge-light">@ViewBag.comment[i].TOTAL_LIKE</span></button>
+                                    <button type="button" class="thumb-down"><i class="material-icons">thumb_down</i><span class="badge badge-light">@ViewBag.comment[i].TOTAL_DISLIKE</span></button>
+                                </div>
                             </div>
                             <p class="cmt-content">
                                 <small>
@@ -271,7 +273,6 @@
         {
             <a href="~/carts/index?id=@ViewBag.user_id" class="toolbar-item toolbar-item-weixin" style=" position:relative"></a>
         }
-        <a href="javascript:scroll(0,0)" id="top" class="toolbar-item toolbar-item-top"></a>
         <a href="javascript:scroll(0,0)" id="top" class="toolbar-item toolbar-item-top"></a>
     </div>
     <footer class="footer col">

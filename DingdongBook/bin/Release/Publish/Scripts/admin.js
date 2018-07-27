@@ -42,6 +42,81 @@ $(() => {
 
     });
 
+
+    $('.delete-user').on('click', function () {
+        $('#confirm-delete-user').attr('data-userid', $(this).parents('li.user-searched').attr('data-userid'));
+    });
+
+    $('#confirm-delete-user').on('click', function () {
+        $.ajax({
+            type: 'POST',
+            url: '/Admin/DeleteUser',
+            data: {
+                userId: Number($(this).attr('data-userid'))
+            },
+            success: function (userId) {
+                window.location.reload();
+            },
+            error: function (e) {
+                alert('提交失败');
+            }
+        });
+    });
+
+    $('.delete-book').on('click', function () {
+        $('#confirm-delete-book').attr('data-bookid', $(this).parents('li.book-searched').attr('data-bookid'));
+    });
+
+    $('#confirm-delete-book').on('click', function () {
+        $.ajax({
+            type: 'POST',
+            url: '/Admin/DeleteUser',
+            data: {
+                userId: Number($(this).attr('data-bookid'))
+            },
+            success: function (userId) {
+                window.location.reload();
+            },
+            error: function (e) {
+                alert('提交失败');
+            }
+        });
+    });
+
+    $('.save-changed-book').on('click', function () {
+        let book = $(this).parents('li.book-selected');
+        /*
+        console.log(Number(book.attr('data-bookid')));
+        console.log(book.find('input[name=bookName]').val());
+        console.log(book.find('input[name=isbn]').val());
+        console.log(book.find('input[name=author]').val());
+        console.log(book.find('input[name=category]').val());
+        console.log(book.find('input[name=publisher]').val());
+        console.log(book.find('input[name=publishDate]').val());
+        console.log(Number(book.find('input[name=unitPrice]').val()));
+        console.log(book.find('textarea[name=synopsis]').val());
+        */
+        $.ajax({
+            type: 'POST',
+            url: '/Admin/EditBook',
+            data: {
+                bookId: Number(book.attr('data-bookid')),
+                bookName: book.find('input[name=bookName]').val(),
+                isbn: book.find('input[name=isbn]').val(),
+                author: book.find('input[name=author]').val(),
+                publisher: book.find('input[name=publisher]').val(),
+                publishDate: book.find('input[name=publishDate]').val(),
+                unitPrice: Number(book.find('input[name=unitPrice]').val()),
+                synopsis: book.find('textarea[name=synopsis]').val()
+            },
+            success: function (userId) {
+                window.location.reload();
+            },
+            error: function (e) {
+                alert('提交失败');
+            }
+        });
+    })
 });
 
 

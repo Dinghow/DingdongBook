@@ -12,6 +12,8 @@
           <ScalarProperty Name="CITY" ColumnName="CITY" />
           <ScalarProperty Name="DISTRICT" ColumnName="DISTRICT" />
           <ScalarProperty Name="POST_CODE" ColumnName="POST_CODE" />
+          <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+          <ScalarProperty Name="LOCATION" ColumnName="LOCATION" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -19,7 +21,7 @@
       <EntityTypeMapping TypeName="Model.AUTHOR">
         <MappingFragment StoreEntitySet="AUTHOR">
           <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="AUTHOR_NAME" ColumnName="AUTHOR_NAME" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -44,6 +46,8 @@
           <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
           <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
           <ScalarProperty Name="TIME_START" ColumnName="TIME_START" />
+          <ScalarProperty Name="POST_COST" ColumnName="POST_COST" />
+          <ScalarProperty Name="TOTAL_PRICE" ColumnName="TOTAL_PRICE" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -87,6 +91,7 @@
           <ScalarProperty Name="SCORE" ColumnName="SCORE" />
           <ScalarProperty Name="TOTAL_LIKE" ColumnName="TOTAL_LIKE" />
           <ScalarProperty Name="TOTAL_DISLIKE" ColumnName="TOTAL_DISLIKE" />
+          <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -96,7 +101,7 @@
           <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
           <ScalarProperty Name="BOOK_ID" ColumnName="BOOK_ID" />
           <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
-          <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+          <ScalarProperty Name="TOTAL_PRICE" ColumnName="TOTAL_PRICE" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -112,6 +117,7 @@
           <ScalarProperty Name="TIME_START" ColumnName="TIME_START" />
           <ScalarProperty Name="TIME_GET" ColumnName="TIME_GET" />
           <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="POST_COST" ColumnName="POST_COST" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -157,11 +163,29 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="PURCHASE">
+      <EntityTypeMapping TypeName="Model.PURCHASE">
+        <MappingFragment StoreEntitySet="PURCHASE">
+          <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+          <ScalarProperty Name="IMAGE" ColumnName="IMAGE" />
+          <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+          <ScalarProperty Name="TOTAL_PRICE" ColumnName="TOTAL_PRICE" />
+          <ScalarProperty Name="ABSTRACT" ColumnName="ABSTRACT" />
+          <ScalarProperty Name="PUBLISHER" ColumnName="PUBLISHER" />
+          <ScalarProperty Name="AUTHOR_NAME" ColumnName="AUTHOR_NAME" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="AUTHOR_ID" ColumnName="AUTHOR_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="ZUOZHE">
       <EntityTypeMapping TypeName="Model.ZUOZHE">
         <MappingFragment StoreEntitySet="ZUOZHE">
-          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="AUTHOR_NAME" ColumnName="AUTHOR_NAME" />
           <ScalarProperty Name="BOOK_ID" ColumnName="BOOK_ID" />
+          <ScalarProperty Name="AUTHOR_ID" ColumnName="AUTHOR_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -189,5 +213,6 @@
         <ScalarProperty Name="ID" ColumnName="USER_ID" />
       </EndProperty>
     </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="ADDCART1" FunctionName="Model.Store.ADDCART1" />
   </EntityContainerMapping>
 </Mapping>

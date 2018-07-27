@@ -7,7 +7,7 @@
 }
 
 .address {
-	background: url(../img/adress.png) no-repeat;
+	background: url(/Images/adress.png) no-repeat;
 	background-size: contain;
 	overflow: hidden;
 	width: 240px;
@@ -26,7 +26,7 @@
 }
 
 .address.selected {
-	background: url(../img/adress-selected.png) no-repeat;
+	background: url(/Images/adress-selected.png) no-repeat;
 }
 
 .address h6 {
@@ -50,4 +50,62 @@
 
 .breadcrumb .top-control-button:hover{
 	cursor: pointer;
+}
+
+.tab{
+    margin-left: 10px;
+}
+
+.address
+{
+    font-size: .8rem;
+
+    display: inline-block;
+    float: left;
+    overflow: hidden;
+
+    width: 240px;
+    height: 110px;
+    padding: .7rem;
+
+    color: #666;;
+    border: none;
+    background: url(/Images/adress.png) no-repeat;
+    background-size: contain;
+    margin-bottom: 10px;
+}
+
+
+.address:not(:last-of-type)
+{
+    margin-right: 1rem;
+}
+
+.address.selected
+{
+    background: url(/Images/adress-selected.png) no-repeat;
+}
+
+
+.address h6
+{
+    font-size: .8rem;
+    font-weight: 700;
+
+    margin-bottom: 0;
+    padding: 5px 0;
+
+    border-bottom: 1px solid #eee;
+}
+
+
+.address p
+{
+    margin-bottom: 0;
+    padding-top: 2px;
+}
+
+.address p.postcode
+{
+    padding-left: 10px;
 }

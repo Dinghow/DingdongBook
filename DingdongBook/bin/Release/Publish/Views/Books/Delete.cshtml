@@ -1,0 +1,72 @@
+﻿@model DingdongBook.DB.BOOK
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>BOOK</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ISBN)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ISBN)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NAME)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NAME)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PRICE)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PRICE)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.IMAGE)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.IMAGE)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CATEGORY)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CATEGORY)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>

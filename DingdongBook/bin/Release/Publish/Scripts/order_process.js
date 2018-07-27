@@ -4,7 +4,24 @@ $(()=>{
 	$('.create-addr').on('click', createAddr);
 	$('#new-address').on('show.bs.modal', ()=>{
 
-	});
+    });
+
+    $('#submit-order').on('click', () => {
+        let addrId = Number($('li.address.selected').attr('data-addrid'));
+        $.ajax({
+            type: 'POST',
+            url: '/Orders/check',
+            data: {
+                addrId: addrId,
+            },
+            success: function (data) {
+                window.location.href="Order_Complete"
+            },
+            error: function () {
+                alert('提交订单失败！');
+            }
+        });
+    })
 });
 
 function changeSelectedAddress(e){

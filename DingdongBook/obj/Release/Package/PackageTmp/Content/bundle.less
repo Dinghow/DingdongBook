@@ -108,6 +108,7 @@
                 content: "";
                 #bundle.square(0px);
                 position: absolute;
+                top: 0;
             }
             &:not(:last-of-type)::after {
                 right: -@item-height/2;
@@ -131,6 +132,15 @@
                 border-color: @lightred !important;
                 border-left-color: transparent !important;
             }
+        }
+    }
+
+    .required{
+        //position: relative;
+        &::after{
+            content: ' *';
+            color: @lightred2;
+            //position: absolute;
         }
     }
 }

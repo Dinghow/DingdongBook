@@ -64,15 +64,15 @@ $(() => {
     });
 
     $('.delete-book').on('click', function () {
-        $('#confirm-delete-book').attr('data-bookid', $(this).parents('li.book-searched').attr('data-bookid'));
+        $('#confirm-delete-book').attr('data-bookid', $(this).parents('li.book-selected').attr('data-bookid'));
     });
 
     $('#confirm-delete-book').on('click', function () {
         $.ajax({
             type: 'POST',
-            url: '/Admin/DeleteUser',
+            url: '/Admin/DeleteBook',
             data: {
-                userId: Number($(this).attr('data-bookid'))
+                bookId: Number($(this).attr('data-bookid'))
             },
             success: function (userId) {
                 window.location.reload();

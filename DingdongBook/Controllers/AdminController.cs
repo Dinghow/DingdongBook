@@ -148,9 +148,9 @@ namespace DingdongBook.Controllers
             db.USERS.Remove(user);
             db.SaveChanges();
         }
-        public void deleteBook(int ID)//删除书籍
+        public void DeleteBook(int bookId)//删除书籍
         {
-            var book = db.BOOK.Find(ID);
+            var book = db.BOOK.Find(bookId);
             db.BOOK.Remove(book);
             db.SaveChanges();
         }

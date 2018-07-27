@@ -1,0 +1,145 @@
+﻿@model DingdongBook.Controllers.SearchController.SearchSender
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="/Content/bootstrap.css">
+    <link rel="stylesheet" href="/Content/bootstrap-multiselect.css">
+    <link rel="stylesheet" href="/Content/searchPage.css">
+    <link rel="stylesheet" type="text/css" href="/Content/shared.css">
+
+
+    <script src="/Scripts/jquery.min.js" type="text/javascript"></script>
+    <script src="/Scripts/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/Scripts/bootstrap-multiselect.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="top-hover">
+        <div class="register_login">
+            <a href="~/">回到首页&nbsp;&nbsp;</a>
+            <em>您好,</em>
+            @if (ViewBag.user_auth == 0)
+            {
+                <a href="/Home/Login/">会员登录/快速注册</a>
+            }
+            else
+            {
+                <a href="/Home/Logout/">@ViewBag.user_name,退出</a>
+            }
+        </div>
+        <div class="vip_center">
+            @if (ViewBag.user_auth == 1)
+            {
+                <a href="/Favorite/Index?id=@ViewBag.user_id">我的收藏</a>
+                <a href="/Carts/Index?id=@ViewBag.user_id">我的购物车</a>
+                <a href="/Individual/Index/">个人中心</a>
+            }
+        </div>
+    </div>
+
+    <form name="search" method="post" action="/Search/Index">
+        <div class="search row">
+            <div class="col-2"></div>
+            <div class="col-2"><a href="~/"><img src="/Images/logo_index.png" class="top-logo"></a></div>
+            <div class="search-line col-4">
+                <input type="text" id="keyword" name="keyword" class="input-search" placeholder="请输入关键词">
+                <button class="button-search">搜索</button>
+            </div>
+
+            <div class="writer-book col-1">
+                <select class="writer-book-type" id="writer-book-type" name="writer_book">
+                    <option value="关键字" selected>关键字</option>
+                    <option value="作者">作者</option>
+                    <option value="书名">书名</option>
+                </select>
+            </div>
+
+            <div class="type-container col-1">
+                <select class="type " id="type" name="category">
+                    <option value="" selected>分类</option>
+                    <option value="文学">文学</option>
+                    <option value="社科">社科</option>
+                    <option value="经管">经管</option>
+                    <option value="儿童">少儿</option>
+                    <option value="生活">生活</option>
+                    <option value="科技">科技</option>
+                    <option value="工业">工业</option>
+                    <option value="艺术">艺术</option>
+                    <option value="IT">IT</option>
+                    <option value="综合">综合</option>
+                </select>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </form>
+
+    <div class="container clearfix">
+        <div class="search-num">
+            <div class="search-num-span">搜索结果</div>
+            <div class="find">共找到 <span class="num" style="color: #dc3545">@ViewBag.count</span>项数据</div>
+        </div>
+
+
+        @foreach (var item in ViewBag.message)
+        {
+            <ul class="search-result">
+                <li class="book-searched card">
+
+                    <div class="card-header"><a href="/Books/index?id=@item.ID" target="_blank"><img src="/Images/books/@item.IMAGE"></a></div>
+                    <p class="card-body name">
+                        @item.NAME
+                    </p>
+                    <p class="price">￥@item.PRICE</p>
+                    <a href="/Books/index?id=@item.ID" target="_blank" class="card-footer btn btn-danger">详情</a>
+                </li>
+            </ul>
+        }
+
+
+    </div>
+    <footer class="footer col">
+        <ul class="row">
+            <li class="col-4">
+                <span>关于我们</span>
+                <p>地址：中国 上海曹安公路4800号同济大学软件学院</p>
+                <p>邮编：201804</p>
+                <p>联系电话：86-21-69589585,69589332(FAX)</p>
+                <a href="#">关于我们</a>
+            </li>
+            <li class="col-2">
+                <span>项目公开</span>
+                <a href="https://github.com/Dinghow/DingdongBook" target="_blank">GitHub</a>
+            </li>
+            <li class="col-3">
+                <span>广告位招租</span>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+                <a href="#">空缺</a>
+            </li>
+            <li class="col-3">
+                <span>救救软院生</span>
+                <img src="/Images/code.png" alt="">
+            </li>
+        </ul>
+        <div class="footer-links text-center">
+            <p class="">
+                友情链接：
+                <a href="https://www.tongji.edu.cn" target="_blank">同济大学</a>
+                <a href="http://sse.tongji.edu.cn" target="_blank">同济大学软件学院</a>
+                <a href="http://sse.tongji.edu.cn/teacher/FACULTY/hpc/index.html" target="_blank">袁阿姨实验室</a>
+            </p>
+            <p>Tongji University, Copyright&copy; 2018, Database Course Project</p>
+        </div>
+    </footer>
+</body>
+</html>

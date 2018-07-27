@@ -12,15 +12,18 @@
     <Property Name="CITY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="DISTRICT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="POST_CODE" Type="Int32" />
+    <Property Name="USER_ID" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="LOCATION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="USERS" Relationship="Self.ADDRESS_USERS_FK1" FromRole="ADDRESS" ToRole="USERS" />
     <NavigationProperty Name="ORDERS" Relationship="Self.ORDERS_ADDRESS_FK1" FromRole="ADDRESS" ToRole="ORDERS" />
-    <NavigationProperty Name="USERS" Relationship="Self.LIVE" FromRole="ADDRESS" ToRole="USERS" />
+    <NavigationProperty Name="USERS1" Relationship="Self.LIVE" FromRole="ADDRESS" ToRole="USERS" />
   </EntityType>
   <EntityType Name="AUTHOR">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-    <Property Name="NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="AUTHOR_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="WRITE" Relationship="Self.WRITE_AUTHOR_FK1" FromRole="AUTHOR" ToRole="WRITE" />
   </EntityType>
   <EntityType Name="BOOK">
@@ -50,6 +53,8 @@
     <Property Name="USER_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
     <Property Name="QUANTITY" Type="Decimal" Precision="38" Scale="0" />
     <Property Name="TIME_START" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="POST_COST" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="TOTAL_PRICE" Type="Decimal" Precision="38" Scale="0" />
     <NavigationProperty Name="USERS" Relationship="Self.CART_USERS_FK1" FromRole="CART" ToRole="USERS" />
   </EntityType>
   <EntityType Name="CART_INCLUDE">
@@ -94,9 +99,10 @@
     <Property Name="TITLE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="CONTENT" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
     <Property Name="TIME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="SCORE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="SCORE" Type="Decimal" Precision="38" Scale="0" />
     <Property Name="TOTAL_LIKE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="TOTAL_DISLIKE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TOTAL" Type="Decimal" Precision="38" Scale="0" />
     <NavigationProperty Name="BOOK" Relationship="Self.COMMENTS_BOOK_FK1" FromRole="COMMENTS" ToRole="BOOK" />
     <NavigationProperty Name="COMMENT_FEEDBACK" Relationship="Self.COMMENT_FEEDBACK_COMMENTS_FK1" FromRole="COMMENTS" ToRole="COMMENT_FEEDBACK" />
     <NavigationProperty Name="USERS" Relationship="Self.COMMENTS_USERS_FK1" FromRole="COMMENTS" ToRole="USERS" />
@@ -109,7 +115,7 @@
     <Property Name="ORDER_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
     <Property Name="BOOK_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
     <Property Name="QUANTITY" Type="Decimal" Precision="38" Scale="0" />
-    <Property Name="PRICE" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="TOTAL_PRICE" Type="Decimal" Precision="38" Scale="0" />
     <NavigationProperty Name="BOOK" Relationship="Self.ORDER_INCLUDE_BOOK_FK1" FromRole="ORDER_INCLUDE" ToRole="BOOK" />
     <NavigationProperty Name="ORDERS" Relationship="Self.ORDER_INCLUDE_ORDERS_FK1" FromRole="ORDER_INCLUDE" ToRole="ORDERS" />
   </EntityType>
@@ -126,6 +132,7 @@
     <Property Name="TIME_START" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="TIME_GET" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="STATUS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="POST_COST" Type="Decimal" Precision="38" Scale="0" />
     <NavigationProperty Name="ADDRESS" Relationship="Self.ORDERS_ADDRESS_FK1" FromRole="ORDERS" ToRole="ADDRESS" />
     <NavigationProperty Name="ORDER_INCLUDE" Relationship="Self.ORDER_INCLUDE_ORDERS_FK1" FromRole="ORDERS" ToRole="ORDER_INCLUDE" />
     <NavigationProperty Name="USERS" Relationship="Self.ORDERS_USERS_FK1" FromRole="ORDERS" ToRole="USERS" />
@@ -141,13 +148,14 @@
     <Property Name="PASSWORD" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="ACCOUNT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="AUTHORITY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ADDRESS" Relationship="Self.ADDRESS_USERS_FK1" FromRole="USERS" ToRole="ADDRESS" />
     <NavigationProperty Name="CART" Relationship="Self.CART_USERS_FK1" FromRole="USERS" ToRole="CART" />
     <NavigationProperty Name="CART_INCLUDE" Relationship="Self.CART_INCLUDE_USERS_FK1" FromRole="USERS" ToRole="CART_INCLUDE" />
     <NavigationProperty Name="COMMENT_FEEDBACK" Relationship="Self.COMMENT_FEEDBACK_USERS_FK1" FromRole="USERS" ToRole="COMMENT_FEEDBACK" />
     <NavigationProperty Name="COMMENTS" Relationship="Self.COMMENTS_USERS_FK1" FromRole="USERS" ToRole="COMMENTS" />
     <NavigationProperty Name="ORDERS" Relationship="Self.ORDERS_USERS_FK1" FromRole="USERS" ToRole="ORDERS" />
     <NavigationProperty Name="BOOK" Relationship="Self.FAVORITE" FromRole="USERS" ToRole="BOOK" />
-    <NavigationProperty Name="ADDRESS" Relationship="Self.LIVE" FromRole="USERS" ToRole="ADDRESS" />
+    <NavigationProperty Name="ADDRESS1" Relationship="Self.LIVE" FromRole="USERS" ToRole="ADDRESS" />
   </EntityType>
   <EntityType Name="WRITE">
     <Key>
@@ -179,13 +187,47 @@
     <Property Name="NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="BOOK_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
   </EntityType>
+  <EntityType Name="PURCHASE">
+    <Key>
+      <PropertyRef Name="ORDER_ID" />
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="AUTHOR_ID" />
+    </Key>
+    <Property Name="ORDER_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="PRICE" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="IMAGE" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="QUANTITY" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="TOTAL_PRICE" Type="Decimal" Precision="38" Scale="0" />
+    <Property Name="ABSTRACT" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+    <Property Name="PUBLISHER" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="AUTHOR_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="AUTHOR_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+  </EntityType>
   <EntityType Name="ZUOZHE">
     <Key>
       <PropertyRef Name="BOOK_ID" />
+      <PropertyRef Name="AUTHOR_ID" />
     </Key>
-    <Property Name="NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="AUTHOR_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="BOOK_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+    <Property Name="AUTHOR_ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
   </EntityType>
+  <Association Name="ADDRESS_USERS_FK1">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ADDRESS" Type="Self.ADDRESS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ADDRESS">
+        <PropertyRef Name="USER_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="ORDERS_ADDRESS_FK1">
     <End Role="ADDRESS" Type="Self.ADDRESS" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
@@ -395,7 +437,12 @@
     <EntitySet Name="WRITE" EntityType="Self.WRITE" />
     <EntitySet Name="CARTLIST" EntityType="Self.CARTLIST" />
     <EntitySet Name="DINGDANGUANXI" EntityType="Self.DINGDANGUANXI" />
+    <EntitySet Name="PURCHASE" EntityType="Self.PURCHASE" />
     <EntitySet Name="ZUOZHE" EntityType="Self.ZUOZHE" />
+    <AssociationSet Name="ADDRESS_USERS_FK1" Association="Self.ADDRESS_USERS_FK1">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="ADDRESS" EntitySet="ADDRESS" />
+    </AssociationSet>
     <AssociationSet Name="ORDERS_ADDRESS_FK1" Association="Self.ORDERS_ADDRESS_FK1">
       <End Role="ADDRESS" EntitySet="ADDRESS" />
       <End Role="ORDERS" EntitySet="ORDERS" />
@@ -460,5 +507,10 @@
       <End Role="ADDRESS" EntitySet="ADDRESS" />
       <End Role="USERS" EntitySet="USERS" />
     </AssociationSet>
+    <FunctionImport Name="ADDCART1">
+      <Parameter Name="user" Mode="In" Type="Decimal" />
+      <Parameter Name="BOOK" Mode="In" Type="Decimal" />
+      <Parameter Name="price" Mode="In" Type="Decimal" />
+    </FunctionImport>
   </EntityContainer>
 </Schema>
