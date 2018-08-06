@@ -1,6 +1,4 @@
-# DingdongBook
-
-> **C“叮咚”— 在线书评及购书系统**
+# “叮咚”— 在线书评及购书系统
 
 ![](https://github.com/Dinghow/DingdongBook/raw/master/img/c2674995e13445f38fb61cfac48c500b.png)
 
@@ -406,11 +404,11 @@ Windows、Mac OS，浏览器推荐Chrome或IE 8以上版本
 
 **6.1 数据库关系图**
 
-![未命名表单 (https://github.com/Dinghow/DingdongBook/raw/master/img/9316cb8c150ebbc86edb5d976836f723.png)](media/9316cb8c150ebbc86edb5d976836f723.png)
+![](https://github.com/Dinghow/DingdongBook/raw/master/img/9316cb8c150ebbc86edb5d976836f723.png)
 
 **6.2 总体E-R图**
 
-![未命名表单 (https://github.com/Dinghow/DingdongBook/raw/master/img/9126e4bbc91bcfbcfb4b41a02e575fe0.png)](media/9126e4bbc91bcfbcfb4b41a02e575fe0.png)
+![](https://github.com/Dinghow/DingdongBook/raw/master/img/9126e4bbc91bcfbcfb4b41a02e575fe0.png)
 
 **6.3 用户模块E-R图**
 
@@ -418,11 +416,11 @@ Windows、Mac OS，浏览器推荐Chrome或IE 8以上版本
 
 **6.4 书籍模块E-R图**
 
-![书籍 (https://github.com/Dinghow/DingdongBook/raw/master/img/c0c316f811a1c6a41b0fa662f55e430d.png)](media/c0c316f811a1c6a41b0fa662f55e430d.png)
+![](https://github.com/Dinghow/DingdongBook/raw/master/img/c0c316f811a1c6a41b0fa662f55e430d.png)
 
 **6.5 订单模块E-R图**
 
-![订单 (https://github.com/Dinghow/DingdongBook/raw/master/img/f4d82e62732b02d8f81c4fb68a76fdc3.png)](media/f4d82e62732b02d8f81c4fb68a76fdc3.png)
+![](https://github.com/Dinghow/DingdongBook/raw/master/img/f4d82e62732b02d8f81c4fb68a76fdc3.png)
 
 **6.6 评论模块E-R图**
 
